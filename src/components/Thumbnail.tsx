@@ -5,14 +5,37 @@ import bookmarkUnselected from '../../public/icons/bookmark-unselected.svg';
 
 export default function Thumbnail({ movie }: { movie: any }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   function handleBookmarkClick() {
     setIsBookmarked(!isBookmarked);
   }
 
+  function handleImageError() {
+    setLoading(false);
+    setError(true);
+  }
+
   return (
     <ThumbnailContainer>
-      <MovieThumbnail src={movie.thumbnail} alt={movie.title + ' poster'} />
+      {isLoading && (
+        <PlaceholderImage>
+          <h3>Loading...</h3>
+        </PlaceholderImage>
+      )}
+      {isError && (
+        <PlaceholderImage>
+          <h3>Image not found</h3>
+        </PlaceholderImage>
+      )}
+      <MovieThumbnail
+        onLoad={() => setLoading(false)}
+        onError={handleImageError}
+        src={movie.thumbnail}
+        alt={movie.title + ' poster'}
+        style={{ display: isLoading || isError ? 'none' : 'block' }}
+      />
       <SecondaryInfoContainer>
         <p>{movie.year}</p>
         <RatingBadge>
@@ -37,6 +60,7 @@ const ThumbnailContainer = styled.div`
 `;
 
 const MovieThumbnail = styled.img`
+  height: 24rem;
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
@@ -49,6 +73,16 @@ const MovieThumbnail = styled.img`
   &:active {
     transform: scale(0.98);
   }
+`;
+
+const PlaceholderImage = styled.div`
+  width: 100%;
+  height: 24rem;
+  background-color: #434343;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SecondaryInfoContainer = styled.div`
