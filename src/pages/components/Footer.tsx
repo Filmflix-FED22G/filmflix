@@ -42,7 +42,7 @@ const ImageContainer = styled.div`
   justify-content: space-around;
 `;
 const FooterSoMe = styled.img`
-  width: 2rem;
+  width: 1.5rem;
   height: auto;
 `;
 const Footer: React.FC = () => {
