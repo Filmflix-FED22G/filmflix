@@ -71,10 +71,14 @@ h2 {
 
 h3 {
   font-size: var(--font-size-l);
+  font-family: 'Overpass', sans-serif;
+  font-weight: var(--font-weight-regular);
 }
 
 h4 {
   font-size: var(--font-size-m);
+  font-family: 'Overpass', sans-serif;
+  font-weight: var(--font-weight-regular);
 }
 
 h5 {

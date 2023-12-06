@@ -15,7 +15,7 @@ const LogoImage = styled.img`
   height: auto;
 `;
 
-const FooterHeading = styled.h3`
+const FooterHeading = styled.h4`
   margin-top: 0;
 `;
 const FooterList = styled.ul`
