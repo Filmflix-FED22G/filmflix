@@ -42,6 +42,7 @@ export default function Thumbnail({ movie }: { movie: any }) {
           <span>{movie.rating}</span>
         </RatingBadge>
         <BookmarkIcon
+          aria-role="button"
           onClick={handleBookmarkClick}
           src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
           alt="Bookmark button"
