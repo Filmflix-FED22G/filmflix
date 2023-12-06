@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router-dom';
+<<<<<<< HEAD
 import Footer from './pages/components/Footer';
+=======
+import Header from './components/Header';
+>>>>>>> origin
 
 function App() {
   return (
     <>
-      <h1>FILMFLIX!!</h1>
+      <Header />
       <Outlet />
       <Footer />
     </>

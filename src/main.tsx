@@ -18,7 +18,7 @@ export const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path="/details/:title/" element={<DetailsPage />} />
-      <Route path="/category/:title" element={<CategoryPage />} />
+      <Route path="/categories" element={<CategoryPage />} />
       <Route path="/bookmarks" element={<BookmarkPage />} />
       <Route path="*" element={'Not found'}></Route>
     </Route>,

@@ -14,7 +14,7 @@ const FooterContainer = styled.footer`
   padding: 3rem;
 `;
 const LogoImage = styled.img`
-  width: 100px; // Adjust the width as needed
+  width: 100px;
   height: auto;
 `;
 
