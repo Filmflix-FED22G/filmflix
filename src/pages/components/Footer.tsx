@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import FilmFlix from '../../assets/FilmFlix.svg';
+import facebook from '/icons/facebook.svg';
+import instagram from '/icons/instagram.svg';
+import youtube from '/icons/youtube.svg';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -17,10 +20,13 @@ const LogoImage = styled.img`
 
 const FooterHeading = styled.h4`
   margin-top: 0;
+  margin-bottom: 1rem;
 `;
 const FooterList = styled.ul`
   list-style: none;
   padding: 0;
+  font-family: 'Overpass', sans-serif;
+  font-weight: var(--font-weight-regular);
 `;
 
 const FooterListItem = styled.li`
@@ -28,8 +34,17 @@ const FooterListItem = styled.li`
 `;
 const FooterForm = styled.form`
   display: flex;
+  margin-top: 2rem;
 `;
 
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+const FooterSoMe = styled.img`
+  width: 2rem;
+  height: auto;
+`;
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
@@ -70,7 +85,13 @@ const Footer: React.FC = () => {
           <button type="submit">OK</button>
         </FooterForm>
       </div>
-      <div style={{ flex: 1 }}>Div 5</div>
+      <div style={{ flex: 1 }}>
+        <ImageContainer>
+          <FooterSoMe src={facebook} alt="Image 1" />
+          <FooterSoMe src={youtube} alt="Image 3" />
+          <FooterSoMe src={instagram} alt="Image 2" />
+        </ImageContainer>
+      </div>
     </FooterContainer>
   );
 };
