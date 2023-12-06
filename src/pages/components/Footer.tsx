@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FilmFlix from '../../assets/FilmFlix.svg';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -8,6 +9,14 @@ const FooterContainer = styled.footer`
   color: #fff;
   height: 12rem;
   padding: 3rem;
+`;
+const LogoImage = styled.img`
+  width: 100px; // Adjust the width as needed
+  height: auto;
+`;
+
+const FooterHeading = styled.h3`
+  margin-top: 0;
 `;
 const FooterList = styled.ul`
   list-style: none;
@@ -24,9 +33,11 @@ const FooterForm = styled.form`
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
-      <div style={{ flex: 1 }}>Div 1</div>
       <div style={{ flex: 1 }}>
-        <h3>INFO</h3>
+        <LogoImage src={FilmFlix} alt="FilmFlix Logo" />
+      </div>
+      <div style={{ flex: 1 }}>
+        <FooterHeading>INFO</FooterHeading>
         <FooterList>
           <FooterListItem>Customer Service</FooterListItem>
           <FooterListItem>Terms & Conditions</FooterListItem>
@@ -35,7 +46,7 @@ const Footer: React.FC = () => {
         </FooterList>
       </div>
       <div style={{ flex: 1 }}>
-        <h3>ABOUT US</h3>
+        <FooterHeading>ABOUT US</FooterHeading>
         <FooterList>
           <FooterListItem>Press</FooterListItem>
           <FooterListItem>News</FooterListItem>
@@ -43,7 +54,7 @@ const Footer: React.FC = () => {
         </FooterList>
       </div>
       <div style={{ flex: 1 }}>
-        <h3>SUBSCRIBE</h3>
+        <FooterHeading>SUBSCRIBE</FooterHeading>
         <p>
           Enter your email to get the info about the latest FilmFlix news and
           events
