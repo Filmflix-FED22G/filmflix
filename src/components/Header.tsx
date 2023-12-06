@@ -2,6 +2,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import close from '/icons/close.svg';
+import hamburger from '/icons/hamburger.svg';
+import goldclose from '/icons/goldclose.svg';
+import goldburger from '/icons/goldburger.svg';
 
 // Styling for the header
 const StyledHeader = styled.header`
@@ -9,7 +13,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: black;
+  background-color: var(--color-header-footer-background);
   color: white;
 `;
 
@@ -47,7 +51,7 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  background-color: #333;
+  background-color: var(--color-header-footer-background);
   padding: 1rem;
   z-index: 10;
   height: 100vh;
@@ -86,6 +90,11 @@ const MenuItemsContainer = styled.div`
   padding-top: 3rem;
 `;
 
+const StyledSVG = styled.img`
+  width: 1rem;
+  height: 1rem;
+`;
+
 //Toggles the hamburger menu
 const useDisclosure = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,32 +106,60 @@ const useDisclosure = () => {
 
 function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isHamburgerHovering, setIsHamburgerHovering] = useState(false);
+  const [isCloseHovering, setIsCloseHovering] = useState(false);
 
   //Closes the hamburger menu when a link is clicked
   const handleLinkClick = () => {
     onClose();
-  }
+  };
 
   return (
-    <StyledHeader>
-      <div>FilmFlix</div>
-      <NavLinks>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/categories">Categories</RouterLink>
-        <RouterLink to="/bookmarks">Bookmarks</RouterLink>
-      </NavLinks>
-    <SearchBar showInMobile={false} />
-      <HamburgerIcon onClick={onOpen}>☰</HamburgerIcon>
-      <MobileMenu isOpen={isOpen}>
-      <CloseButton onClick={onClose}>X</CloseButton>
-      <MenuItemsContainer>
-        <SearchBar showInMobile={true} />
-        <RouterLink to="/" onClick={handleLinkClick}>Home</RouterLink>
-        <RouterLink to="/categories" onClick={handleLinkClick}>Categories</RouterLink>
-        <RouterLink to="/bookmarks" onClick={handleLinkClick}>Bookmarks</RouterLink>
-        </MenuItemsContainer>
-      </MobileMenu>
-    </StyledHeader>
+    <div className="grid-container">
+      <StyledHeader>
+        <h3>FilmFlix</h3>
+        <NavLinks>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/categories">Categories</RouterLink>
+          <RouterLink to="/bookmarks">Bookmarks</RouterLink>
+        </NavLinks>
+        <SearchBar showInMobile={false} />
+        <HamburgerIcon
+          onClick={onOpen}
+          onMouseEnter={() => setIsHamburgerHovering(true)}
+          onMouseLeave={() => setIsHamburgerHovering(false)}
+        >
+          <StyledSVG
+            src={isHamburgerHovering ? goldburger : hamburger}
+            alt="hamburger menu"
+          />
+        </HamburgerIcon>
+        <MobileMenu isOpen={isOpen}>
+          <CloseButton
+            onClick={onClose}
+            onMouseEnter={() => setIsCloseHovering(true)}
+            onMouseLeave={() => setIsCloseHovering(false)}
+          >
+            <StyledSVG
+              src={isCloseHovering ? goldclose : close}
+              alt="close button"
+            />
+          </CloseButton>
+          <MenuItemsContainer>
+            <SearchBar showInMobile={true} />
+            <RouterLink to="/" onClick={handleLinkClick}>
+              Home
+            </RouterLink>
+            <RouterLink to="/categories" onClick={handleLinkClick}>
+              Categories
+            </RouterLink>
+            <RouterLink to="/bookmarks" onClick={handleLinkClick}>
+              Bookmarks
+            </RouterLink>
+          </MenuItemsContainer>
+        </MobileMenu>
+      </StyledHeader>
+    </div>
   );
 }
 

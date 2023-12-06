@@ -5,7 +5,6 @@ function App() {
   return (
     <>
     <Header />
-      <h1>FILMFLIX!!</h1>
       <Outlet />
     </>
   );
