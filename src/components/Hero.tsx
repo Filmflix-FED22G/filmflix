@@ -9,10 +9,11 @@ interface HeroProps {
 const Hero = ({ title, quote, imageUrl }: HeroProps) => {
   return (
     <HeroContainer $imageUrl={imageUrl}>
-      <HeroText>
+      <HeroInfo>
         <HeroTitle>{title}</HeroTitle>
         <HeroQuote>{quote}</HeroQuote>
-      </HeroText>
+        <HeroButton>View More</HeroButton>
+      </HeroInfo>
     </HeroContainer>
   );
 };
@@ -47,34 +48,34 @@ const HeroContainer = styled.div<{ $imageUrl: string }>`
   }
 `;
 
-const HeroText = styled.div`
+const HeroInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 1rem;
   position: absolute;
-  top: 28%;
-  right: 70%;
+  top: 30%;
+  right: 68%;
   z-index: 10;
 
   @media (max-width: 1024px) {
-    top: 85%;
-    right: 60%;
+    top: 40%;
   }
 
   @media (max-width: 768px) {
-    right: 50%;
-    max-width: 90%;
+    top: 80%;
+    right: 60%;
+    gap: 0.5rem;
   }
 
   @media (max-width: 540px) {
-    right: 45%;
+    top: 60%;
+    right: 20%;
   }
 
   @media (max-width: 480px) {
     right: 25%;
     top: 80%;
-    max-width: 80%;
   }
 
   @media (max-width: 280px) {
@@ -82,7 +83,7 @@ const HeroText = styled.div`
   }
 `;
 
-const HeroTitle = styled.h1`
+const HeroTitle = styled.h2`
   text-transform: uppercase;
 `;
 
@@ -90,4 +91,21 @@ const HeroQuote = styled.h5`
   font-family: 'Overpass', sans-serif;
   font-weight: var(--font-weight-regular);
   max-width: 16rem;
+`;
+
+const HeroButton = styled.button`
+  font-family: 'Overpass', sans-serif;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem 0.5rem 1rem;
+  max-width: 8rem;
+  border: none;
+  background: var(--color-light);
+  font-size: var(--font-size-s);
+  cursor: pointer;
+  transition: 0.25s;
+
+  &:hover {
+    background: var(--color-accent);
+    color: var(--color-light);
+  }
 `;
