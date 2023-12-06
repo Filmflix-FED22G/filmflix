@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 // Styling for the header
 const StyledHeader = styled.header`
@@ -68,66 +69,6 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-//Styling for the SearchBar on desktop
-const SearchBar = styled.div`
-  display: flex;
-  border: 0.3rem solid #fff;
-
-  input {
-    border: none;
-    padding: 0.5rem;
-    outline: none;
-    color: black;
-    background-color: white;
-  }
-
-  button {
-    border: none;
-    background-color: black;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    outline: none;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-//Styling for the search bar on mobile
-const SearchBarMobile = styled.div`
-  display: flex;
-  border: 0.3rem solid #fff;
-
-  input,
-  button {
-    flex-grow: 1;
-  }
-
-  input {
-    border: none;
-    padding: 0.5rem;
-    outline: none;
-    color: black;
-    background-color: white;
-  }
-
-  button {
-    border: none;
-    background-color: black;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    outline: none;
-  }
-
-  @media (max-width: 768px) {
-    width: 90%;
-    margin: auto;
-  }
-`;
-
 //Styling for the close button on mobile
 const CloseButton = styled.button`
   position: absolute;
@@ -145,6 +86,7 @@ const MenuItemsContainer = styled.div`
   padding-top: 3rem;
 `;
 
+//Toggles the hamburger menu
 const useDisclosure = () => {
   const [isOpen, setIsOpen] = useState(false);
   const onOpen = () => setIsOpen(true);
@@ -156,6 +98,11 @@ const useDisclosure = () => {
 function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  //Closes the hamburger menu when a link is clicked
+  const handleLinkClick = () => {
+    onClose();
+  }
+
   return (
     <StyledHeader>
       <div>FilmFlix</div>
@@ -164,21 +111,15 @@ function Header() {
         <RouterLink to="/categories">Categories</RouterLink>
         <RouterLink to="/bookmarks">Bookmarks</RouterLink>
       </NavLinks>
-      <SearchBar>
-        <input type="text" placeholder="Search for a movie" />
-        <button type="submit">Se</button>
-      </SearchBar>
+    <SearchBar showInMobile={false} />
       <HamburgerIcon onClick={onOpen}>☰</HamburgerIcon>
       <MobileMenu isOpen={isOpen}>
       <CloseButton onClick={onClose}>X</CloseButton>
       <MenuItemsContainer>
-        <SearchBarMobile>
-          <input type="text" placeholder="Search for a movie" />
-          <button type="submit">Se</button>
-        </SearchBarMobile>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/categories">Categories</RouterLink>
-        <RouterLink to="/bookmarks">Bookmarks</RouterLink>
+        <SearchBar showInMobile={true} />
+        <RouterLink to="/" onClick={handleLinkClick}>Home</RouterLink>
+        <RouterLink to="/categories" onClick={handleLinkClick}>Categories</RouterLink>
+        <RouterLink to="/bookmarks" onClick={handleLinkClick}>Bookmarks</RouterLink>
         </MenuItemsContainer>
       </MobileMenu>
     </StyledHeader>
