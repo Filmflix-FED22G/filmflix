@@ -17,6 +17,9 @@ const FooterList = styled.ul`
 const FooterListItem = styled.li`
   padding: 0.5rem 0;
 `;
+const FooterForm = styled.form`
+  display: flex;
+`;
 
 const Footer: React.FC = () => {
   return (
@@ -41,6 +44,20 @@ const Footer: React.FC = () => {
       </div>
       <div style={{ flex: 1 }}>
         <h3>SUBSCRIBE</h3>
+        <p>
+          Enter your email to get the info about the latest FilmFlix news and
+          events
+        </p>
+        <FooterForm>
+          {' '}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="name@example.com"
+          />
+          <button type="submit">OK</button>
+        </FooterForm>
       </div>
       <div style={{ flex: 1 }}>Div 5</div>
     </FooterContainer>
