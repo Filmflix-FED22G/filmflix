@@ -41,12 +41,12 @@ export default function Thumbnail({ movie }: { movie: any }) {
         <RatingBadge>
           <span>{movie.rating}</span>
         </RatingBadge>
-        <BookmarkIcon
-          aria-role="button"
-          onClick={handleBookmarkClick}
-          src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
-          alt="Bookmark button"
-        ></BookmarkIcon>
+        <BookmarkButton aria-role="button" onClick={handleBookmarkClick}>
+          <BookmarkIcon
+            src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
+            alt="Bookmark button"
+          ></BookmarkIcon>
+        </BookmarkButton>
       </SecondaryInfoContainer>
       <h4>{movie.title}</h4>
     </ThumbnailContainer>
@@ -110,17 +110,21 @@ const RatingBadge = styled.div`
   }
 `;
 
-const BookmarkIcon = styled.img`
+const BookmarkButton = styled.div`
   width: 1.3rem;
   height: 1.3rem;
   margin: 0 0 0 auto;
+  display: flex;
+  user-select: none;
+`;
+
+const BookmarkIcon = styled.img`
   transition: 0.1s ease-in-out;
 
   &:hover {
     cursor: pointer;
     opacity: 0.6;
   }
-
   &:active {
     transform: scale(0.9);
   }
