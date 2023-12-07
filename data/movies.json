@@ -90,7 +90,7 @@
     "genre": "Drama",
     "synopsis": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
     "thumbnail": "https://m.media-amazon.com/images/M/MV5BMjJmYTNkNmItYjYyZC00MGUxLWEyZmUtZTg1ZDM1YjNhOWE4XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
-     "isTrending": true
+    "isTrending": true
   },
   {
     "title": "Forrest Gump",
@@ -259,7 +259,7 @@
     "genre": "Action, Sci-Fi",
     "synopsis": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her ten year old son John from an even more advanced and powerful cyborg.",
     "thumbnail": "https://m.media-amazon.com/images/M/MV5BMGU2NzRmZjUtOGUxYS00ZjdjLWEwZWItY2NlM2JhNjkxNTFmXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX380_CR0,1,380,562_.jpg",
-     "isTrending": true
+    "isTrending": true
   },
   {
     "title": "Whiplash",
@@ -279,5 +279,17 @@
     "synopsis": "A Phoenix secretary embezzles $40,000 from her employer's client, goes on the run and checks into a remote motel run by a young man under the domination of his mother.",
     "thumbnail": "https://m.media-amazon.com/images/M/MV5BNTQwNDM1YzItNDAxZC00NWY2LTk0M2UtNDIwNWI5OGUyNWUxXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_QL75_UX380_CR0,1,380,562_.jpg",
     "isTrending": true
+  },
+  {
+    "title": "Interstellar",
+    "year": 2014,
+    "rating": "PG-13",
+    "actors": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+    "genre": "Adventure, Drama, Sci-Fi",
+    "synopsis": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+    "thumbnail": "/img/interstellar.png",
+    "isTrending": true,
+    "heroImage": "/img/hero-interstellar.png",
+    "quote": "We're not meant to save the world. We're meant to leave it."
   }
 ]
