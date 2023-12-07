@@ -74,11 +74,16 @@ const HeroInfo = styled.div`
   }
 
   @media (max-width: 912px) {
+    bottom: 7%;
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Horizontally align center */
     max-width: 80%;
     width: 100%; /* Full width within the container */
     gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 7%;
   }
 `;
 
