@@ -87,9 +87,9 @@ const Footer: React.FC = () => {
       </div>
       <div style={{ flex: 1 }}>
         <ImageContainer>
-          <FooterSoMe src={facebook} alt="Image 1" />
-          <FooterSoMe src={youtube} alt="Image 3" />
-          <FooterSoMe src={instagram} alt="Image 2" />
+          <FooterSoMe src={facebook} alt="Facebook logo" />
+          <FooterSoMe src={youtube} alt="YouTube logo" />
+          <FooterSoMe src={instagram} alt="Instagram logo" />
         </ImageContainer>
       </div>
     </FooterContainer>
