@@ -11,12 +11,13 @@ const FooterContainer = styled.footer`
   background-color: #000;
   color: #fff;
   height: 12rem;
-  padding: 3rem;
+  padding: 2rem;
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     text-align: center;
     height: auto;
+    gap: 2rem;
   }
 `;
 const LogoImage = styled.img`
@@ -41,6 +42,16 @@ const FooterList = styled.ul`
 
 const FooterListItem = styled.li`
   padding: 0.5rem 0;
+  @media screen and (max-width: 768px) {
+    padding: 0.25rem 0;
+  }
+`;
+
+const FooterSubscribeText = styled.p`
+  @media screen and (max-width: 768px) {
+    max-width: 20rem;
+    margin: 0 auto;
+  }
 `;
 const FooterForm = styled.form`
   display: flex;
@@ -91,10 +102,10 @@ const Footer: React.FC = () => {
       </div>
       <div style={{ flex: 1 }}>
         <FooterHeading>SUBSCRIBE</FooterHeading>
-        <p>
+        <FooterSubscribeText>
           Enter your email to get the info about the latest FilmFlix news and
           events
-        </p>
+        </FooterSubscribeText>
         <FooterForm>
           {' '}
           <input
