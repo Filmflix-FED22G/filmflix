@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 interface HeroProps {
   title: string;
-  quote?: string;
   heroImageUrl?: string;
+  quote?: string;
 }
 
 const Hero = ({ title, quote, heroImageUrl }: HeroProps) => {
@@ -28,7 +28,7 @@ const HeroContainer = styled.div<{ $heroImageUrl: string }>`
   width: 100vw;
   background-image: url(${(props) => props.$heroImageUrl});
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   position: relative;
 
@@ -51,36 +51,56 @@ const HeroContainer = styled.div<{ $heroImageUrl: string }>`
 const HeroInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   position: absolute;
-  top: 30%;
-  right: 68%;
+  top: 50%;
+  right: 76%;
   z-index: 10;
+
+  @media (max-width: 1440px) {
+    top: 50%;
+    right: 73%;
+  }
+
+  @media (max-width: 1280px) {
+    top: 40%;
+    right: 70%;
+  }
 
   @media (max-width: 1024px) {
     top: 40%;
-    right: 65%;
+    right: 68%;
   }
 
-  @media (max-width: 768px) {
-    top: 80%;
-    right: 60%;
+  @media (max-width: 1024px) and (orientation: portrait) {
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 80%;
+    width: 100%;
+  }
+
+  @media (max-width: 912px) {
+    top: 77%;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Horizontally align center */
+    max-width: 80%;
+    width: 100%; /* Full width within the container */
     gap: 0.5rem;
   }
 
+  @media (max-width: 768px) {
+    top: 62%;
+  }
+
   @media (max-width: 540px) {
-    top: 60%;
-    right: 20%;
+    top: 50%;
   }
 
   @media (max-width: 480px) {
-    right: 25%;
-    top: 80%;
-  }
-
-  @media (max-width: 280px) {
-    right: 16%;
+    top: 55%;
   }
 `;
 
@@ -92,6 +112,7 @@ const HeroQuote = styled.h5`
   font-family: 'Overpass', sans-serif;
   font-weight: var(--font-weight-regular);
   max-width: 16rem;
+  text-align: center;
 `;
 
 const HeroButton = styled.button`
