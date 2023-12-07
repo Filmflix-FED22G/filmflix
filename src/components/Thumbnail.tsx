@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 import slugify from '../utils/slugify';
+import { Movie } from '../../types/movieTypes';
 
-export default function Thumbnail({ movie }: { movie: any }) {
+export default function Thumbnail({ movie }: { movie: Movie }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [imageStatus, setImageStatus] = useState<
     'loading' | 'loaded' | 'error'
