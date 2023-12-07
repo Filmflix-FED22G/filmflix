@@ -9,8 +9,9 @@ test('renders the header with FilmFlix text', () => {
       <App />
     </Router>,
   );
-  const headerElement = screen.getByText(/FilmFlix/i);
-  expect(headerElement).toBeInTheDocument();
+
+  const headerElement = screen.getByRole('banner');
+  expect(headerElement).toHaveTextContent(/FilmFlix/i);
 });
 
 test('renders navigation links for desktop', () => {
@@ -107,6 +108,17 @@ test('renders close button', () => {
 
   const closeButton = screen.getByAltText(/close button/i);
   expect(closeButton).toBeInTheDocument();
+});
+
+describe('Hero', () => {
+  test('should render the correct film title in hero', () => {
+    render(
+      <Router>
+        <App />
+      </Router>,
+    );
+    expect(screen.getByText('Interstellar')).toBeInTheDocument();
+  });
 });
 
 //Footer tests
