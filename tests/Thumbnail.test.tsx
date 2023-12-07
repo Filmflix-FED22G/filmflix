@@ -46,4 +46,22 @@ describe('Thumbnail Component', () => {
     expect(screen.getByText('R')).toBeInTheDocument();
     expect(screen.getByAltText('Bookmark icon')).toBeInTheDocument();
   });
+
+  it('switches between unselected and selected bookmark icon on click', async () => {
+    render(
+      <Router>
+        <Thumbnail movie={mockMovie} />
+      </Router>,
+    );
+
+    const user = userEvent.setup();
+    const bookmarkIcon = screen.getByAltText('Bookmark icon');
+    const bookmarkButton = screen.getByRole('button', { name: 'Bookmark button' });
+
+    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-unselected.svg');
+    await user.click(bookmarkButton);
+    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-selected.svg');
+    await user.click(bookmarkButton);
+    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-unselected.svg');
+  });
 });

@@ -52,10 +52,10 @@ export default function Thumbnail({ movie }: { movie: any }) {
         <RatingBadge>
           <span>{movie.rating}</span>
         </RatingBadge>
-        <BookmarkButton role="button" onClick={handleBookmarkClick}>
+        <BookmarkButton aria-label="Bookmark button" role="button" onClick={handleBookmarkClick}>
           <BookmarkIcon
             src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
-            alt="Bookmark button"
+            alt="Bookmark icon"
           ></BookmarkIcon>
         </BookmarkButton>
       </SecondaryInfoContainer>
