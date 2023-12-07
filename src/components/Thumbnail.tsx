@@ -76,6 +76,7 @@ const MovieThumbnail = styled.img`
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
+  user-select: none;
 
   &:hover {
     cursor: pointer;
@@ -95,6 +96,7 @@ const PlaceholderImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 `;
 
 const SecondaryInfoContainer = styled.div`
@@ -107,6 +109,7 @@ const SecondaryInfoContainer = styled.div`
 `;
 
 const RatingBadge = styled.div`
+  user-select: none;
   height: 1rem;
   background-color: #434343;
   border-radius: 0.3rem;
