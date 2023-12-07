@@ -33,7 +33,7 @@ const HeroContainer = styled.div<{ $imageUrl: string }>`
   position: relative;
 
   @media (max-width: 768px) {
-    height: 60vh;
+    height: 50vh;
   }
 
   &:after {
@@ -60,6 +60,7 @@ const HeroInfo = styled.div`
 
   @media (max-width: 1024px) {
     top: 40%;
+    right: 65%;
   }
 
   @media (max-width: 768px) {
@@ -96,7 +97,7 @@ const HeroQuote = styled.h5`
 const HeroButton = styled.button`
   font-family: 'Overpass', sans-serif;
   text-transform: uppercase;
-  padding: 0.7rem 1rem 0.5rem 1rem;
+  padding: 0.8rem 1rem 0.5rem 1rem;
   max-width: 8rem;
   border: none;
   background: var(--color-light);
