@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import bookmarkSelected from '../../public/icons/bookmark-selected.svg';
 import bookmarkUnselected from '../../public/icons/bookmark-unselected.svg';
+import slugify from '../utils/slugify';
 
 export default function Thumbnail({ movie }: { movie: any }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+
+  const movieSlug = slugify(movie.title);
+
+  function handleMovieClick() {
+    // TODO: set state for movie to render in details page
+  }
 
   function handleBookmarkClick() {
     setIsBookmarked(!isBookmarked);
@@ -29,13 +37,16 @@ export default function Thumbnail({ movie }: { movie: any }) {
           <h3>Image not found</h3>
         </PlaceholderImage>
       )}
-      <MovieThumbnail
-        onLoad={() => setLoading(false)}
-        onError={handleImageError}
-        src={movie.thumbnail}
-        alt={movie.title + ' poster'}
-        style={{ display: isLoading || isError ? 'none' : 'block' }}
-      />
+      <Link to={`/details/${movieSlug}`}>
+        <MovieThumbnail
+          onLoad={() => setLoading(false)}
+          onError={handleImageError}
+          onClick={handleMovieClick}
+          src={movie.thumbnail}
+          alt={movie.title + ' poster'}
+          style={{ display: isLoading || isError ? 'none' : 'block' }}
+        />
+      </Link>
       <SecondaryInfoContainer>
         <p>{movie.year}</p>
         <RatingBadge>
