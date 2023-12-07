@@ -9,7 +9,7 @@ function BookmarkPage() {
       <h1>Bookmarks</h1>
       <MovieList>
         {movies.map((movie: Movie) => (
-          <Thumbnail movie={movie} />
+          <Thumbnail key={movie.title} movie={movie} />
         ))}
       </MovieList>
     </div>

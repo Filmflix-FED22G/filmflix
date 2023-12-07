@@ -7,8 +7,9 @@ import slugify from '../utils/slugify';
 
 export default function Thumbnail({ movie }: { movie: any }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
+  const [imageStatus, setImageStatus] = useState<
+    'loading' | 'loaded' | 'error'
+  >('loading');
 
   const movieSlug = slugify(movie.title);
 
@@ -20,31 +21,30 @@ export default function Thumbnail({ movie }: { movie: any }) {
     setIsBookmarked(!isBookmarked);
   }
 
-  function handleImageError() {
-    setLoading(false);
-    setError(true);
-  }
-
   return (
     <ThumbnailContainer>
-      {isLoading && (
-        <PlaceholderImage>
-          <h3>Loading...</h3>
+      {imageStatus === 'loading' && (
+        <PlaceholderImage aria-label="Loading placeholder">
+          Loading...
         </PlaceholderImage>
       )}
-      {isError && (
-        <PlaceholderImage>
+      {imageStatus === 'error' && (
+        <PlaceholderImage
+          aria-label={`Error placeholder for failing to fetch the ${movie.title} poster`}
+        >
           <h3>Image not found</h3>
         </PlaceholderImage>
       )}
       <Link to={`/details/${movieSlug}`}>
         <MovieThumbnail
-          onLoad={() => setLoading(false)}
-          onError={handleImageError}
+          onLoad={() => setImageStatus('loaded')}
+          onError={() => setImageStatus('error')}
           onClick={handleMovieClick}
           src={movie.thumbnail}
           alt={movie.title + ' poster'}
-          style={{ display: isLoading || isError ? 'none' : 'block' }}
+          style={{
+            display: imageStatus === 'loaded' ? 'block' : 'none',
+          }}
         />
       </Link>
       <SecondaryInfoContainer>
