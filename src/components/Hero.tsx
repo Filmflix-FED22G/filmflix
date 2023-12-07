@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 interface HeroProps {
   title: string;
-  quote: string;
-  imageUrl: string;
+  quote?: string;
+  heroImageUrl?: string;
 }
 
-const Hero = ({ title, quote, imageUrl }: HeroProps) => {
+const Hero = ({ title, quote, heroImageUrl }: HeroProps) => {
   return (
-    <HeroContainer $imageUrl={imageUrl}>
+    <HeroContainer $heroImageUrl={heroImageUrl || ''}>
       <HeroInfo>
         <HeroTitle>{title}</HeroTitle>
-        <HeroQuote>{quote}</HeroQuote>
+        {quote && <HeroQuote>{quote}</HeroQuote>}
         <HeroButton>View More</HeroButton>
       </HeroInfo>
     </HeroContainer>
@@ -20,13 +20,13 @@ const Hero = ({ title, quote, imageUrl }: HeroProps) => {
 
 export default Hero;
 
-const HeroContainer = styled.div<{ $imageUrl: string }>`
+const HeroContainer = styled.div<{ $heroImageUrl: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
   width: 100vw;
-  background-image: url(${(props) => props.$imageUrl});
+  background-image: url(${(props) => props.$heroImageUrl});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -104,6 +104,7 @@ const HeroButton = styled.button`
   font-size: var(--font-size-s);
   cursor: pointer;
   transition: 0.25s;
+  color: var(--color-dark);
 
   &:hover {
     background: var(--color-accent);
