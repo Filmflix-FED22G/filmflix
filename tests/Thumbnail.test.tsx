@@ -62,17 +62,17 @@ describe('Thumbnail Component', () => {
 
     expect(bookmarkIcon).toHaveAttribute(
       'src',
-      '/public/icons/bookmark-unselected.svg',
+      '/icons/bookmark-unselected.svg',
     );
     await user.click(bookmarkButton);
     expect(bookmarkIcon).toHaveAttribute(
       'src',
-      '/public/icons/bookmark-selected.svg',
+      '/icons/bookmark-selected.svg',
     );
     await user.click(bookmarkButton);
     expect(bookmarkIcon).toHaveAttribute(
       'src',
-      '/public/icons/bookmark-unselected.svg',
+      '/icons/bookmark-unselected.svg',
     );
   });
 

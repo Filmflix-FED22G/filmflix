@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import bookmarkSelected from '../../public/icons/bookmark-selected.svg';
-import bookmarkUnselected from '../../public/icons/bookmark-unselected.svg';
+import bookmarkSelected from '/icons/bookmark-selected.svg';
+import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 import slugify from '../utils/slugify';
 
 export default function Thumbnail({ movie }: { movie: any }) {
