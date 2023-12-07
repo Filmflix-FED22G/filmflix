@@ -12,6 +12,12 @@ const FooterContainer = styled.footer`
   color: #fff;
   height: 12rem;
   padding: 3rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+  }
 `;
 const LogoImage = styled.img`
   width: 100px;
@@ -21,6 +27,10 @@ const LogoImage = styled.img`
 const FooterHeading = styled.h4`
   margin-top: 0;
   margin-bottom: 1rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
 `;
 const FooterList = styled.ul`
   list-style: none;
@@ -35,12 +45,21 @@ const FooterListItem = styled.li`
 const FooterForm = styled.form`
   display: flex;
   margin-top: 2rem;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 2rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 2rem;
+  }
 `;
 const FooterSoMe = styled.img`
   height: 1.5rem;
@@ -50,7 +69,7 @@ const Footer: React.FC = () => {
     <FooterContainer>
       <div style={{ flex: 1 }}>
         <a href="/">
-          <LogoImage src={filmFlix} alt="FilmFlix Logo" />
+          <LogoImage src={filmFlix} alt="filmFlix Logo" />
         </a>
       </div>
       <div style={{ flex: 1 }}>

@@ -109,6 +109,11 @@ input {
   border:none;
   color: var(--color-placeholder-text);
   padding-left: 0.6rem;
+  @media screen and (max-width: 768px) {
+
+    height: 2.42rem;
+    
+  }
  
 }
 
