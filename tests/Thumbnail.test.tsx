@@ -38,7 +38,7 @@ describe('Thumbnail Component', () => {
     expect(screen.getByText('Loading...')).toBeInTheDocument();
     fireEvent.error(poster);
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-    expect(screen.getByText('Image not found')).toBeInTheDocument();
+    expect(screen.getByText('Poster not found')).toBeInTheDocument();
     expect(poster.style.display).toBe('none');
 
     expect(screen.getByText('The Shawshank Redemption')).toBeInTheDocument();

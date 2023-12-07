@@ -25,14 +25,14 @@ export default function Thumbnail({ movie }: { movie: any }) {
     <ThumbnailContainer>
       {imageStatus === 'loading' && (
         <PlaceholderImage aria-label="Loading placeholder">
-          Loading...
+          <h5>Loading...</h5>
         </PlaceholderImage>
       )}
       {imageStatus === 'error' && (
         <PlaceholderImage
           aria-label={`Error placeholder for failing to fetch the ${movie.title} poster`}
         >
-          <h3>Image not found</h3>
+          <h2>Poster not found</h2>
         </PlaceholderImage>
       )}
       <Link to={`/details/${movieSlug}`}>
@@ -96,6 +96,7 @@ const PlaceholderImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   user-select: none;
 `;
 

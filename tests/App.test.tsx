@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import App from '../src/App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import App from '../src/App';
 
 //Header tests
 test('renders the header with FilmFlix text', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
   const headerElement = screen.getByText(/FilmFlix/i);
   expect(headerElement).toBeInTheDocument();
@@ -17,7 +17,7 @@ test('renders navigation links for desktop', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   const homeLinks = screen.getAllByText(/home/i);
@@ -37,7 +37,7 @@ test('renders navigation links for mobile', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   const homeLinks = screen.getAllByText(/home/i);
@@ -57,12 +57,12 @@ test('renders search bar input and button for desktop', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   // Get all elements with the placeholder text "Search for a movie"
   const inputFields = screen.getAllByPlaceholderText(/search for a movie/i);
-  
+
   expect(inputFields[0]).toBeInTheDocument();
 
   // Get the submit button with the alt text of the SVG image
@@ -74,7 +74,7 @@ test('renders search bar input and button for mobile', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   // Get all elements with the placeholder text "Search for a movie"
@@ -82,7 +82,7 @@ test('renders search bar input and button for mobile', () => {
 
   expect(inputFields[1]).toBeInTheDocument();
 
-    // Get the submit button with the alt text of the SVG image
+  // Get the submit button with the alt text of the SVG image
   const submitButton = screen.getByRole('button', { name: /magnifyingglass/i });
   expect(submitButton).toBeInTheDocument();
 });
@@ -91,7 +91,7 @@ test('renders hamburger button', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   const hamburgerButton = screen.getByAltText(/hamburger menu/i);
@@ -102,9 +102,21 @@ test('renders close button', () => {
   render(
     <Router>
       <App />
-    </Router>
+    </Router>,
   );
 
   const closeButton = screen.getByAltText(/close button/i);
   expect(closeButton).toBeInTheDocument();
+});
+
+//Footer tests
+
+test('renders the footer with FilmFlix text', () => {
+  render(
+    <Router>
+      <App />
+    </Router>,
+  );
+  const footerElement = screen.getByAltText(/FilmFlix/i);
+  expect(footerElement).toBeInTheDocument();
 });
