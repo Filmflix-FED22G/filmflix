@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
+import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import close from '/icons/close.svg';
-import hamburger from '/icons/hamburger.svg';
-import goldclose from '/icons/goldclose.svg';
 import goldburger from '/icons/goldburger.svg';
+import goldclose from '/icons/goldclose.svg';
+import hamburger from '/icons/hamburger.svg';
 
 // Styling for the header
 const StyledHeader = styled.header`
@@ -45,8 +45,8 @@ const HamburgerIcon = styled.div`
 `;
 
 // Styling for mobile menu
-const MobileMenu = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+const MobileMenu = styled.div<{ $isOpen: boolean }>`
+  display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -56,8 +56,8 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
   z-index: 10;
   height: 100vh;
   overflow: auto;
-  transform: ${({ isOpen }) =>
-    isOpen ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${({ $isOpen }) =>
+    $isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.3s ease-in-out;
 
   a {
@@ -123,7 +123,7 @@ function Header() {
           <RouterLink to="/categories">Categories</RouterLink>
           <RouterLink to="/bookmarks">Bookmarks</RouterLink>
         </NavLinks>
-        <SearchBar showInMobile={false} />
+        <SearchBar $showInMobile={false} />
         <HamburgerIcon
           onClick={onOpen}
           onMouseEnter={() => setIsHamburgerHovering(true)}
@@ -134,7 +134,7 @@ function Header() {
             alt="hamburger menu"
           />
         </HamburgerIcon>
-        <MobileMenu isOpen={isOpen}>
+        <MobileMenu $isOpen={isOpen}>
           <CloseButton
             onClick={onClose}
             onMouseEnter={() => setIsCloseHovering(true)}
@@ -146,7 +146,7 @@ function Header() {
             />
           </CloseButton>
           <MenuItemsContainer>
-            <SearchBar showInMobile={true} />
+            <SearchBar $showInMobile={true} />
             <RouterLink to="/" onClick={handleLinkClick}>
               Home
             </RouterLink>
