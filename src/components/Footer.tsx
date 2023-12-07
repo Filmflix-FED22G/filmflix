@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import facebook from '/icons/facebook.svg';
+import facebookwhite from '/icons/facebookwhite.svg';
 import filmFlix from '/icons/filmFlix.svg';
-import instagram from '/icons/instagram.svg';
-import youtube from '/icons/youtube.svg';
+import instagramwhite from '/icons/instagramwhite.svg';
+import youtubewhite from '/icons/youtubewhite.svg';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -43,8 +43,7 @@ const ImageContainer = styled.div`
   gap: 2rem;
 `;
 const FooterSoMe = styled.img`
-  width: 1.5rem;
-  height: auto;
+  height: 1.5rem;
 `;
 const Footer: React.FC = () => {
   return (
@@ -90,9 +89,9 @@ const Footer: React.FC = () => {
       </div>
       <div style={{ flex: 1 }}>
         <ImageContainer>
-          <FooterSoMe src={facebook} alt="Facebook logo" />
-          <FooterSoMe src={youtube} alt="YouTube logo" />
-          <FooterSoMe src={instagram} alt="Instagram logo" />
+          <FooterSoMe src={facebookwhite} alt="Facebook logo" />
+          <FooterSoMe src={youtubewhite} alt="YouTube logo" />
+          <FooterSoMe src={instagramwhite} alt="Instagram logo" />
         </ImageContainer>
       </div>
     </FooterContainer>
