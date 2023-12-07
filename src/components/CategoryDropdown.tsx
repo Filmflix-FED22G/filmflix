@@ -2,10 +2,27 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface DropdownContentProps {
+  isOpen: boolean;
+}
+
+const DropdownWrapper = styled.div`
+  background-color: var(--color-dark-grey);
+  display: inline-block;
+  margin: 2rem;
+  position: relative;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+  }
+`;
+
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
-  margin: 2rem;
 
   @media (max-width: 768px) {
     display: block;
@@ -15,44 +32,39 @@ const DropdownContainer = styled.div`
 
 const DropdownButton = styled.button`
   text-transform: uppercase;
-  border-radius: 0;
   border: none;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem 1rem 1rem;
   background-color: var(--color-dark-grey);
   color: white;
 
   &:hover {
     color: var(--color-accent);
   }
-
-  @media (max-width: 768px) {
-    display: inline-block; // Keeps the button inline but centered
-  }
 `;
 
-const DropdownContent = styled.div`
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+const DropdownContent = styled.div<DropdownContentProps>`
+  display: ${(props) => (props.isOpen ? 'grid' : 'none')};
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  background-color: var(--color-dark-grey);
+  padding: 0.5rem;
   z-index: 1;
-  margin-top: 1rem;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: auto;
 
   a {
     color: white;
-    background-color: black;
     text-decoration: none;
-    display: block;
+    padding: 0.5rem;
+    text-align: left;
 
     &:hover {
       color: var(--color-accent);
     }
-  }
-
-  @media (max-width: 768px) {
-    position: static;
-    transform: none;
   }
 `;
 
@@ -61,21 +73,21 @@ function CategoryDropdown() {
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const categories = [
-    'Drama',
-    'Crime',
     'Action',
-    'Biography',
-    'History',
     'Adventure',
-    'Western',
+    'Biography',
+    'Crime',
+    'Drama',
+    'Fantasy',
+    'History',
+    'Horror',
+    'Music',
+    'Mystery',
     'Romance',
     'Sci-Fi',
-    'Fantasy',
     'Thriller',
     'War',
-    'Mystery',
-    'Music',
-    'Horror',
+    'Western',
   ];
 
   const handleCategoryClick = (category: string) => {
@@ -99,22 +111,24 @@ function CategoryDropdown() {
   }, []);
 
   return (
-    <DropdownContainer ref={dropdownRef}>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-        <h4>Categories</h4>
-      </DropdownButton>
-      <DropdownContent isOpen={isOpen}>
-        {categories.map((category) => (
-          <a
-            href="#"
-            key={category}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category}
-          </a>
-        ))}
-      </DropdownContent>
-    </DropdownContainer>
+    <DropdownWrapper>
+      <DropdownContainer ref={dropdownRef}>
+        <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+          <h4>Categories</h4>
+        </DropdownButton>
+        <DropdownContent isOpen={isOpen}>
+          {categories.map((category) => (
+            <a
+              href="#"
+              key={category}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </a>
+          ))}
+        </DropdownContent>
+      </DropdownContainer>
+    </DropdownWrapper>
   );
 }
 
