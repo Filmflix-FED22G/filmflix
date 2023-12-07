@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 import movies from '../data/movies.json';
 import Thumbnail from '../src/components/Thumbnail';
 import { Movie } from '../types/movieTypes';
-import userEvent from "@testing-library/user-event";
 
 describe('Thumbnail Component', () => {
   const mockMovie: Movie = movies[0];
@@ -17,7 +17,7 @@ describe('Thumbnail Component', () => {
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-    fireEvent.load(poster)
+    fireEvent.load(poster);
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
     expect(poster).toBeInTheDocument();
 
@@ -36,7 +36,7 @@ describe('Thumbnail Component', () => {
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-    fireEvent.error(poster)
+    fireEvent.error(poster);
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
     expect(screen.getByText('Image not found')).toBeInTheDocument();
     expect(poster.style.display).toBe('none');
@@ -56,12 +56,28 @@ describe('Thumbnail Component', () => {
 
     const user = userEvent.setup();
     const bookmarkIcon = screen.getByAltText('Bookmark icon');
-    const bookmarkButton = screen.getByRole('button', { name: 'Bookmark button' });
+    const bookmarkButton = screen.getByRole('button', {
+      name: 'Bookmark button',
+    });
 
-    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-unselected.svg');
+    expect(bookmarkIcon).toHaveAttribute(
+      'src',
+      '/public/icons/bookmark-unselected.svg',
+    );
     await user.click(bookmarkButton);
-    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-selected.svg');
+    expect(bookmarkIcon).toHaveAttribute(
+      'src',
+      '/public/icons/bookmark-selected.svg',
+    );
     await user.click(bookmarkButton);
-    expect(bookmarkIcon).toHaveAttribute('src', '/public/icons/bookmark-unselected.svg');
+    expect(bookmarkIcon).toHaveAttribute(
+      'src',
+      '/public/icons/bookmark-unselected.svg',
+    );
   });
+
+  it.todo('navigates to details page when clicked');
+
+  it.todo('adds movie to sessionStorage when bookmark button is clicked');
+  it.todo('removes movie from sessionStorage when bookmark button is clicked');
 });
