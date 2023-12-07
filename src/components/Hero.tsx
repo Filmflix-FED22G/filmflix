@@ -32,10 +32,6 @@ const HeroContainer = styled.div<{ $heroImageUrl: string }>`
   background-repeat: no-repeat;
   position: relative;
 
-  @media (max-width: 768px) {
-    height: 50vh;
-  }
-
   &:after {
     content: '';
     position: absolute;
@@ -55,27 +51,22 @@ const HeroInfo = styled.div`
   align-items: center;
   gap: 1rem;
   position: absolute;
-  top: 50%;
+  bottom: 30%;
   right: 76%;
   z-index: 10;
 
   @media (max-width: 1440px) {
-    top: 50%;
+    bottom: 40%;
     right: 73%;
   }
 
-  @media (max-width: 1280px) {
-    top: 40%;
-    right: 70%;
-  }
-
   @media (max-width: 1024px) {
-    top: 40%;
+    bottom: 20%;
     right: 68%;
   }
 
   @media (max-width: 1024px) and (orientation: portrait) {
-    top: 75%;
+    bottom: 7%;
     left: 50%;
     transform: translateX(-50%);
     max-width: 80%;
@@ -83,24 +74,11 @@ const HeroInfo = styled.div`
   }
 
   @media (max-width: 912px) {
-    top: 77%;
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Horizontally align center */
     max-width: 80%;
     width: 100%; /* Full width within the container */
     gap: 0.5rem;
-  }
-
-  @media (max-width: 768px) {
-    top: 62%;
-  }
-
-  @media (max-width: 540px) {
-    top: 50%;
-  }
-
-  @media (max-width: 480px) {
-    top: 55%;
   }
 `;
 
