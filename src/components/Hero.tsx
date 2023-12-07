@@ -56,8 +56,13 @@ const HeroInfo = styled.div`
   z-index: 10;
 
   @media (max-width: 1440px) {
-    bottom: 40%;
+    bottom: 25%;
     right: 73%;
+  }
+
+  @media (max-width: 1280px) {
+    bottom: 20%;
+    right: 71%;
   }
 
   @media (max-width: 1024px) {
