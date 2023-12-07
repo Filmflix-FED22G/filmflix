@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import heroImage from '/img/hero-interstellar.png';
@@ -13,6 +14,7 @@ function App() {
         imageUrl={heroImage}
       />
       <Outlet />
+      <Footer />
     </>
   );
 }
