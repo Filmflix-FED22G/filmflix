@@ -39,7 +39,8 @@ const FooterForm = styled.form`
 
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
 `;
 const FooterSoMe = styled.img`
   width: 1.5rem;
@@ -49,7 +50,9 @@ const Footer: React.FC = () => {
   return (
     <FooterContainer>
       <div style={{ flex: 1 }}>
-        <LogoImage src={filmFlix} alt="FilmFlix Logo" />
+        <a href="/">
+          <LogoImage src={filmFlix} alt="FilmFlix Logo" />
+        </a>
       </div>
       <div style={{ flex: 1 }}>
         <FooterHeading>INFO</FooterHeading>
