@@ -1,7 +1,11 @@
+import CategoryDropdown from "../components/CategoryDropdown";
+import { Outlet } from "react-router-dom";
+
 function CategoryPage() {
   return (
     <div>
-      <h1>CategoryPage</h1>
+      <CategoryDropdown />
+      <Outlet />
     </div>
   );
 }
