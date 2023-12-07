@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import searchicon from '/icons/searchicon.svg';
 
 interface SearchBarContainerProps {
-  showInMobile?: boolean;
+  $showInMobile?: boolean;
 }
 
 //Styling for the SearchBar on desktop
@@ -40,7 +40,7 @@ const SearchBarContainer = styled.div<SearchBarContainerProps>`
   }
 
   @media (max-width: 768px) {
-    display: ${({ showInMobile }) => (showInMobile ? 'flex' : 'none')};
+    display: ${({ $showInMobile }) => ($showInMobile ? 'flex' : 'none')};
     // Apply mobile-specific styles here
     width: 90%;
     margin: auto;
@@ -53,13 +53,13 @@ const StyledSVG = styled.img`
 `;
 
 interface SearchBarProps {
-  showInMobile?: boolean;
+  $showInMobile?: boolean;
 }
 
-function SearchBar({ showInMobile = false }: SearchBarProps) {
+function SearchBar({ $showInMobile = false }: SearchBarProps) {
   return (
     <form>
-      <SearchBarContainer showInMobile={showInMobile}>
+      <SearchBarContainer $showInMobile={$showInMobile}>
         <input type="text" placeholder="Search for a movie" />
         <button>
           <StyledSVG src={searchicon} alt="magnifyingglass" />{' '}
