@@ -5,6 +5,7 @@ import { Movie } from '../../types/movieTypes';
 
 const Carousel = () => {
   const trendingMovies = data.filter((movie) => movie.isTrending === true);
+  console.log('trendingMovies: ', trendingMovies);
   const [movies, setMovies] = useState<Movie[]>(trendingMovies);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -13,37 +14,44 @@ const Carousel = () => {
   }, [data]);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+    if (currentIndex > movies.length) {
+      return setCurrentIndex(0);
+    }
+    setCurrentIndex((prevIndex) => (prevIndex + 3) % movies.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + movies.length) % data.length,
-    );
+    if (currentIndex === 0) return;
+    setCurrentIndex((prevIndex) => (prevIndex - 3) % movies.length);
   };
+  const itemsPerPage = 3;
 
   return (
     <CarouselContainer>
       <CarouselWrapper>
         <CarouselHeading>TRENDING</CarouselHeading>
-        <CarouselItemsWrapper
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {movies.map((m, index: number) => (
-            <>
+        <CarouselItemsWrapper>
+          {movies
+            .slice(currentIndex, currentIndex + itemsPerPage)
+            .map((m, index: number) => (
               <CarouselItem key={index}>
                 <img
                   style={{
                     zIndex: '10',
                     height: '17rem',
+                    width: '100%', // Adjust this value as needed
                   }}
                   src={m.thumbnail}
                   alt=""
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src =
+                      'https://alvkarleby.wordpress.com/files/2009/12/kungen.jpg';
+                  }}
                 />
                 <p>{m.title}</p>
               </CarouselItem>
-            </>
-          ))}
+            ))}
         </CarouselItemsWrapper>
       </CarouselWrapper>
       <NavButton onClick={handlePrev}>Previous</NavButton>
@@ -65,14 +73,19 @@ const CarouselWrapper = styled.div`
   align-items: center;
   padding: 2rem;
   transition: transform 0.5s ease-in-out;
+  width: 100%;
 `;
 
 const CarouselItemsWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
 `;
 
 const CarouselItem = styled.div`
-  flex: 0 0 100%;
+  width: 10rem;
   box-sizing: border-box;
 `;
 const CarouselHeading = styled.h3`
