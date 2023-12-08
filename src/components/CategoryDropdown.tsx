@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface DropdownContentProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 const DropdownWrapper = styled.div`
@@ -44,7 +44,7 @@ const DropdownButton = styled.button`
 `;
 
 const DropdownContent = styled.div<DropdownContentProps>`
-  display: ${(props) => (props.isOpen ? 'grid' : 'none')};
+  display: ${({ $isOpen }) => ($isOpen ? 'grid' : 'none')};
   position: absolute;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
@@ -116,7 +116,7 @@ function CategoryDropdown() {
         <DropdownButton onClick={() => setIsOpen(!isOpen)}>
           <h4>Categories</h4>
         </DropdownButton>
-        <DropdownContent isOpen={isOpen}>
+        <DropdownContent $isOpen={isOpen}>
           {categories.map((category) => (
             <a
               href="#"
