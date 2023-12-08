@@ -88,23 +88,27 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
+  const clearSearch = () => {
+    setSearchQuery('');
+    setShowDropdown(false);
+  };
 
   // Handle search input changes
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-  
-    if (query.length > 0) {
-      const filtered = movies
-        .filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()))
-        .slice(0, 5);
-  
-      setFilteredMovies(filtered);
-      setShowDropdown(true);
-    } else {
-      setShowDropdown(false);
-    }
-  };  
+const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const query = event.target.value;
+  setSearchQuery(query);
+
+  if (query.length > 0) {
+    const filtered = movies
+      .filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 5); // Limit the number of suggestions
+
+    setFilteredMovies(filtered);
+    setShowDropdown(true);
+  } else {
+    setShowDropdown(false);
+  }
+};
 
   // Handle form submission
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -119,7 +123,7 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
+        clearSearch();
       }
     };
 
