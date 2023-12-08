@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import searchicon from '/icons/searchicon.svg';
 import movies from '../../data/movies.json';
 import { useState, useEffect, useRef } from 'react';
 import Thumbnail from './Thumbnail';
@@ -87,9 +86,6 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
             value={searchQuery}
             onChange={handleInputChange}
           />
-          <button type="submit">
-            <StyledSVG src={searchicon} alt="magnifyingglass" />
-          </button>
         </SearchBarContainer>
       </form>
 
@@ -143,24 +139,8 @@ const SearchBarContainer = styled.div<SearchBarContainerProps>`
     background-color: white;
   }
 
-  button {
-    flex-shrink: 0;
-    flex-basis: 2rem;
-    width: 2rem;
-    height: 2rem;
-    border: none;
-    background-color: black;
-    color: white;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    outline: none;
-
-    &:hover {
-      background-color: #aa8c21;
-    }
+  img {
+    margin-left: 0.5rem;
   }
 `;
 
@@ -177,9 +157,4 @@ const ThumbnailContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`;
-
-const StyledSVG = styled.img`
-  width: 1rem;
-  height: 1rem;
 `;
