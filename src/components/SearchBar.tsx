@@ -1,11 +1,27 @@
 import styled from 'styled-components';
 import searchicon from '/icons/searchicon.svg';
+import movies from '../../data/movies.json';
+import { useState } from 'react';
+import Thumbnail from './Thumbnail';
+
+type Movie = {
+  title: string;
+  year: number;
+  rating: string;
+  actors: string[];
+  genre: string;
+  synopsis: string;
+  thumbnail: string;
+};
 
 interface SearchBarContainerProps {
   $showInMobile?: boolean;
 }
 
-//Styling for the SearchBar on desktop
+interface SearchBarProps {
+  $showInMobile?: boolean;
+}
+
 const SearchBarContainer = styled.div<SearchBarContainerProps>`
   display: flex;
   border: 0.3rem solid #fff;
@@ -41,7 +57,6 @@ const SearchBarContainer = styled.div<SearchBarContainerProps>`
 
   @media (max-width: 768px) {
     display: ${({ $showInMobile }) => ($showInMobile ? 'flex' : 'none')};
-    // Apply mobile-specific styles here
     width: 90%;
     margin: auto;
   }
@@ -52,20 +67,40 @@ const StyledSVG = styled.img`
   height: 1rem;
 `;
 
-interface SearchBarProps {
-  $showInMobile?: boolean;
-}
-
 function SearchBar({ $showInMobile = false }: SearchBarProps) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+
+  // Handle search input changes
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Handle form submission
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const filtered = movies.filter(movie => 
+      movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredMovies(filtered); // Update state with filtered movies
+  };
+
   return (
-    <form>
+    <>
+    <form onSubmit={handleFormSubmit}>
       <SearchBarContainer $showInMobile={$showInMobile}>
-        <input type="text" placeholder="Search for a movie" />
+        <input type="text" placeholder="Search for a movie" value={searchQuery} onChange={handleInputChange} />
         <button>
           <StyledSVG src={searchicon} alt="magnifyingglass" />{' '}
         </button>
       </SearchBarContainer>
     </form>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+    {filteredMovies.map(movie => (
+      <Thumbnail key={movie.title} movie={movie} />
+    ))}
+  </div>
+  </>
   );
 }
 
