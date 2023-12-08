@@ -90,6 +90,7 @@ const StyledLink = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
 `;
 
 const StyledHeader = styled.header`

@@ -33,27 +33,29 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
   };
 
   // Handle search input changes
-const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const query = event.target.value;
-  setSearchQuery(query);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchQuery(query);
 
-  if (query.length > 0) {
-    const filtered = movies
-      .filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()))
-      .slice(0, 5);
+    if (query.length > 0) {
+      const filtered = movies
+        .filter((movie) =>
+          movie.title.toLowerCase().includes(query.toLowerCase()),
+        )
+        .slice(0, 5);
 
-    setFilteredMovies(filtered);
-    setShowDropdown(true);
-  } else {
-    setShowDropdown(false);
-  }
-};
+      setFilteredMovies(filtered);
+      setShowDropdown(true);
+    } else {
+      setShowDropdown(false);
+    }
+  };
 
   // Handle form submission
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const filtered = movies.filter(movie => 
-      movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFilteredMovies(filtered);
   };
@@ -61,7 +63,10 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //Handle click outside to close the dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
+      if (
+        searchBarRef.current &&
+        !searchBarRef.current.contains(event.target as Node)
+      ) {
         clearSearch();
       }
     };
@@ -76,7 +81,12 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     <SearchContainer ref={searchBarRef} $showInMobile={$showInMobile}>
       <form onSubmit={handleFormSubmit}>
         <SearchBarContainer $showInMobile={$showInMobile}>
-          <input type="text" placeholder="Search for a movie" value={searchQuery} onChange={handleInputChange} />
+          <input
+            type="text"
+            placeholder="Search for a movie"
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
           <button type="submit">
             <StyledSVG src={searchicon} alt="magnifyingglass" />
           </button>
@@ -85,7 +95,7 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
       {showDropdown && filteredMovies.length > 0 && (
         <SearchResultsDropdown>
-          {filteredMovies.map(movie => (
+          {filteredMovies.map((movie) => (
             <ThumbnailContainer key={movie.title}>
               <Thumbnail movie={movie} />
             </ThumbnailContainer>
@@ -104,7 +114,7 @@ const SearchContainer = styled.div<SearchBarProps>`
   max-width: 20rem;
   display: block;
 
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     width: 100%;
     margin: 1rem auto;
     max-width: 40rem;
@@ -114,7 +124,7 @@ const SearchContainer = styled.div<SearchBarProps>`
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
     margin: 1rem auto;
-    display: block; 
+    display: block;
     max-width: 40rem;
   }
 `;
