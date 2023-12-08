@@ -51,6 +51,8 @@ const Carousel = () => {
                   }}
                 />
                 <CarouselFilmTitle>{m.title}</CarouselFilmTitle>
+                <CarouselFilmTitle>{m.year}</CarouselFilmTitle>
+                <CarouselFilmTitle>{m.rating}</CarouselFilmTitle>
               </CarouselItem>
             ))}
           <NavButton onClick={handleNext}>Next</NavButton>
@@ -80,8 +82,7 @@ const CarouselItemsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 2rem;
+  gap: 3rem;
   width: 100%;
 `;
 
