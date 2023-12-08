@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import searchicon from '/icons/searchicon.svg';
 import movies from '../../data/movies.json';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Thumbnail from './Thumbnail';
 
 type Movie = {
@@ -23,6 +23,7 @@ interface SearchBarProps {
 }
 
 const SearchBarContainer = styled.div<SearchBarContainerProps>`
+  position: relative;
   display: flex;
   border: 0.3rem solid #fff;
 
@@ -62,6 +63,21 @@ const SearchBarContainer = styled.div<SearchBarContainerProps>`
   }
 `;
 
+const SearchResultsDropdown = styled.div`
+  position: absolute;
+  width: auto;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: var(--color-dark-grey);
+  z-index: 10;
+`;
+
+const ThumbnailContainer = styled.div`
+  width: 100%;
+  display: block;
+  margin: 0.5rem 0;
+`;
+
 const StyledSVG = styled.img`
   width: 1rem;
   height: 1rem;
@@ -70,11 +86,25 @@ const StyledSVG = styled.img`
 function SearchBar({ $showInMobile = false }: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const searchBarRef = useRef<HTMLDivElement>(null);
 
   // Handle search input changes
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
+    const query = event.target.value;
+    setSearchQuery(query);
+  
+    if (query.length > 0) {
+      const filtered = movies
+        .filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()))
+        .slice(0, 5);
+  
+      setFilteredMovies(filtered);
+      setShowDropdown(true);
+    } else {
+      setShowDropdown(false);
+    }
+  };  
 
   // Handle form submission
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,25 +112,44 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
     const filtered = movies.filter(movie => 
       movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setFilteredMovies(filtered); // Update state with filtered movies
+    setFilteredMovies(filtered);
   };
 
+  //Handle click outside to close the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
-    <form onSubmit={handleFormSubmit}>
-      <SearchBarContainer $showInMobile={$showInMobile}>
-        <input type="text" placeholder="Search for a movie" value={searchQuery} onChange={handleInputChange} />
-        <button>
-          <StyledSVG src={searchicon} alt="magnifyingglass" />{' '}
-        </button>
-      </SearchBarContainer>
-    </form>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-    {filteredMovies.map(movie => (
-      <Thumbnail key={movie.title} movie={movie} />
-    ))}
-  </div>
-  </>
+    <div ref={searchBarRef}>
+      <form onSubmit={handleFormSubmit}>
+        <SearchBarContainer $showInMobile={$showInMobile}>
+          <input type="text" placeholder="Search for a movie" value={searchQuery} onChange={handleInputChange} />
+          <button type="submit">
+            <StyledSVG src={searchicon} alt="magnifyingglass" />
+          </button>
+        </SearchBarContainer>
+      </form>
+
+      {showDropdown && filteredMovies.length > 0 && (
+        <SearchResultsDropdown>
+          {filteredMovies.map(movie => (
+            <ThumbnailContainer>
+            <Thumbnail key={movie.title} movie={movie} />
+            </ThumbnailContainer>
+          ))}
+        </SearchResultsDropdown>
+      )}
+    </div>
   );
 }
 
