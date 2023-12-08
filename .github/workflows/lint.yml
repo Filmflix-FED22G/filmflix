@@ -2,7 +2,7 @@ name: Linting and formatting
 
 on:
   push:
-    branches: [38-set-up-ci-workflows]
+    branches: [main]
   pull_request:
     branches: [main]
 
