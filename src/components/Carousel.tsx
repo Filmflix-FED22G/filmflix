@@ -25,10 +25,10 @@ const Carousel = () => {
   return (
     <CarouselContainer>
       <CarouselWrapper>
+        <CarouselHeading>TRENDING</CarouselHeading>
         <CarouselItemsWrapper
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          <h3>Trending</h3>
           {movies.map((m, index: number) => (
             <>
               <CarouselItem key={index}>{m.title}</CarouselItem>
@@ -36,8 +36,7 @@ const Carousel = () => {
                 style={{
                   zIndex: '10',
                   width: '20rem',
-                  height: '20rem',
-                  objectFit: 'cover',
+                  height: '17rem',
                 }}
                 src={m.thumbnail}
                 alt=""
@@ -54,13 +53,16 @@ const Carousel = () => {
 
 const CarouselContainer = styled.div`
   width: 100%;
-
+  display: flex;
+  align-items: center;
   background-color: var(--color-dark-grey);
   overflow: hidden;
 `;
 
 const CarouselWrapper = styled.div`
   display: flex;
+  align-items: center;
+  padding: 2rem;
   transition: transform 0.5s ease-in-out;
 `;
 
@@ -71,6 +73,11 @@ const CarouselItemsWrapper = styled.div`
 const CarouselItem = styled.div`
   flex: 0 0 100%;
   box-sizing: border-box;
+`;
+const CarouselHeading = styled.h3`
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-family: 'Oswald', sans-serif;
 `;
 
 const NavButton = styled.button`
