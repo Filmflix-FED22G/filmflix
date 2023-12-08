@@ -69,11 +69,12 @@ const ThumbnailContainer = styled.div`
   width: 16rem;
   display: flex;
   flex-direction: column;
-  margin: 0 2rem 3rem 0;
+  margin: 1rem;
 `;
 
 const MovieThumbnail = styled.img`
   height: 24rem;
+  width: 100%;
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
