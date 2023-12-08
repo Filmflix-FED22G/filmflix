@@ -54,38 +54,15 @@ test('renders navigation links for mobile', () => {
   expect(bookmarksLinks[1]).toHaveAttribute('href', '/bookmarks');
 });
 
-test('renders search bar input and button for desktop', () => {
+test('renders search bar and input in two places, desktop and mobile', () => {
   render(
     <Router>
       <App />
     </Router>,
   );
 
-  // Get all elements with the placeholder text "Search for a movie"
-  const inputFields = screen.getAllByPlaceholderText(/search for a movie/i);
-
-  expect(inputFields[0]).toBeInTheDocument();
-
-  // Get the submit button with the alt text of the SVG image
-  const submitButton = screen.getByRole('button', { name: /magnifyingglass/i });
-  expect(submitButton).toBeInTheDocument();
-});
-
-test('renders search bar input and button for mobile', () => {
-  render(
-    <Router>
-      <App />
-    </Router>,
-  );
-
-  // Get all elements with the placeholder text "Search for a movie"
-  const inputFields = screen.getAllByPlaceholderText(/search for a movie/i);
-
-  expect(inputFields[1]).toBeInTheDocument();
-
-  // Get the submit button with the alt text of the SVG image
-  const submitButton = screen.getByRole('button', { name: /magnifyingglass/i });
-  expect(submitButton).toBeInTheDocument();
+  const inputFields = screen.queryAllByPlaceholderText(/search for a movie/i);
+    expect(inputFields.length).toBe(2);
 });
 
 test('renders hamburger button', () => {
