@@ -31,6 +31,7 @@ const Carousel = () => {
       <CarouselWrapper>
         <CarouselHeading>TRENDING</CarouselHeading>
         <CarouselItemsWrapper>
+          <NavButton onClick={handlePrev}>Previous</NavButton>
           {movies
             .slice(currentIndex, currentIndex + itemsPerPage)
             .map((m, index: number) => (
@@ -39,23 +40,22 @@ const Carousel = () => {
                   style={{
                     zIndex: '10',
                     height: '17rem',
-                    width: '100%', // Adjust this value as needed
+                    width: '100%',
                   }}
                   src={m.thumbnail}
                   alt=""
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src =
-                      'https://alvkarleby.wordpress.com/files/2009/12/kungen.jpg';
+                      'https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small/no-image-available-icon-vector.jpg';
                   }}
                 />
-                <p>{m.title}</p>
+                <CarouselFilmTitle>{m.title}</CarouselFilmTitle>
               </CarouselItem>
             ))}
+          <NavButton onClick={handleNext}>Next</NavButton>
         </CarouselItemsWrapper>
       </CarouselWrapper>
-      <NavButton onClick={handlePrev}>Previous</NavButton>
-      <NavButton onClick={handleNext}>Next</NavButton>
     </CarouselContainer>
   );
 };
@@ -80,6 +80,7 @@ const CarouselItemsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 2rem;
   width: 100%;
 `;
@@ -93,10 +94,12 @@ const CarouselHeading = styled.h3`
   margin-bottom: 1rem;
   font-family: 'Oswald', sans-serif;
 `;
+const CarouselFilmTitle = styled.p`
+  margin: 0;
+  font-size: 0.75rem;
+`;
 
 const NavButton = styled.button`
-  position: absolute;
-
   transform: translateY(-50%);
   background: transparent;
   border: none;
