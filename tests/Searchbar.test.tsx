@@ -22,7 +22,9 @@ describe('SearchBar Component', () => {
       </Router>,
     );
 
-    const input = screen.getByPlaceholderText('Search for a movie') as HTMLInputElement;
+    const input = screen.getByPlaceholderText(
+      'Search for a movie',
+    ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'Inception' } });
     expect(input.value).toBe('Inception');
   });
@@ -34,7 +36,9 @@ describe('SearchBar Component', () => {
       </Router>,
     );
 
-    const input = screen.getByPlaceholderText('Search for a movie') as HTMLInputElement;
+    const input = screen.getByPlaceholderText(
+      'Search for a movie',
+    ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'Inception' } });
 
     // Assuming the dropdown contains items with text 'Inception' when it's visible
@@ -49,7 +53,9 @@ describe('SearchBar Component', () => {
       </Router>,
     );
 
-    const input = screen.getByPlaceholderText('Search for a movie') as HTMLInputElement;
+    const input = screen.getByPlaceholderText(
+      'Search for a movie',
+    ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'Inception' } });
 
     let dropdownItem = screen.queryByText('Inception');
