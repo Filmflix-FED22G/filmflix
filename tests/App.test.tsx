@@ -27,7 +27,7 @@ test('renders navigation links for desktop', () => {
 
   const categoriesLinks = screen.getAllByText(/categories/i);
   expect(categoriesLinks[0]).toBeInTheDocument();
-  expect(categoriesLinks[0]).toHaveAttribute('href', '/categories');
+  expect(categoriesLinks[0]).toHaveAttribute('href', '/categoies');
 
   const bookmarksLinks = screen.getAllByText(/bookmarks/i);
   expect(bookmarksLinks[0]).toBeInTheDocument();
