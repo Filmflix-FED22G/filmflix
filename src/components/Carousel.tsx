@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import data from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
 
-console.log(data);
 const Carousel = () => {
-  const [movies, setMovies] = useState<Movie[]>(data);
+  const trendingMovies = data.filter((movie) => movie.isTrending === true);
+  const [movies, setMovies] = useState<Movie[]>(trendingMovies);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    setMovies(data);
+    setMovies(trendingMovies);
   }, [data]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
