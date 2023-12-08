@@ -31,16 +31,17 @@ const Carousel = () => {
         >
           {movies.map((m, index: number) => (
             <>
-              <CarouselItem key={index}>{m.title}</CarouselItem>
-              <img
-                style={{
-                  zIndex: '10',
-                  width: '20rem',
-                  height: '17rem',
-                }}
-                src={m.thumbnail}
-                alt=""
-              />
+              <CarouselItem key={index}>
+                <img
+                  style={{
+                    zIndex: '10',
+                    height: '17rem',
+                  }}
+                  src={m.thumbnail}
+                  alt=""
+                />
+                <p>{m.title}</p>
+              </CarouselItem>
             </>
           ))}
         </CarouselItemsWrapper>
