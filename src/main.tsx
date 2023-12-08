@@ -12,18 +12,22 @@ import BookmarkPage from './pages/BookmarkPage.tsx';
 import CategoryPage from './pages/CategoryPage.tsx';
 import DetailsPage from './pages/DetailsPage.tsx';
 import HomePage from './pages/HomePage.tsx';
+import CategoryContent from './components/CategoryContent.tsx';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path="/details/:title/" element={<DetailsPage />} />
-      <Route path="/categories" element={<CategoryPage />} />
+      <Route path="/categories" element={<CategoryPage />}>
+        <Route path=":category" element={<CategoryContent />} />
+      </Route>
       <Route path="/bookmarks" element={<BookmarkPage />} />
-      <Route path="*" element={'Not found'}></Route>
+      <Route path="*" element={'Not found'} />
     </Route>,
   ),
 );
+
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
