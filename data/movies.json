@@ -291,5 +291,16 @@
     "isTrending": true,
     "heroImage": "/img/hero-interstellar.png",
     "quote": "We're not meant to save the world. We're meant to leave it."
+  },
+  {
+    "title": "Portrait of a Lady on Fire",
+    "year": 2019,
+    "rating": "R",
+    "actors": ["Noémie Merlant", "Adèle Haenel", "Luàna Bajrami"],
+    "genre": "Drama, Romance",
+    "synopsis": "On an isolated island in Brittany at the end of the eighteenth century, a female painter is obliged to paint a wedding portrait of a young woman.",
+    "thumbnail": "/img/portrait-of-a-lady-on-fire.png",
+    "isTrending": true,
+    "heroImage": "/img/hero-portrait-of-a-lady-on-fire.png"
   }
 ]
