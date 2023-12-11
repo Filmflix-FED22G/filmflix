@@ -62,7 +62,7 @@ test('renders search bar and input in two places, desktop and mobile', () => {
   );
 
   const inputFields = screen.queryAllByPlaceholderText(/search for a movie/i);
-    expect(inputFields.length).toBe(2);
+  expect(inputFields.length).toBe(2);
 });
 
 test('renders hamburger button', () => {
