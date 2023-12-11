@@ -33,7 +33,7 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <PlaceholderImage
           aria-label={`Error placeholder for failing to fetch the ${movie.title} poster`}
         >
-          <h2>Poster not found</h2>
+          <h4>Poster not found</h4>
         </PlaceholderImage>
       )}
       <Link to={`/details/${movieSlug}`}>
@@ -73,11 +73,12 @@ const ThumbnailContainer = styled.div`
   width: 16rem;
   display: flex;
   flex-direction: column;
-  margin: 0 2rem 3rem 0;
+  margin-left: 2rem;
 `;
 
 const MovieThumbnail = styled.img`
   height: 17rem;
+
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
@@ -94,8 +95,8 @@ const MovieThumbnail = styled.img`
 `;
 
 const PlaceholderImage = styled.div`
-  width: 100%;
-  height: 24rem;
+  width: 12rem;
+  height: 17rem;
   background-color: #434343;
   margin-bottom: 0.5rem;
   display: flex;

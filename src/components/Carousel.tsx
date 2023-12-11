@@ -18,21 +18,6 @@ interface Movie {
   isTrending?: boolean;
 }
 
-const CarouselWrapper = styled.div`
-  background-color: var(--color-dark-grey);
-  width: 100%;
-  display: flex;
-  padding: 1rem;
-  margin: 2rem 0;
-  display: flex;
-  align-items: center;
-  overflow-x: scroll;
-`;
-
-const Heading = styled.h4`
-  font-family: 'Oswald', sans-serif;
-`;
-
 const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
   return (
     <CarouselWrapper>
@@ -43,5 +28,22 @@ const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
     </CarouselWrapper>
   );
 };
+
+const CarouselWrapper = styled.div`
+  background-color: var(--color-dark-grey);
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  margin: 2rem 0;
+  display: flex;
+  overflow-x: scroll;
+`;
+
+const Heading = styled.h4`
+  font-family: 'Oswald', sans-serif;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+`;
 
 export default Carousel;
