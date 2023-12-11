@@ -4,12 +4,12 @@ import Thumbnail from './Thumbnail';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 `;
 
 const FlexContainer = styled.div`
-flex-direction: column;
+  flex-direction: column;
 `;
 
 const GridContainer = styled.div`
@@ -31,7 +31,6 @@ const GridContainer = styled.div`
   }
 `;
 
-
 function CategoryContent() {
   const { category } = useParams();
 
@@ -47,13 +46,13 @@ function CategoryContent() {
 
   return (
     <Wrapper>
-        <FlexContainer>
-      <h4>{category ? capitalizeFirstLetter(category): 'Category'}</h4>
-      <GridContainer>
-      {moviesInCategory.map((movie) => (
-        <Thumbnail key={movie.title} movie={movie} />
-      ))}
-      </GridContainer>
+      <FlexContainer>
+        <h4>{category ? capitalizeFirstLetter(category) : 'Category'}</h4>
+        <GridContainer>
+          {moviesInCategory.map((movie) => (
+            <Thumbnail key={movie.title} movie={movie} />
+          ))}
+        </GridContainer>
       </FlexContainer>
     </Wrapper>
   );
