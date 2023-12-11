@@ -11,8 +11,8 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <Carousel data={trendingMovies} />
-      <Carousel data={recommendedMovies} />
+      <Carousel data={trendingMovies} heading="TRENDING" />
+      <Carousel data={recommendedMovies} heading="RECOMMENDED FOR YOU" />
       {/* Other content for your homepage */}
     </div>
   );
