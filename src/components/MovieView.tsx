@@ -60,7 +60,17 @@ const MovieViewTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 50%;
+  width: 25%;
+
+  @media (max-width: 1920px) {
+    flex-direction: column;
+    width: 30%;
+  }
+
+  @media (max-width: 1440px) {
+    flex-direction: column;
+    width: 48%;
+  }
 
   @media (max-width: 912px) {
     flex-direction: column;
