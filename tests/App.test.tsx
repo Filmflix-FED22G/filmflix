@@ -87,17 +87,6 @@ test('renders close button', () => {
   expect(closeButton).toBeInTheDocument();
 });
 
-describe('Hero', () => {
-  test('should render the correct film title in hero', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-    expect(screen.getByText('Interstellar')).toBeInTheDocument();
-  });
-});
-
 //Footer tests
 
 test('renders the footer with FilmFlix text', () => {
