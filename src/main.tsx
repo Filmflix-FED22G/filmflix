@@ -7,13 +7,14 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import App from './App.tsx';
+
+import CategoryContent from './components/CategoryContent.tsx';
+import NotFound from './components/NotFound.tsx';
 import './index.css';
 import BookmarkPage from './pages/BookmarkPage.tsx';
 import CategoryPage from './pages/CategoryPage.tsx';
 import DetailsPage from './pages/DetailsPage.tsx';
 import HomePage from './pages/HomePage.tsx';
-import CategoryContent from './components/CategoryContent.tsx';
-import NotFound from './components/NotFound.tsx';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,7 +1,9 @@
+import MovieView from '../components/MovieView';
+
 function DetailsPage() {
   return (
     <div>
-      <h1>DetailsPage</h1>
+      <MovieView />
     </div>
   );
 }
