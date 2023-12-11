@@ -194,10 +194,10 @@ const StyledSVG = styled.img`
 `;
 
 const StyledLogo = styled.a`
-text-decoration: none;
-cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 
-&:hover {
+  &:hover {
     text-decoration: none;
   }
-`
+`;
