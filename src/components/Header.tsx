@@ -60,15 +60,27 @@ function Header() {
           <MenuItemsContainer>
             <SearchBar $showInMobile={true} />
             <StyledLink>
-            <RouterLink to="/" onClick={handleLinkClick} id="customRouterLink">
-              Home
-            </RouterLink>
-            <RouterLink to="/categories" onClick={handleLinkClick} id="customRouterLink">
-              Categories
-            </RouterLink>
-            <RouterLink to="/bookmarks" onClick={handleLinkClick} id="customRouterLink">
-              Bookmarks
-            </RouterLink>
+              <RouterLink
+                to="/"
+                onClick={handleLinkClick}
+                id="customRouterLink"
+              >
+                Home
+              </RouterLink>
+              <RouterLink
+                to="/categories"
+                onClick={handleLinkClick}
+                id="customRouterLink"
+              >
+                Categories
+              </RouterLink>
+              <RouterLink
+                to="/bookmarks"
+                onClick={handleLinkClick}
+                id="customRouterLink"
+              >
+                Bookmarks
+              </RouterLink>
             </StyledLink>
           </MenuItemsContainer>
         </MobileMenu>
@@ -81,7 +93,7 @@ export default Header;
 
 // Styling for the header
 const StyledLink = styled.div`
-    #customRouterLink   {
+  #customRouterLink {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
