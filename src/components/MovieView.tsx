@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import movies from '../../data/movies.json';
 import slugify from '../utils/slugify';
+import bookmarkSelected from '/icons/bookmark-selected.svg';
+import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 
 function MovieView() {
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const { title } = useParams();
   const movie = movies.find((m) => slugify(m.title) === title);
 
@@ -11,26 +15,44 @@ function MovieView() {
     return <div>Movie not found</div>;
   }
 
+  function handleBookmarkClick() {
+    setIsBookmarked(!isBookmarked);
+  }
+
   return (
     <MovieViewContainer>
-      <MovieViewThumbnail src={movie.thumbnail} alt={movie.title + ' poster'} />
-      <MovieViewTextContainer>
-        <h4>{movie.title}</h4>
-        <MovieViewYearRatingGenreContainer>
+      <MovieImage src={movie.thumbnail} alt={movie.title + ' poster'} />
+      <MovieTextContainer>
+        <MovieHeadlineBookmarkContainer>
+          <h4>{movie.title}</h4>
+          <BookmarkButton
+            aria-label="Bookmark button"
+            role="button"
+            onClick={handleBookmarkClick}
+          >
+            <BookmarkIcon
+              src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
+              alt="Bookmark icon"
+            ></BookmarkIcon>
+          </BookmarkButton>
+        </MovieHeadlineBookmarkContainer>
+        <MovieYearRatingGenreContainer>
           <MovieYearRatingGenreText>{movie.year}</MovieYearRatingGenreText>
-          <MovieYearRatingGenreText>{movie.rating}</MovieYearRatingGenreText>
+          <RatingBadge>
+            <span>{movie.rating}</span>
+          </RatingBadge>
           <MovieYearRatingGenreText>{movie.genre}</MovieYearRatingGenreText>
-        </MovieViewYearRatingGenreContainer>
+        </MovieYearRatingGenreContainer>
         <p>{movie.synopsis}</p>
-        <MovieViewCastContainer>
+        <MovieCastContainer>
           <h5>Cast:</h5>
-          <MovieViewCastList>
+          <MovieCastList>
             {movie.actors.map((actor, index) => (
-              <MovieViewCastListItem key={index}>{actor}</MovieViewCastListItem>
+              <MovieCastListItem key={index}>{actor}</MovieCastListItem>
             ))}
-          </MovieViewCastList>
-        </MovieViewCastContainer>
-      </MovieViewTextContainer>
+          </MovieCastList>
+        </MovieCastContainer>
+      </MovieTextContainer>
     </MovieViewContainer>
   );
 }
@@ -48,7 +70,7 @@ const MovieViewContainer = styled.div`
   }
 `;
 
-const MovieViewThumbnail = styled.img`
+const MovieImage = styled.img`
   width: 30%;
 
   @media (max-width: 912px) {
@@ -56,7 +78,7 @@ const MovieViewThumbnail = styled.img`
   }
 `;
 
-const MovieViewTextContainer = styled.div`
+const MovieTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -78,21 +100,48 @@ const MovieViewTextContainer = styled.div`
   }
 `;
 
-const MovieViewYearRatingGenreContainer = styled.div`
+const MovieHeadlineBookmarkContainer = styled.div`
+  display: flex;
+  max-width: 98%;
+
+  @media (max-width: 912px) {
+    max-width: 100%;
+  }
+`;
+
+const MovieYearRatingGenreContainer = styled.div`
   display: flex;
   gap: 1rem;
 `;
 
 const MovieYearRatingGenreText = styled.p`
   font-family: 'Oswald', sans-serif;
+  display: flex;
+  align-items: center;
 `;
 
-const MovieViewCastContainer = styled.div`
+const RatingBadge = styled.div`
+  user-select: none;
+  height: 2rem;
+  background-color: #434343;
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+  }
+`;
+
+const MovieCastContainer = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
 
-const MovieViewCastList = styled.ul`
+const MovieCastList = styled.ul`
   display: flex;
   list-style-type: none;
   flex-wrap: nowrap;
@@ -101,12 +150,32 @@ const MovieViewCastList = styled.ul`
   gap: 0.5rem;
 `;
 
-const MovieViewCastListItem = styled.li`
+const MovieCastListItem = styled.li`
   list-style-type: none;
   font-size: var(--font-size-s);
   padding-left: 0;
   &:not(:last-child):after {
     content: ', ';
+  }
+`;
+
+const BookmarkButton = styled.div`
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: 0 0 0 auto;
+  display: flex;
+  user-select: none;
+`;
+
+const BookmarkIcon = styled.img`
+  transition: 0.1s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+  &:active {
+    transform: scale(0.9);
   }
 `;
 
