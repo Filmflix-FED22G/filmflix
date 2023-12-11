@@ -45,6 +45,10 @@ const CarouselWrapper = styled.div`
 const CarouselHeading = styled.div`
   display: flex;
   min-width: 15rem;
+
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
 `;
 
 const MoviesWrapper = styled.div`
