@@ -13,6 +13,7 @@ import CategoryPage from './pages/CategoryPage.tsx';
 import DetailsPage from './pages/DetailsPage.tsx';
 import HomePage from './pages/HomePage.tsx';
 import CategoryContent from './components/CategoryContent.tsx';
+import NotFound from './components/NotFound.tsx';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +24,7 @@ export const router = createBrowserRouter(
         <Route path=":category" element={<CategoryContent />} />
       </Route>
       <Route path="/bookmarks" element={<BookmarkPage />} />
-      <Route path="*" element={'Not found'} />
+      <Route path="*" element={<NotFound />} />
     </Route>,
   ),
 );
