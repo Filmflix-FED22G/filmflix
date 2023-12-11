@@ -5,12 +5,66 @@ import filmFlix from '/icons/filmFlix.svg';
 import instagramwhite from '/icons/instagramwhite.svg';
 import youtubewhite from '/icons/youtubewhite.svg';
 
+const Footer: React.FC = () => {
+  return (
+    <FooterContainer>
+      <div style={{ flex: 1 }}>
+        <a href="/">
+          <LogoImage src={filmFlix} alt="filmFlix Logo" />
+        </a>
+      </div>
+      <div style={{ flex: 1 }}>
+        <FooterHeading>INFO</FooterHeading>
+        <FooterList>
+          <FooterListItem>Customer Service</FooterListItem>
+          <FooterListItem>Terms & Conditions</FooterListItem>
+          <FooterListItem>Privacy Policy</FooterListItem>
+          <FooterListItem>Cookie Settings</FooterListItem>
+        </FooterList>
+      </div>
+      <div style={{ flex: 1 }}>
+        <FooterHeading>ABOUT US</FooterHeading>
+        <FooterList>
+          <FooterListItem>Press</FooterListItem>
+          <FooterListItem>News</FooterListItem>
+          <FooterListItem>Career</FooterListItem>
+        </FooterList>
+      </div>
+      <div style={{ flex: 1 }}>
+        <FooterHeading>SUBSCRIBE</FooterHeading>
+        <FooterSubscribeText>
+          Enter your email to get the info about the latest FilmFlix news and
+          events
+        </FooterSubscribeText>
+        <FooterForm>
+          {' '}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="name@example.com"
+          />
+          <button type="submit">OK</button>
+        </FooterForm>
+      </div>
+      <div style={{ flex: 1 }}>
+        <ImageContainer>
+          <FooterSoMe src={facebookwhite} alt="Facebook logo" />
+          <FooterSoMe src={youtubewhite} alt="YouTube logo" />
+          <FooterSoMe src={instagramwhite} alt="Instagram logo" />
+        </ImageContainer>
+      </div>
+    </FooterContainer>
+  );
+};
+
+export default Footer;
+
 const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
-  background-color: #000;
+  background-color: var(--color-header-footer-background);
   color: #fff;
-  height: 12rem;
   padding: 2rem;
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -75,57 +129,3 @@ const ImageContainer = styled.div`
 const FooterSoMe = styled.img`
   height: 1.5rem;
 `;
-const Footer: React.FC = () => {
-  return (
-    <FooterContainer>
-      <div style={{ flex: 1 }}>
-        <a href="/">
-          <LogoImage src={filmFlix} alt="filmFlix Logo" />
-        </a>
-      </div>
-      <div style={{ flex: 1 }}>
-        <FooterHeading>INFO</FooterHeading>
-        <FooterList>
-          <FooterListItem>Customer Service</FooterListItem>
-          <FooterListItem>Terms & Conditions</FooterListItem>
-          <FooterListItem>Privacy Policy</FooterListItem>
-          <FooterListItem>Cookie Settings</FooterListItem>
-        </FooterList>
-      </div>
-      <div style={{ flex: 1 }}>
-        <FooterHeading>ABOUT US</FooterHeading>
-        <FooterList>
-          <FooterListItem>Press</FooterListItem>
-          <FooterListItem>News</FooterListItem>
-          <FooterListItem>Career</FooterListItem>
-        </FooterList>
-      </div>
-      <div style={{ flex: 1 }}>
-        <FooterHeading>SUBSCRIBE</FooterHeading>
-        <FooterSubscribeText>
-          Enter your email to get the info about the latest FilmFlix news and
-          events
-        </FooterSubscribeText>
-        <FooterForm>
-          {' '}
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="name@example.com"
-          />
-          <button type="submit">OK</button>
-        </FooterForm>
-      </div>
-      <div style={{ flex: 1 }}>
-        <ImageContainer>
-          <FooterSoMe src={facebookwhite} alt="Facebook logo" />
-          <FooterSoMe src={youtubewhite} alt="YouTube logo" />
-          <FooterSoMe src={instagramwhite} alt="Instagram logo" />
-        </ImageContainer>
-      </div>
-    </FooterContainer>
-  );
-};
-
-export default Footer;
