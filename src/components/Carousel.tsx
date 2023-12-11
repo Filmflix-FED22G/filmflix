@@ -27,7 +27,7 @@ const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
       <CarouselHeadingMobile>
         {heading && <Heading>{heading}</Heading>}
       </CarouselHeadingMobile>
-      <MoviesWrapper>
+      <MoviesWrapper data-testid="movies-wrapper">
         {data.map((movie) => (
           <Thumbnail movie={movie} />
         ))}
