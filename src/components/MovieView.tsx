@@ -139,6 +139,10 @@ const RatingBadge = styled.div`
 const MovieCastContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+  }
 `;
 
 const MovieCastList = styled.ul`
@@ -148,6 +152,10 @@ const MovieCastList = styled.ul`
   margin: 0;
   padding: 0;
   gap: 0.5rem;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+  }
 `;
 
 const MovieCastListItem = styled.li`
