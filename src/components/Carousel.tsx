@@ -21,9 +21,11 @@ const CarouselWrapper = styled.div`
   background-color: var(--color-dark-grey);
   width: 100%;
   display: flex;
-  padding: 2rem;
+  padding: 1rem;
+  margin: 2rem 0;
   display: flex;
   align-items: center;
+  overflow-x: scroll;
 `;
 
 const Heading = styled.h4`
