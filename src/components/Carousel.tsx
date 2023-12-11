@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Thumbnail from './Thumbnail';
 
 interface CarouselProps {
   data: Movie[];
@@ -32,23 +33,12 @@ const Heading = styled.h4`
   font-family: 'Oswald', sans-serif;
 `;
 
-const CarouselImage = styled.img`
-  height: 15rem;
-  padding: 0.5rem;
-`;
-
 const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
   return (
     <CarouselWrapper>
       {heading && <Heading>{heading}</Heading>}
-      {data.map((movie, index) => (
-        // Render each movie item in the carousel
-        <div key={index}>
-          <CarouselImage src={movie.thumbnail} alt={movie.title} />
-          <p>{movie.title}</p>
-          <p>{movie.year}</p>
-          <p>{movie.rating}</p>
-        </div>
+      {data.map((movie) => (
+        <Thumbnail movie={movie} />
       ))}
     </CarouselWrapper>
   );

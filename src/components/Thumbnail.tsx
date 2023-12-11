@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Movie } from '../../types/movieTypes';
+import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
-import slugify from '../utils/slugify';
-import { Movie } from '../../types/movieTypes';
 
 export default function Thumbnail({ movie }: { movie: Movie }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -53,14 +53,18 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <RatingBadge>
           <span>{movie.rating}</span>
         </RatingBadge>
-        <BookmarkButton aria-label="Bookmark button" role="button" onClick={handleBookmarkClick}>
+        <BookmarkButton
+          aria-label="Bookmark button"
+          role="button"
+          onClick={handleBookmarkClick}
+        >
           <BookmarkIcon
             src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
             alt="Bookmark icon"
           ></BookmarkIcon>
         </BookmarkButton>
       </SecondaryInfoContainer>
-      <h4>{movie.title}</h4>
+      <h5>{movie.title}</h5>
     </ThumbnailContainer>
   );
 }
@@ -73,7 +77,7 @@ const ThumbnailContainer = styled.div`
 `;
 
 const MovieThumbnail = styled.img`
-  height: 24rem;
+  height: 17rem;
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
