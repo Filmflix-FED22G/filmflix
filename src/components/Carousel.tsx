@@ -21,7 +21,9 @@ interface Movie {
 const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
   return (
     <CarouselWrapper>
-      {heading && <Heading>{heading}</Heading>}
+      <CarouselHeading>
+        {heading && <Heading>{heading}</Heading>}
+      </CarouselHeading>
       <MoviesWrapper>
         {data.map((movie) => (
           <Thumbnail movie={movie} />
@@ -38,6 +40,11 @@ const CarouselWrapper = styled.div`
   padding: 1rem;
   margin: 2rem 0;
   display: flex;
+`;
+
+const CarouselHeading = styled.div`
+  display: flex;
+  min-width: 15rem;
 `;
 
 const MoviesWrapper = styled.div`
