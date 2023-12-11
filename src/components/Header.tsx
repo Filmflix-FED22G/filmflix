@@ -29,7 +29,9 @@ function Header() {
   return (
     <div className="grid-container">
       <StyledHeader>
-        <h3>FilmFlix</h3>
+        <StyledLogo href="/">
+          <h3>FilmFlix</h3>
+        </StyledLogo>
         <NavLinks>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/categories">Categories</RouterLink>
@@ -190,3 +192,12 @@ const StyledSVG = styled.img`
   width: 1rem;
   height: 1rem;
 `;
+
+const StyledLogo = styled.a`
+text-decoration: none;
+cursor: pointer;
+
+&:hover {
+    text-decoration: none;
+  }
+`
