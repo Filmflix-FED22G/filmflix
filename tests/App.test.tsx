@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../src/App';
+import userEvent from '@testing-library/user-event';
 
 //Header tests
 test('renders the header with FilmFlix text', () => {
@@ -12,6 +13,24 @@ test('renders the header with FilmFlix text', () => {
 
   const headerElement = screen.getByRole('banner');
   expect(headerElement).toHaveTextContent(/FilmFlix/i);
+});
+
+test('navigates to home page on clicking the logo', async () => {
+  render(
+    <Router>
+      <App />
+    </Router>,
+  );
+
+  const logoText = screen.getByText('FilmFlix');
+  const logoLink = logoText.closest('a');
+
+  if (logoLink) {
+    userEvent.click(logoLink);
+    expect(window.location.pathname).toBe('/');
+  } else {
+    throw new Error('Logo link not found');
+  }
 });
 
 test('renders navigation links for desktop', () => {
