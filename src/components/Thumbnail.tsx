@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Movie } from '../../types/movieTypes';
+import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
-import slugify from '../utils/slugify';
-import { Movie } from '../../types/movieTypes';
 
 export default function Thumbnail({ movie }: { movie: Movie }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -33,7 +33,7 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <PlaceholderImage
           aria-label={`Error placeholder for failing to fetch the ${movie.title} poster`}
         >
-          <h2>Poster not found</h2>
+          <h4>Poster not found</h4>
         </PlaceholderImage>
       )}
       <Link to={`/details/${movieSlug}`}>
@@ -64,7 +64,7 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
           ></BookmarkIcon>
         </BookmarkButton>
       </SecondaryInfoContainer>
-      <h4>{movie.title}</h4>
+      <h5>{movie.title}</h5>
     </ThumbnailContainer>
   );
 }
@@ -73,12 +73,12 @@ const ThumbnailContainer = styled.div`
   width: 16rem;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  margin-left: 2rem;
 `;
 
 const MovieThumbnail = styled.img`
-  height: 24rem;
-  width: 100%;
+  height: 17rem;
+
   object-fit: cover;
   margin-bottom: 0.5rem;
   transition: 0.2s ease-in-out;
@@ -95,8 +95,8 @@ const MovieThumbnail = styled.img`
 `;
 
 const PlaceholderImage = styled.div`
-  width: 100%;
-  height: 24rem;
+  width: 12rem;
+  height: 17rem;
   background-color: #434343;
   margin-bottom: 0.5rem;
   display: flex;
