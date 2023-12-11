@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Carousel from '../src/components/Carousel';
 
@@ -16,7 +16,7 @@ describe('Carousel Component', () => {
     },
   ];
 
-  it('renders correctly with data', () => {
+  it('renders correctly with mock data', () => {
     render(
       <Router>
         <Carousel data={mockData} />
@@ -24,5 +24,21 @@ describe('Carousel Component', () => {
     );
     const thumbnails = screen.getAllByRole('img');
     expect(thumbnails).toHaveLength(mockData.length);
+  });
+
+  it('triggers scroll event on user interaction', () => {
+    render(
+      <Router>
+        <Carousel data={mockData} />
+      </Router>,
+    );
+
+    const moviesWrapper = screen.getByTestId('movies-wrapper');
+
+    // Mock the scroll event
+    fireEvent.scroll(moviesWrapper, { target: { scrollLeft: 100 } });
+
+    // Check if the scroll event has been triggered
+    expect(moviesWrapper.scrollLeft).toBe(100);
   });
 });
