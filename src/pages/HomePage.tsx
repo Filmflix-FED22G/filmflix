@@ -25,7 +25,6 @@ const HomePage: React.FC = () => {
       )}
       <Carousel data={trendingMovies} heading="TRENDING" />
       <Carousel data={recommendedMovies} heading="RECOMMENDED FOR YOU" />
-      {/* Other content for your homepage */}
     </div>
   );
 };
