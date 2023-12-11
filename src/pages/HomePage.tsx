@@ -4,8 +4,6 @@ import { default as data, default as moviesData } from '../../data/movies.json';
 import Carousel from '../components/Carousel';
 import Hero from '../components/Hero';
 
-console.log('moviedata: ', data);
-
 const interstellarMovie = moviesData.find(
   (movie) => movie.title === 'Interstellar',
 );
