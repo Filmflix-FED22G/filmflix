@@ -65,10 +65,7 @@ describe('Thumbnail Component', () => {
       '/icons/bookmark-unselected.svg',
     );
     await user.click(bookmarkButton);
-    expect(bookmarkIcon).toHaveAttribute(
-      'src',
-      '/icons/bookmark-selected.svg',
-    );
+    expect(bookmarkIcon).toHaveAttribute('src', '/icons/bookmark-selected.svg');
     await user.click(bookmarkButton);
     expect(bookmarkIcon).toHaveAttribute(
       'src',

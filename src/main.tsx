@@ -7,7 +7,9 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import App from './App.tsx';
+
 import CategoryContent from './components/CategoryContent.tsx';
+import NotFound from './components/NotFound.tsx';
 import './index.css';
 import BookmarkPage from './pages/BookmarkPage.tsx';
 import CategoryPage from './pages/CategoryPage.tsx';
@@ -23,7 +25,7 @@ export const router = createBrowserRouter(
         <Route path=":category" element={<CategoryContent />} />
       </Route>
       <Route path="/bookmarks" element={<BookmarkPage />} />
-      <Route path="*" element={'Not found'} />
+      <Route path="*" element={<NotFound />} />
     </Route>,
   ),
 );

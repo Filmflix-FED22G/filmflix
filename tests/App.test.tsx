@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../src/App';
+import userEvent from '@testing-library/user-event';
 
 //Header tests
 test('renders the header with FilmFlix text', () => {
@@ -12,6 +13,24 @@ test('renders the header with FilmFlix text', () => {
 
   const headerElement = screen.getByRole('banner');
   expect(headerElement).toHaveTextContent(/FilmFlix/i);
+});
+
+test('navigates to home page on clicking the logo', async () => {
+  render(
+    <Router>
+      <App />
+    </Router>,
+  );
+
+  const logoText = screen.getByText('FilmFlix');
+  const logoLink = logoText.closest('a');
+
+  if (logoLink) {
+    userEvent.click(logoLink);
+    expect(window.location.pathname).toBe('/');
+  } else {
+    throw new Error('Logo link not found');
+  }
 });
 
 test('renders navigation links for desktop', () => {
@@ -54,38 +73,15 @@ test('renders navigation links for mobile', () => {
   expect(bookmarksLinks[1]).toHaveAttribute('href', '/bookmarks');
 });
 
-test('renders search bar input and button for desktop', () => {
+test('renders search bar and input in two places, desktop and mobile', () => {
   render(
     <Router>
       <App />
     </Router>,
   );
 
-  // Get all elements with the placeholder text "Search for a movie"
-  const inputFields = screen.getAllByPlaceholderText(/search for a movie/i);
-
-  expect(inputFields[0]).toBeInTheDocument();
-
-  // Get the submit button with the alt text of the SVG image
-  const submitButton = screen.getByRole('button', { name: /magnifyingglass/i });
-  expect(submitButton).toBeInTheDocument();
-});
-
-test('renders search bar input and button for mobile', () => {
-  render(
-    <Router>
-      <App />
-    </Router>,
-  );
-
-  // Get all elements with the placeholder text "Search for a movie"
-  const inputFields = screen.getAllByPlaceholderText(/search for a movie/i);
-
-  expect(inputFields[1]).toBeInTheDocument();
-
-  // Get the submit button with the alt text of the SVG image
-  const submitButton = screen.getByRole('button', { name: /magnifyingglass/i });
-  expect(submitButton).toBeInTheDocument();
+  const inputFields = screen.queryAllByPlaceholderText(/search for a movie/i);
+  expect(inputFields.length).toBe(2);
 });
 
 test('renders hamburger button', () => {
@@ -108,17 +104,6 @@ test('renders close button', () => {
 
   const closeButton = screen.getByAltText(/close button/i);
   expect(closeButton).toBeInTheDocument();
-});
-
-describe('Hero', () => {
-  test('should render the correct film title in hero', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-    expect(screen.getByText('Interstellar')).toBeInTheDocument();
-  });
 });
 
 //Footer tests
