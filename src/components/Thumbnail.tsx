@@ -67,11 +67,13 @@ const ThumbnailContainer = styled.div`
   max-width: 12rem;
   display: flex;
   flex-direction: column;
-  margin: 1rem;
 `;
 
 const MovieThumbnail = styled.img`
   height: 17rem;
+  min-height: 17rem;
+  width: 12rem;
+  max-width: 12rem;
   object-fit: cover;
   margin-bottom: 0.5rem;
   user-select: none;

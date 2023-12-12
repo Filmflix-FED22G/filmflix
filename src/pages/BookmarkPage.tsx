@@ -49,5 +49,5 @@ const MovieGrid = styled.div`
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(12rem, 12rem));
-  grid-gap: 2rem;
+  grid-gap: 4rem 2rem;
 `;

@@ -1,21 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Thumbnail from './Thumbnail';
+import { Movie } from '../../types/movieTypes';
 
 interface CarouselProps {
   data: Movie[];
   heading?: string;
-}
-
-interface Movie {
-  title: string;
-  year: number;
-  rating: string;
-  actors: string[];
-  genre: string;
-  synopsis: string;
-  thumbnail: string;
-  isTrending?: boolean;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
@@ -44,6 +34,7 @@ const CarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+
   @media screen and (min-width: 760px) {
     flex-direction: row;
     justify-content: left;
@@ -71,8 +62,10 @@ const CarouselHeadingMobile = styled.div`
 `;
 const MoviesWrapper = styled.div`
   display: flex;
+  gap: 2rem;
   overflow-x: scroll;
-  padding-left: 0;
+  padding: 2rem 0;
+  scrollbar-gutter: stable;
 `;
 
 const Heading = styled.h4`
