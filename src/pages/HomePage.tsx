@@ -1,17 +1,16 @@
 // HomePage.tsx
-import React from 'react';
-import { default as data, default as moviesData } from '../../data/movies.json';
+import { useEffect } from 'react';
+import { default as moviesData } from '../../data/movies.json';
 import Carousel from '../components/Carousel';
 import Hero from '../components/Hero';
-import { useEffect } from 'react';
 
-const interstellarMovie = moviesData.find(
-  (movie) => movie.title === 'Interstellar',
-);
+function HomePage() {
+  const trendingMovies = moviesData.filter((movie) => movie.isTrending);
+  const recommendedMovies = moviesData.filter((movie) => !movie.isTrending);
 
-const HomePage: React.FC = () => {
-  const trendingMovies = data.filter((movie) => movie.isTrending);
-  const recommendedMovies = data.filter((movie) => !movie.isTrending);
+  const interstellarMovie = moviesData.find(
+    (movie) => movie.title === 'Interstellar',
+  );
 
   useEffect(() => {
     document.title = 'FilmFlix';
@@ -19,17 +18,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      {interstellarMovie && (
-        <Hero
-          title={interstellarMovie.title}
-          quote={interstellarMovie.quote}
-          heroImageUrl={interstellarMovie.heroImage}
-        />
-      )}
+      {interstellarMovie && <Hero movie={interstellarMovie} />}
       <Carousel data={trendingMovies} heading="TRENDING" />
       <Carousel data={recommendedMovies} heading="RECOMMENDED FOR YOU" />
     </div>
   );
-};
+}
 
 export default HomePage;
