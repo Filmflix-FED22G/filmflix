@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import App from '../src/App';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter, BrowserRouter as Router } from 'react-router-dom';
+import App from '../src/App';
 
 //Header tests
-test('renders the header with FilmFlix text', () => {
+test('renders the header with the FilmFlix logo', () => {
   render(
     <Router>
       <App />
@@ -12,25 +12,23 @@ test('renders the header with FilmFlix text', () => {
   );
 
   const headerElement = screen.getByRole('banner');
-  expect(headerElement).toHaveTextContent(/FilmFlix/i);
+  const logoImage = within(headerElement).getByAltText('filmFlix Logo');
+  expect(logoImage).toBeInTheDocument();
 });
 
 test('navigates to home page on clicking the logo', async () => {
   render(
-    <Router>
+    <MemoryRouter>
       <App />
-    </Router>,
+    </MemoryRouter>,
   );
 
-  const logoText = screen.getByText('FilmFlix');
-  const logoLink = logoText.closest('a');
+  const user = userEvent.setup();
+  const headerElement = screen.getByRole('banner');
+  const logoImage = within(headerElement).getByAltText('filmFlix Logo');
 
-  if (logoLink) {
-    userEvent.click(logoLink);
-    expect(window.location.pathname).toBe('/');
-  } else {
-    throw new Error('Logo link not found');
-  }
+  await user.click(logoImage);
+  expect(window.location.pathname).toBe('/');
 });
 
 test('renders navigation links for desktop', () => {
@@ -107,13 +105,14 @@ test('renders close button', () => {
 });
 
 //Footer tests
-
-test('renders the footer with FilmFlix text', () => {
+test('renders the footer with the FilmFlix logo', () => {
   render(
     <Router>
       <App />
     </Router>,
   );
-  const footerElement = screen.getByAltText(/FilmFlix/i);
-  expect(footerElement).toBeInTheDocument();
+
+  const footerElement = screen.getByRole('contentinfo');
+  const logoImage = within(footerElement).getByAltText('filmFlix Logo');
+  expect(logoImage).toBeInTheDocument();
 });
