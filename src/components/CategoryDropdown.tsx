@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import movies from '../../data/movies.json';
 
 interface DropdownContentProps {
   $isOpen: boolean;
@@ -11,23 +12,16 @@ function CategoryDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const categories = [
-    'Action',
-    'Adventure',
-    'Biography',
-    'Crime',
-    'Drama',
-    'Fantasy',
-    'History',
-    'Horror',
-    'Music',
-    'Mystery',
-    'Romance',
-    'Sci-Fi',
-    'Thriller',
-    'War',
-    'Western',
-  ];
+
+  //Gets all the categories from the movies.json file
+  //Splits them into separate categories
+  const categories = Array.from(
+    new Set(
+      movies.flatMap((movie) =>
+        movie.genre.split(',').map((category) => category.trim()),
+      ),
+    ),
+  );
 
   //Handles the click on a category
   //Navigates to the category page and sets the document title
