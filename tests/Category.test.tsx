@@ -1,7 +1,7 @@
-import CategoryPage from '../src/pages/CategoryPage';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
+import CategoryPage from '../src/pages/CategoryPage';
 
 test('renders Category Page with dropdown and document title', () => {
   render(
