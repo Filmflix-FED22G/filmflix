@@ -93,6 +93,7 @@ function CategoryDropdown() {
   const handleCategoryClick = (category: string) => {
     setIsOpen(false);
     navigate(`/categories/${category.toLowerCase()}`);
+    document.title = `${category}`;
   };
 
   useEffect(() => {

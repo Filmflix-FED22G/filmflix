@@ -12,7 +12,7 @@ describe('NotFound Component', () => {
     expect(screen.getByText('404 Not Found :(')).toBeInTheDocument();
   });
 
-  it('displays NotFound component for an unknown route', () => {
+  it('displays NotFound component and page title for an unknown route', () => {
     render(
       <Router>
         <Routes>
@@ -22,5 +22,6 @@ describe('NotFound Component', () => {
     );
 
     expect(screen.getByText('404 Not Found :(')).toBeInTheDocument();
+    expect(document.title).toBe('404 Not Found');
   });
 });

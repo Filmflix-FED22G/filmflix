@@ -3,6 +3,7 @@ import React from 'react';
 import { default as data, default as moviesData } from '../../data/movies.json';
 import Carousel from '../components/Carousel';
 import Hero from '../components/Hero';
+import { useEffect } from 'react';
 
 const interstellarMovie = moviesData.find(
   (movie) => movie.title === 'Interstellar',
@@ -11,6 +12,10 @@ const interstellarMovie = moviesData.find(
 const HomePage: React.FC = () => {
   const trendingMovies = data.filter((movie) => movie.isTrending);
   const recommendedMovies = data.filter((movie) => !movie.isTrending);
+
+  useEffect(() => {
+    document.title = 'FilmFlix';
+  }, []);
 
   return (
     <div>
