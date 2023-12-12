@@ -4,7 +4,7 @@ import { MemoryRouter, BrowserRouter as Router } from 'react-router-dom';
 import App from '../src/App';
 
 //Header tests
-test('renders the header with the FilmFlix logo', () => {
+test('should render the header with the FilmFlix logo', () => {
   render(
     <Router>
       <App />
@@ -16,7 +16,7 @@ test('renders the header with the FilmFlix logo', () => {
   expect(logoImage).toBeInTheDocument();
 });
 
-test('navigates to home page on clicking the logo', async () => {
+test('should navigate to home page when clicking the logo in the header', async () => {
   render(
     <MemoryRouter>
       <App />
@@ -105,7 +105,7 @@ test('renders close button', () => {
 });
 
 //Footer tests
-test('renders the footer with the FilmFlix logo', () => {
+test('should render the footer with the FilmFlix logo', () => {
   render(
     <Router>
       <App />
