@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import CategoryPage from '../src/pages/CategoryPage';
 
+//Category tests
 test('renders Category Page with dropdown and document title', () => {
   render(
     <MemoryRouter>
