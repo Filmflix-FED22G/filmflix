@@ -1,5 +1,5 @@
 import CategoryPage from '../src/pages/CategoryPage';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 
@@ -29,10 +29,15 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-test('navigates to correct category when clicked', async () => {
+test('navigates to correct category and sets the document title', async () => {
   render(
     <MemoryRouter>
       <CategoryPage />
     </MemoryRouter>,
   );
+
+  const categoryLink = screen.getByText(/Action/i);
+  fireEvent.click(categoryLink);
+
+  expect(document.title).toBe('Action');
 });
