@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import movies from '../../data/movies.json';
@@ -10,6 +10,12 @@ function MovieView() {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { title } = useParams();
   const movie = movies.find((m) => slugify(m.title) === title);
+
+  useEffect(() => {
+    if (movie) {
+      document.title = `${movie.title}`;
+    }
+  }, []);
 
   if (!movie) {
     return <div>Movie not found</div>;
