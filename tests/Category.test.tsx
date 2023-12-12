@@ -1,9 +1,9 @@
 import CategoryPage from '../src/pages/CategoryPage';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 
-test('renders Category Page with dropdown', () => {
+test('renders Category Page with dropdown and document title', () => {
   render(
     <MemoryRouter>
       <CategoryPage />
@@ -11,6 +11,7 @@ test('renders Category Page with dropdown', () => {
   );
   const dropdownButton = screen.getByText(/categories/i);
   expect(dropdownButton).toBeInTheDocument();
+  expect(document.title).toBe('Categories');
 });
 
 //Navigation test with mock useNavigate
@@ -29,10 +30,15 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-test('navigates to correct category when clicked', async () => {
+test('navigates to correct category and sets a new document title', async () => {
   render(
     <MemoryRouter>
       <CategoryPage />
     </MemoryRouter>,
   );
+
+  const categoryLink = screen.getByText(/Action/i);
+  fireEvent.click(categoryLink);
+
+  expect(document.title).toBe('Action');
 });

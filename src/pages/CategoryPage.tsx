@@ -3,6 +3,8 @@ import { default as data } from '../../data/movies.json';
 import Carousel from '../components/Carousel';
 import CategoryDropdown from '../components/CategoryDropdown';
 
+import { useEffect } from 'react';
+
 const CategoryPage: React.FC = () => {
   const actionMovies = data.filter((movie) => movie.genre.includes('Action'));
   const adventureMovies = data.filter((movie) =>
@@ -25,6 +27,10 @@ const CategoryPage: React.FC = () => {
   );
   const warMovies = data.filter((movie) => movie.genre.includes('War'));
   const westernMovies = data.filter((movie) => movie.genre.includes('Western'));
+
+  useEffect(() => {
+    document.title = 'Categories';
+  }, []);
 
   return (
     <div>

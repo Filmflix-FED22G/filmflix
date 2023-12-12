@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import movies from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
 import Thumbnail from '../components/Thumbnail';
+import { useEffect } from 'react';
 
 function BookmarkPage() {
+  useEffect(() => {
+    document.title = 'Bookmarks';
+  }, []);
   return (
     <div>
       <h1>Bookmarks</h1>
