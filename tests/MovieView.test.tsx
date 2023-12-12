@@ -70,4 +70,11 @@ describe('MovieView Component with URL Parameter', () => {
       '/icons/bookmark-unselected.svg',
     );
   });
+  test('sets the document title correctly', () => {
+    const movieTitle = 'Portrait of a Lady on Fire';
+
+    render(<MovieView />);
+
+    expect(document.title).toBe(`${movieTitle}`);
+  });
 });
