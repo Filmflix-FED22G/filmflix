@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import SearchBar from '../src/components/SearchBar';
 import { MemoryRouter as Router } from 'react-router-dom';
 
+//SearchBar tests
 describe('SearchBar Component', () => {
   it('renders the search bar correctly', () => {
     render(

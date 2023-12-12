@@ -63,7 +63,7 @@ const CarouselHeadingMobile = styled.div`
 const MoviesWrapper = styled.div`
   display: flex;
   gap: 2rem;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 2rem 0;
   scrollbar-gutter: stable;
 `;

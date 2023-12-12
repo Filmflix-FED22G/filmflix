@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NotFound from '../src/components/NotFound';
 
+//NotFound tests
 describe('NotFound Component', () => {
   it('renders the NotFound component', () => {
     render(
