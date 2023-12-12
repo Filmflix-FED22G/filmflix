@@ -34,7 +34,7 @@ export const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <MovieProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </MovieProvider>
   </React.StrictMode>,
 );

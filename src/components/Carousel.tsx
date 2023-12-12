@@ -34,7 +34,6 @@ const CarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-
   @media screen and (min-width: 760px) {
     flex-direction: row;
     justify-content: left;
