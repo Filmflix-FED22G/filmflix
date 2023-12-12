@@ -15,6 +15,7 @@ function MovieView() {
     if (movie) {
       document.title = `${movie.title}`;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!movie) {
