@@ -1,5 +1,7 @@
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Renders the Hero component with props
 interface HeroProps {
   title: string;
   heroImageUrl?: string;
@@ -12,7 +14,7 @@ const Hero = ({ title, quote, heroImageUrl }: HeroProps) => {
       <HeroInfo>
         <HeroTitle>{title}</HeroTitle>
         {quote && <HeroQuote>{quote}</HeroQuote>}
-        <HeroButton>View More</HeroButton>
+        <HeroLink to={`/details/interstellar`}>View More</HeroLink>
       </HeroInfo>
     </HeroContainer>
   );
@@ -81,9 +83,9 @@ const HeroInfo = styled.div`
   @media (max-width: 912px) {
     bottom: 7%;
     left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Horizontally align center */
+    transform: translateX(-50%);
     max-width: 80%;
-    width: 100%; /* Full width within the container */
+    width: 100%;
     gap: 0.5rem;
   }
 
@@ -103,7 +105,7 @@ const HeroQuote = styled.h5`
   text-align: center;
 `;
 
-const HeroButton = styled.button`
+const HeroLink = styled(RouterLink)`
   font-family: 'Overpass', sans-serif;
   text-transform: uppercase;
   padding: 0.8rem 1rem 0.5rem 1rem;
@@ -118,5 +120,6 @@ const HeroButton = styled.button`
   &:hover {
     background: var(--color-accent);
     color: var(--color-light);
+    text-decoration: none;
   }
 `;
