@@ -6,4 +6,7 @@ export interface Movie {
   genre: string;
   synopsis: string;
   thumbnail: string;
+  isTrending?: boolean;
+  heroImage?: string;
+  quote?: string;
 }
