@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
@@ -8,9 +8,8 @@ import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 
 function MovieView() {
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const { title } = useParams();
-  const { movies } = useMovies();
+  const { movies, toggleBookmark } = useMovies();
   const movie = movies.find((m: Movie) => slugify(m.title) === title);
 
   useEffect(() => {
@@ -24,10 +23,6 @@ function MovieView() {
     return <div>Movie not found</div>;
   }
 
-  function handleBookmarkClick() {
-    setIsBookmarked(!isBookmarked);
-  }
-
   return (
     <MovieViewContainer>
       <MovieImage src={movie.thumbnail} alt={movie.title + ' poster'} />
@@ -37,10 +32,10 @@ function MovieView() {
           <BookmarkButton
             aria-label="Bookmark button"
             role="button"
-            onClick={handleBookmarkClick}
+            onClick={() => toggleBookmark(movie)}
           >
             <BookmarkIcon
-              src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
+              src={movie.isBookmarked ? bookmarkSelected : bookmarkUnselected}
               alt="Bookmark icon"
             ></BookmarkIcon>
           </BookmarkButton>
