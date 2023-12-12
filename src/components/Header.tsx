@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import close from '/icons/close.svg';
-import filmFlix from '/icons/filmflix.svg';
+import filmFlix from '/icons/filmflix-logo.svg';
 import goldburger from '/icons/goldburger.svg';
 import goldclose from '/icons/goldclose.svg';
 import hamburger from '/icons/hamburger.svg';
