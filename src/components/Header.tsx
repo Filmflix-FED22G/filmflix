@@ -109,7 +109,7 @@ const StyledHeader = styled.header`
   padding: 1rem;
   background-color: var(--color-header-footer-background);
   color: var(--color-light);
-  padding: 1rem var(--default-padding);
+  padding: 1.3rem var(--default-padding);
 `;
 
 const LogoImage = styled.img`
