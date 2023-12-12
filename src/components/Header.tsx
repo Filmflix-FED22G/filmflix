@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import close from '/icons/close.svg';
-import filmFlix from '/icons/filmFlix.svg';
+import filmFlix from '/icons/filmflix.svg';
 import goldburger from '/icons/goldburger.svg';
 import goldclose from '/icons/goldclose.svg';
 import hamburger from '/icons/hamburger.svg';
@@ -91,13 +91,13 @@ export default Header;
 // Styling for the header
 const StyledLink = styled.div`
   #customRouterLink {
-    color: white;
+    color: var(--color-light);
     text-decoration: none;
     text-transform: uppercase;
     margin: 2rem;
 
     &:hover {
-      text-decoration: underline;
+      color: var(--color-hover);
     }
   }
 `;
@@ -108,7 +108,7 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 1rem;
   background-color: var(--color-header-footer-background);
-  color: white;
+  color: var(--color-light);
   padding: 1rem var(--default-padding);
 `;
 
@@ -120,13 +120,13 @@ const LogoImage = styled.img`
 // Styling for navigation links
 const NavLinks = styled.nav`
   a {
-    color: white;
+    color: var(--color-light);
     text-decoration: none;
     text-transform: uppercase;
     margin: 2rem;
 
     &:hover {
-      text-decoration: underline;
+      color: var(--color-hover);
     }
   }
   @media (max-width: 768px) {
