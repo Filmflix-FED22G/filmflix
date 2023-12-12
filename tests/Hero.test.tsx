@@ -1,24 +1,32 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import movies from '../data/movies.json';
 import Hero from '../src/components/Hero';
 
 describe('Hero', () => {
-  test('should render the correct movie title', () => {
-    const mockTitle = 'Interstellar';
-    render(<Hero title={mockTitle} heroImageUrl="" quote="" />);
+  const mockMovie = movies[30];
 
-    expect(screen.getByText(mockTitle)).toBeInTheDocument();
+  test('should render the correct movie title', () => {
+    render(
+      <Router>
+        <Hero movie={mockMovie} />
+      </Router>,
+    );
+    expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
   });
 
-  test('should render the quote when provided', () => {
-    const mockTitle = 'Interstellar';
-    const mockImage = 'img/hero-interstellar.png';
-    const mockQuote =
-      "We're not meant to save the world. We're meant to leave it.";
+  test('should render the correct movie quote', () => {
     render(
-      <Hero title={mockTitle} heroImageUrl={mockImage} quote={mockQuote} />,
+      <Router>
+        <Hero movie={mockMovie} />
+      </Router>,
     );
 
-    expect(screen.getByText(mockQuote)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "We're not meant to save the world. We're meant to leave it.",
+      ),
+    ).toBeInTheDocument();
   });
 });
