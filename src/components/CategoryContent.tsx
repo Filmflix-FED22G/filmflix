@@ -1,17 +1,19 @@
-import movies from '../../data/movies.json';
+import { useMovies } from '../contexts/MovieContext';
 import { useParams } from 'react-router-dom';
 import Thumbnail from './Thumbnail';
+import { Movie } from '../../types/movieTypes';
 import styled from 'styled-components';
 
 function CategoryContent() {
   const { category } = useParams();
+  const { movies } = useMovies();
 
   const capitalizeFirstLetter = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   const moviesInCategory = category
-    ? movies.filter((movie) =>
+    ? movies.filter((movie: Movie) =>
         movie.genre.toLowerCase().includes(category.toLowerCase()),
       )
     : [];
@@ -20,7 +22,7 @@ function CategoryContent() {
       <Container>
         <Title>{category ? capitalizeFirstLetter(category) : 'Category'}</Title>
         <MovieGrid>
-          {moviesInCategory.map((movie) => (
+          {moviesInCategory.map((movie: Movie) => (
             <Thumbnail key={movie.title} movie={movie} />
           ))}
         </MovieGrid>

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import movies from '../../data/movies.json';
+import { Movie } from '../../types/movieTypes';
+import { useMovies } from '../contexts/MovieContext';
 import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
@@ -9,7 +10,8 @@ import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 function MovieView() {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { title } = useParams();
-  const movie = movies.find((m) => slugify(m.title) === title);
+  const { movies } = useMovies();
+  const movie = movies.find((m: Movie) => slugify(m.title) === title);
 
   useEffect(() => {
     if (movie) {
@@ -54,7 +56,7 @@ function MovieView() {
         <MovieCastContainer>
           <h5>Cast:</h5>
           <MovieCastList>
-            {movie.actors.map((actor, index) => (
+            {movie.actors.map((actor: string[], index: number) => (
               <MovieCastListItem key={index}>{actor}</MovieCastListItem>
             ))}
           </MovieCastList>
