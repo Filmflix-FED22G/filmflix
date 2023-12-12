@@ -73,7 +73,7 @@ export default CategoryDropdown;
 
 //Styling for the CategoryDropdown component
 const DropdownWrapper = styled.div`
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-header-footer-background);
   display: inline-block;
   margin: 2rem;
   position: relative;
@@ -101,11 +101,12 @@ const DropdownButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 1rem 2rem 1rem 1rem;
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-header-footer-background);
   color: white;
 
   &:hover {
     color: var(--color-accent);
+    background-color: var(--color-header-footer-background);
   }
 `;
 
@@ -114,7 +115,7 @@ const DropdownContent = styled.div<DropdownContentProps>`
   position: absolute;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-header-footer-background);
   padding: 0.5rem;
   z-index: 1;
   top: 100%;
