@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import facebookwhite from '/icons/facebookwhite.svg';
-import filmFlix from '/icons/filmFlix.svg';
+import filmFlix from '/icons/filmflix.svg';
 import instagramwhite from '/icons/instagramwhite.svg';
 import youtubewhite from '/icons/youtubewhite.svg';
 
