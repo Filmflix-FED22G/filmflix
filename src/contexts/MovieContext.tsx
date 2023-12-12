@@ -11,10 +11,23 @@ export function MovieProvider({ children }: PropsWithChildren) {
   // Local storage hook
   const [movies, setMovies] = useLocalStorage<Movie[]>(movieData, 'movies');
 
+  function toggleBookmark(movieToToggle: Movie) {
+    setMovies((prevMovies) => {
+      return prevMovies.map((movie) => {
+        if (movie.title === movieToToggle.title) {
+          return { ...movie, isBookmarked: !movie.isBookmarked };
+        } else {
+          return movie;
+        }
+      });
+    });
+  }
+
   return (
     <MovieContext.Provider
       value={{
         movies,
+        toggleBookmark,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ export interface Movie {
   synopsis: string;
   thumbnail: string;
   isTrending: boolean;
+  isBookmarked: boolean;
   heroImage?: string;
   quote?: string;
 }
