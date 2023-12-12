@@ -11,6 +11,7 @@ import App from './App.tsx';
 import CategoryContent from './components/CategoryContent.tsx';
 import NotFound from './components/NotFound.tsx';
 import './index.css';
+import { MovieProvider } from './contexts/MovieContext.tsx';
 import BookmarkPage from './pages/BookmarkPage.tsx';
 import CategoryPage from './pages/CategoryPage.tsx';
 import DetailsPage from './pages/DetailsPage.tsx';
@@ -32,6 +33,8 @@ export const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <MovieProvider>
     <RouterProvider router={router} />
+    </MovieProvider>
   </React.StrictMode>,
 );
