@@ -37,8 +37,15 @@ test('navigates to correct category and sets a new document title', async () => 
     </MemoryRouter>,
   );
 
-  const categoryLink = screen.getByText(/Action/i);
-  fireEvent.click(categoryLink);
+  const categoryNames = ['Action', 'Adventure', 'Biography'];
 
-  expect(document.title).toBe('Action');
+  for (const categoryName of categoryNames) {
+    const categoryLinks = screen.getAllByText(new RegExp(categoryName, 'i'));
+
+    const categoryLink = categoryLinks[0];
+
+    fireEvent.click(categoryLink);
+
+    expect(document.title).toBe(categoryName);
+  }
 });
