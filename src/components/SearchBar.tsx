@@ -1,8 +1,9 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
 import { useMovies } from '../contexts/MovieContext';
-import { useState, useEffect, useRef } from 'react';
 import Thumbnail from './Thumbnail';
+import magnifyingGlass from '/icons/magnifying-glass.svg';
 
 interface SearchBarContainerProps {
   $showInMobile?: boolean;
@@ -80,9 +81,12 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
             value={searchQuery}
             onChange={handleInputChange}
           />
+          {/* <SearchIcon src={magnifyingGlass} alt="Search icon" /> */}
+          <SearchButton type="submit" aria-label="Search">
+            <SearchIcon src={magnifyingGlass} alt="Search" />
+          </SearchButton>
         </SearchBarContainer>
       </form>
-
       {showDropdown && filteredMovies.length > 0 && (
         <SearchResultsDropdown>
           {filteredMovies.map((movie) => (
@@ -122,20 +126,37 @@ const SearchContainer = styled.div<SearchBarProps>`
 
 const SearchBarContainer = styled.div<SearchBarContainerProps>`
   display: flex;
-  border: 0.3rem solid #fff;
   width: 100%;
+  background: var(--color-light);
+  align-items: center;
 
   input {
     flex-grow: 1;
     border: none;
-    padding: 0.5rem;
+    padding: 0.6rem 0.7rem 0.5rem 0.7rem;
     outline: none;
-    color: black;
-    background-color: white;
+    color: var(--color-dark);
+    background-color: var(--color-light);
   }
+`;
 
-  img {
-    margin-left: 0.5rem;
+const SearchIcon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+`;
+
+const SearchButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-light-hover);
   }
 `;
 

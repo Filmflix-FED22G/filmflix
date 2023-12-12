@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SearchBar from '../src/components/SearchBar';
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router } from 'react-router-dom';
+import SearchBar from '../src/components/SearchBar';
 
 //SearchBar tests
 describe('SearchBar Component', () => {
@@ -28,6 +29,28 @@ describe('SearchBar Component', () => {
     ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'Inception' } });
     expect(input.value).toBe('Inception');
+  });
+
+  it('performs search on button click', async () => {
+    render(
+      <Router>
+        <SearchBar $showInMobile={false} />
+      </Router>,
+    );
+
+    const input = screen.getByPlaceholderText('Search for a movie');
+    const searchButton = screen.getByRole('button', { name: /search/i });
+
+    // Simulate typing a search query
+    await userEvent.type(input, 'Inception');
+
+    // Simulate clicking the search button
+    await userEvent.click(searchButton);
+
+    // You should replace the below expectation with what should actually happen after a search
+    // For example, checking if the search results are displayed or if there's a navigation to a search results page
+    const dropdownItem = screen.queryByText('Inception');
+    expect(dropdownItem).toBeInTheDocument();
   });
 
   it('shows dropdown on input change', () => {
