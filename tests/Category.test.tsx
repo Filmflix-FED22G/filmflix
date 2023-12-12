@@ -1,7 +1,7 @@
-import CategoryPage from '../src/pages/CategoryPage';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
+import CategoryPage from '../src/pages/CategoryPage';
 
 test('renders Category Page with dropdown and document title', () => {
   render(
@@ -37,8 +37,15 @@ test('navigates to correct category and sets a new document title', async () => 
     </MemoryRouter>,
   );
 
-  const categoryLink = screen.getByText(/Action/i);
-  fireEvent.click(categoryLink);
+  const categoryNames = ['Action', 'Adventure', 'Biography'];
 
-  expect(document.title).toBe('Action');
+  for (const categoryName of categoryNames) {
+    const categoryLinks = screen.getAllByText(new RegExp(categoryName, 'i'));
+
+    const categoryLink = categoryLinks[0];
+
+    fireEvent.click(categoryLink);
+
+    expect(document.title).toBe(categoryName);
+  }
 });
