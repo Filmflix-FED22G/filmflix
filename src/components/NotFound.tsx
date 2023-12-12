@@ -1,6 +1,11 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 function NotFound() {
+  useEffect(() => {
+    document.title = '404 Not Found';
+  });
+
   return (
     <StyledNotFound>
       <Styledh1>404 Not Found :(</Styledh1>
