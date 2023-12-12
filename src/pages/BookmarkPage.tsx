@@ -1,20 +1,25 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import movies from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
 import Thumbnail from '../components/Thumbnail';
+import { useMovies } from '../contexts/MovieContext';
 
 function BookmarkPage() {
+  const { movies } = useMovies();
+
   useEffect(() => {
     document.title = 'Bookmarks';
   }, []);
+
   return (
     <Container>
       <Title>Bookmarks</Title>
       <MovieGrid>
-        {movies.map((movie: Movie) => (
-          <Thumbnail key={movie.title} movie={movie} />
-        ))}
+        {movies
+          .filter((movie: Movie) => movie.isBookmarked)
+          .map((movie: Movie) => (
+            <Thumbnail key={movie.title} movie={movie} />
+          ))}
       </MovieGrid>
     </Container>
   );

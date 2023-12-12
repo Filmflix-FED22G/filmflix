@@ -2,21 +2,19 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
+import { useMovies } from '../contexts/MovieContext';
 import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 
 export default function Thumbnail({ movie }: { movie: Movie }) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [imageStatus, setImageStatus] = useState<
     'loading' | 'loaded' | 'error'
   >('loading');
 
-  const movieSlug = slugify(movie.title);
+  const { toggleBookmark } = useMovies();
 
-  function handleBookmarkClick() {
-    setIsBookmarked(!isBookmarked);
-  }
+  const movieSlug = slugify(movie.title);
 
   return (
     <ThumbnailContainer>
@@ -51,10 +49,10 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <BookmarkButton
           aria-label="Bookmark button"
           role="button"
-          onClick={handleBookmarkClick}
+          onClick={() => toggleBookmark(movie)}
         >
           <BookmarkIcon
-            src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
+            src={movie.isBookmarked ? bookmarkSelected : bookmarkUnselected}
             alt="Bookmark icon"
           ></BookmarkIcon>
         </BookmarkButton>
