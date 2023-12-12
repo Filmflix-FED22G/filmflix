@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import movies from '../../data/movies.json';
+import chevrondown from '/icons/chevrondown.svg';
+import chevronup from '/icons/chevronup.svg';
 
 interface DropdownContentProps {
   $isOpen: boolean;
@@ -51,7 +53,13 @@ function CategoryDropdown() {
     <DropdownWrapper>
       <DropdownContainer ref={dropdownRef}>
         <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-          <h4>Categories</h4>
+          <FlexContainer>
+            <h4>Categories</h4>
+            <StyledSVG
+              src={isOpen ? chevronup : chevrondown}
+              alt={isOpen ? 'arrow up' : 'arrow down'}
+            />
+          </FlexContainer>
         </DropdownButton>
         <DropdownContent $isOpen={isOpen}>
           {categories.map((category) => (
@@ -133,4 +141,17 @@ const DropdownContent = styled.div<DropdownContentProps>`
       color: var(--color-accent);
     }
   }
+`;
+
+const StyledSVG = styled.img`
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  margin-left: 1rem;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
