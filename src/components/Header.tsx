@@ -115,6 +115,10 @@ const StyledHeader = styled.header`
 const LogoImage = styled.img`
   width: 7.5rem;
   height: auto;
+
+  @media (max-width: 912px) {
+    width: 6.25rem;
+  }
 `;
 
 // Styling for navigation links
