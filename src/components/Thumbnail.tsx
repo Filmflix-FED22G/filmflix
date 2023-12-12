@@ -14,10 +14,6 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
 
   const movieSlug = slugify(movie.title);
 
-  function handleMovieClick() {
-    // TODO: set state for movie to render in details page
-  }
-
   function handleBookmarkClick() {
     setIsBookmarked(!isBookmarked);
   }
@@ -40,7 +36,6 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <MovieThumbnail
           onLoad={() => setImageStatus('loaded')}
           onError={() => setImageStatus('error')}
-          onClick={handleMovieClick}
           src={movie.thumbnail}
           alt={movie.title + ' poster'}
           style={{
