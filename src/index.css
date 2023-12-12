@@ -19,7 +19,7 @@
   --color-placeholder-text: #646464;
   --color-hover: #aa8c21;
   --font-size-xs: 0.875rem;
-  --font-size-s: clamp(1rem, 2.5vw, 1.125rem);
+  --font-size-s: clamp(0.938rem, 2.5vw, 1.063rem);
   --font-size-m: clamp(1.25rem, 1rem + 1vw, 1.75rem);
   --font-size-l: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
   --font-size-xl: clamp(2.5rem, 2rem + 2vw, 3.5rem);
@@ -43,22 +43,6 @@ html {
 body {
   background-color: var(--color-dark);
   color: var(--color-light);
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: var(--grid-main);
-
-  @media (max-width: 1100px) {
-    grid-template-columns: var(--grid-medium);
-  }
-  @media (max-width: 650px) {
-    grid-template-columns: var(--grid-small);
-  }
-}
-
-.grid {
-  grid-column: main;
 }
 
 h1 {
