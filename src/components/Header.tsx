@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import close from '/icons/close.svg';
+import filmFlix from '/icons/filmFlix.svg';
 import goldburger from '/icons/goldburger.svg';
 import goldclose from '/icons/goldclose.svg';
 import hamburger from '/icons/hamburger.svg';
@@ -27,67 +28,61 @@ function Header() {
   };
 
   return (
-    <div className="grid-container">
-      <StyledHeader>
-        <StyledLogo href="/">
-          <h3>FilmFlix</h3>
-        </StyledLogo>
-        <NavLinks>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/categories">Categories</RouterLink>
-          <RouterLink to="/bookmarks">Bookmarks</RouterLink>
-        </NavLinks>
-        <SearchBar $showInMobile={false} />
-        <HamburgerIcon
-          onClick={onOpen}
-          onMouseEnter={() => setIsHamburgerHovering(true)}
-          onMouseLeave={() => setIsHamburgerHovering(false)}
+    <StyledHeader>
+      <StyledLogo to="/">
+        <LogoImage src={filmFlix} alt="filmFlix Logo" />
+      </StyledLogo>
+      <NavLinks>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/categories">Categories</RouterLink>
+        <RouterLink to="/bookmarks">Bookmarks</RouterLink>
+      </NavLinks>
+      <SearchBar $showInMobile={false} />
+      <HamburgerIcon
+        onClick={onOpen}
+        onMouseEnter={() => setIsHamburgerHovering(true)}
+        onMouseLeave={() => setIsHamburgerHovering(false)}
+      >
+        <StyledSVG
+          src={isHamburgerHovering ? goldburger : hamburger}
+          alt="hamburger menu"
+        />
+      </HamburgerIcon>
+      <MobileMenu $isOpen={isOpen}>
+        <CloseButton
+          onClick={onClose}
+          onMouseEnter={() => setIsCloseHovering(true)}
+          onMouseLeave={() => setIsCloseHovering(false)}
         >
           <StyledSVG
-            src={isHamburgerHovering ? goldburger : hamburger}
-            alt="hamburger menu"
+            src={isCloseHovering ? goldclose : close}
+            alt="close button"
           />
-        </HamburgerIcon>
-        <MobileMenu $isOpen={isOpen}>
-          <CloseButton
-            onClick={onClose}
-            onMouseEnter={() => setIsCloseHovering(true)}
-            onMouseLeave={() => setIsCloseHovering(false)}
-          >
-            <StyledSVG
-              src={isCloseHovering ? goldclose : close}
-              alt="close button"
-            />
-          </CloseButton>
-          <MenuItemsContainer>
-            <SearchBar $showInMobile={true} />
-            <StyledLink>
-              <RouterLink
-                to="/"
-                onClick={handleLinkClick}
-                id="customRouterLink"
-              >
-                Home
-              </RouterLink>
-              <RouterLink
-                to="/categories"
-                onClick={handleLinkClick}
-                id="customRouterLink"
-              >
-                Categories
-              </RouterLink>
-              <RouterLink
-                to="/bookmarks"
-                onClick={handleLinkClick}
-                id="customRouterLink"
-              >
-                Bookmarks
-              </RouterLink>
-            </StyledLink>
-          </MenuItemsContainer>
-        </MobileMenu>
-      </StyledHeader>
-    </div>
+        </CloseButton>
+        <MenuItemsContainer>
+          <SearchBar $showInMobile={true} />
+          <StyledLink>
+            <RouterLink to="/" onClick={handleLinkClick} id="customRouterLink">
+              Home
+            </RouterLink>
+            <RouterLink
+              to="/categories"
+              onClick={handleLinkClick}
+              id="customRouterLink"
+            >
+              Categories
+            </RouterLink>
+            <RouterLink
+              to="/bookmarks"
+              onClick={handleLinkClick}
+              id="customRouterLink"
+            >
+              Bookmarks
+            </RouterLink>
+          </StyledLink>
+        </MenuItemsContainer>
+      </MobileMenu>
+    </StyledHeader>
   );
 }
 
@@ -114,6 +109,12 @@ const StyledHeader = styled.header`
   padding: 1rem;
   background-color: var(--color-header-footer-background);
   color: white;
+  padding: 1rem var(--default-padding);
+`;
+
+const LogoImage = styled.img`
+  width: 7.5rem;
+  height: auto;
 `;
 
 // Styling for navigation links
@@ -193,7 +194,7 @@ const StyledSVG = styled.img`
   height: 1rem;
 `;
 
-const StyledLogo = styled.a`
+const StyledLogo = styled(RouterLink)`
   text-decoration: none;
   cursor: pointer;
 
