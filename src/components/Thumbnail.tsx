@@ -121,7 +121,7 @@ const RatingBadge = styled.div`
   height: 1rem;
   background-color: #434343;
   border-radius: 0.3rem;
-  padding: 0.2rem 0.3rem 0.1rem 0.3rem;
+  padding: 0.2rem 0.3rem 0 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
