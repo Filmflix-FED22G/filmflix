@@ -70,18 +70,17 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
 }
 
 const ThumbnailContainer = styled.div`
-  width: 16rem;
+  width: 12rem;
+  max-width: 12rem;
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  margin: 1rem;
 `;
 
 const MovieThumbnail = styled.img`
   height: 17rem;
-
   object-fit: cover;
   margin-bottom: 0.5rem;
-  transition: 0.2s ease-in-out;
   user-select: none;
 
   &:hover {
@@ -109,9 +108,11 @@ const PlaceholderImage = styled.div`
 const SecondaryInfoContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 0 0 0.1rem 0;
 
   p {
     margin: 0.2rem 0.5rem 0 0;
+    font-size: 0.7rem;
   }
 `;
 
