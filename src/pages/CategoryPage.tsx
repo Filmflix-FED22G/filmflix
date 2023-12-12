@@ -32,10 +32,20 @@ const CategoryPage: React.FC = () => {
       <Outlet />
 
       <Carousel data={actionMovies} heading="ACTION" />
-      <Carousel data={dramaMovies} heading="DRAMA" />
+      <Carousel data={adventureMovies} heading="ADVENTURE" />
       <Carousel data={biographyMovies} heading="BIOGRAPHY" />
+      <Carousel data={crimeMovies} heading="CRIME" />
+      <Carousel data={dramaMovies} heading="DRAMA" />
+      <Carousel data={fantasyMovies} heading="FANTASY" />
       <Carousel data={historyMovies} heading="HISTORY" />
+      <Carousel data={horrorMovies} heading="HORROR" />
       <Carousel data={musicMovies} heading="MUSIC" />
+      <Carousel data={mysteryMovies} heading="MYSTERY" />
+      <Carousel data={romanceMovies} heading="ROMANCE" />
+      <Carousel data={sciFiMovies} heading="SCI-FI" />
+      <Carousel data={thrillerMovies} heading="THRILLER" />
+      <Carousel data={warMovies} heading="WAR" />
+      <Carousel data={westernMovies} heading="WESTERN" />
     </div>
   );
 };
