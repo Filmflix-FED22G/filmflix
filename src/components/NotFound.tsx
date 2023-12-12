@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 
+// This component renders the 404 page
 function NotFound() {
   useEffect(() => {
     document.title = '404 Not Found';
@@ -15,6 +16,7 @@ function NotFound() {
 
 export default NotFound;
 
+//Styling for the NotFound component
 const StyledNotFound = styled.div`
   height: 70vh;
   width: 100vw;

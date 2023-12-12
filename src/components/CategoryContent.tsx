@@ -3,6 +3,39 @@ import { useParams } from 'react-router-dom';
 import Thumbnail from './Thumbnail';
 import styled from 'styled-components';
 
+//This component renders the movies in the selected category
+function CategoryContent() {
+  const { category } = useParams();
+
+  //Capitalizes the first letter of the category name
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  //Filters the movies based on the category
+  const moviesInCategory = category
+    ? movies.filter((movie) =>
+        movie.genre.toLowerCase().includes(category.toLowerCase()),
+      )
+    : [];
+
+  return (
+    <Wrapper>
+      <FlexContainer>
+        <h4>{category ? capitalizeFirstLetter(category) : 'Category'}</h4>
+        <GridContainer>
+          {moviesInCategory.map((movie) => (
+            <Thumbnail key={movie.title} movie={movie} />
+          ))}
+        </GridContainer>
+      </FlexContainer>
+    </Wrapper>
+  );
+}
+
+export default CategoryContent;
+
+//Styling for the CategoryContent component
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -30,32 +63,3 @@ const GridContainer = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
-function CategoryContent() {
-  const { category } = useParams();
-
-  const capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  const moviesInCategory = category
-    ? movies.filter((movie) =>
-        movie.genre.toLowerCase().includes(category.toLowerCase()),
-      )
-    : [];
-
-  return (
-    <Wrapper>
-      <FlexContainer>
-        <h4>{category ? capitalizeFirstLetter(category) : 'Category'}</h4>
-        <GridContainer>
-          {moviesInCategory.map((movie) => (
-            <Thumbnail key={movie.title} movie={movie} />
-          ))}
-        </GridContainer>
-      </FlexContainer>
-    </Wrapper>
-  );
-}
-
-export default CategoryContent;

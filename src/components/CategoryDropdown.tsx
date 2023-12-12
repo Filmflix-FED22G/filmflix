@@ -6,6 +6,78 @@ interface DropdownContentProps {
   $isOpen: boolean;
 }
 
+//This component renders the dropdown menu for the categories
+function CategoryDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const categories = [
+    'Action',
+    'Adventure',
+    'Biography',
+    'Crime',
+    'Drama',
+    'Fantasy',
+    'History',
+    'Horror',
+    'Music',
+    'Mystery',
+    'Romance',
+    'Sci-Fi',
+    'Thriller',
+    'War',
+    'Western',
+  ];
+
+  //Handles the click on a category
+  //Navigates to the category page and sets the document title
+  const handleCategoryClick = (category: string) => {
+    setIsOpen(false);
+    navigate(`/categories/${category.toLowerCase()}`);
+    document.title = `${category}`;
+  };
+
+  //Closes the dropdown menu when the user clicks outside of it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <DropdownWrapper>
+      <DropdownContainer ref={dropdownRef}>
+        <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+          <h4>Categories</h4>
+        </DropdownButton>
+        <DropdownContent $isOpen={isOpen}>
+          {categories.map((category) => (
+            <a
+              href="#"
+              key={category}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </a>
+          ))}
+        </DropdownContent>
+      </DropdownContainer>
+    </DropdownWrapper>
+  );
+}
+
+export default CategoryDropdown;
+
+//Styling for the CategoryDropdown component
 const DropdownWrapper = styled.div`
   background-color: var(--color-dark-grey);
   display: inline-block;
@@ -67,70 +139,3 @@ const DropdownContent = styled.div<DropdownContentProps>`
     }
   }
 `;
-
-function CategoryDropdown() {
-  const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const categories = [
-    'Action',
-    'Adventure',
-    'Biography',
-    'Crime',
-    'Drama',
-    'Fantasy',
-    'History',
-    'Horror',
-    'Music',
-    'Mystery',
-    'Romance',
-    'Sci-Fi',
-    'Thriller',
-    'War',
-    'Western',
-  ];
-
-  const handleCategoryClick = (category: string) => {
-    setIsOpen(false);
-    navigate(`/categories/${category.toLowerCase()}`);
-    document.title = `${category}`;
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-
-      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  return (
-    <DropdownWrapper>
-      <DropdownContainer ref={dropdownRef}>
-        <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-          <h4>Categories</h4>
-        </DropdownButton>
-        <DropdownContent $isOpen={isOpen}>
-          {categories.map((category) => (
-            <a
-              href="#"
-              key={category}
-              onClick={() => handleCategoryClick(category)}
-            >
-              {category}
-            </a>
-          ))}
-        </DropdownContent>
-      </DropdownContainer>
-    </DropdownWrapper>
-  );
-}
-
-export default CategoryDropdown;
