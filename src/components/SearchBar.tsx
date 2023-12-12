@@ -1,17 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import movies from '../../data/movies.json';
-import { useState, useEffect, useRef } from 'react';
+import { Movie } from '../../types/movieTypes';
 import Thumbnail from './Thumbnail';
-
-type Movie = {
-  title: string;
-  year: number;
-  rating: string;
-  actors: string[];
-  genre: string;
-  synopsis: string;
-  thumbnail: string;
-};
 
 interface SearchBarContainerProps {
   $showInMobile?: boolean;
