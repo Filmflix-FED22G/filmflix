@@ -13,6 +13,8 @@ interface SearchBarProps {
   $showInMobile?: boolean;
 }
 
+// This component renders the search bar
+// It also renders the search results dropdown
 function SearchBar({ $showInMobile = false }: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
@@ -99,6 +101,7 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
 
 export default SearchBar;
 
+//Styling for the SearchBar component
 const SearchContainer = styled.div<SearchBarProps>`
   position: relative;
   width: 100%;

@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router } from 'react-router-dom';
 import SearchBar from '../src/components/SearchBar';
 
+//SearchBar tests
 describe('SearchBar Component', () => {
   it('renders the search bar correctly', () => {
     render(
