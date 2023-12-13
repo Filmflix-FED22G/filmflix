@@ -32,11 +32,10 @@ const CarouselWrapper = styled.div`
   padding: var(--default-padding-left-right);
   margin: var(--default-margin-top-bottom) 0;
   display: flex;
-  flex-direction: column;
 
-  @media (min-width: 913px) {
+  @media (max-width: 912px) {
     padding: var(--default-padding-left-right-tablet);
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
   }
 
