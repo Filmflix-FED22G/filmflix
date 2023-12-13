@@ -1,32 +1,44 @@
 import { Outlet } from 'react-router-dom';
-import { default as data } from '../../data/movies.json';
 import Carousel from '../components/Carousel';
 import CategoryDropdown from '../components/CategoryDropdown';
 
 import { useEffect } from 'react';
+import { useMovies } from '../contexts/MovieContext';
 
 const CategoryPage: React.FC = () => {
-  const actionMovies = data.filter((movie) => movie.genre.includes('Action'));
-  const adventureMovies = data.filter((movie) =>
+  const { movies } = useMovies();
+
+  const actionMovies = movies.filter((movie) => movie.genre.includes('Action'));
+  const adventureMovies = movies.filter((movie) =>
     movie.genre.includes('Adventure'),
   );
-  const biographyMovies = data.filter((movie) =>
+  const biographyMovies = movies.filter((movie) =>
     movie.genre.includes('Biography'),
   );
-  const crimeMovies = data.filter((movie) => movie.genre.includes('Crime'));
-  const dramaMovies = data.filter((movie) => movie.genre.includes('Drama'));
-  const fantasyMovies = data.filter((movie) => movie.genre.includes('Fantasy'));
-  const historyMovies = data.filter((movie) => movie.genre.includes('History'));
-  const horrorMovies = data.filter((movie) => movie.genre.includes('Horror'));
-  const musicMovies = data.filter((movie) => movie.genre.includes('Music'));
-  const mysteryMovies = data.filter((movie) => movie.genre.includes('Mystery'));
-  const romanceMovies = data.filter((movie) => movie.genre.includes('Romance'));
-  const sciFiMovies = data.filter((movie) => movie.genre.includes('Sci-Fi'));
-  const thrillerMovies = data.filter((movie) =>
+  const crimeMovies = movies.filter((movie) => movie.genre.includes('Crime'));
+  const dramaMovies = movies.filter((movie) => movie.genre.includes('Drama'));
+  const fantasyMovies = movies.filter((movie) =>
+    movie.genre.includes('Fantasy'),
+  );
+  const historyMovies = movies.filter((movie) =>
+    movie.genre.includes('History'),
+  );
+  const horrorMovies = movies.filter((movie) => movie.genre.includes('Horror'));
+  const musicMovies = movies.filter((movie) => movie.genre.includes('Music'));
+  const mysteryMovies = movies.filter((movie) =>
+    movie.genre.includes('Mystery'),
+  );
+  const romanceMovies = movies.filter((movie) =>
+    movie.genre.includes('Romance'),
+  );
+  const sciFiMovies = movies.filter((movie) => movie.genre.includes('Sci-Fi'));
+  const thrillerMovies = movies.filter((movie) =>
     movie.genre.includes('Thriller'),
   );
-  const warMovies = data.filter((movie) => movie.genre.includes('War'));
-  const westernMovies = data.filter((movie) => movie.genre.includes('Western'));
+  const warMovies = movies.filter((movie) => movie.genre.includes('War'));
+  const westernMovies = movies.filter((movie) =>
+    movie.genre.includes('Western'),
+  );
 
   useEffect(() => {
     document.title = 'Categories';
