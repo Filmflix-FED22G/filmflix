@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import movies from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
+import { useMovies } from '../contexts/MovieContext';
 import Thumbnail from './Thumbnail';
 import magnifyingGlass from '/icons/magnifying-glass.svg';
 
@@ -19,6 +19,7 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const { movies } = useMovies();
   const searchBarRef = useRef<HTMLDivElement>(null);
   const clearSearch = () => {
     setSearchQuery('');
@@ -32,7 +33,7 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
 
     if (query.length > 0) {
       const filtered = movies
-        .filter((movie) =>
+        .filter((movie: Movie) =>
           movie.title.toLowerCase().includes(query.toLowerCase()),
         )
         .slice(0, 5);
@@ -47,7 +48,7 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
   // Handle form submission
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const filtered = movies.filter((movie) =>
+    const filtered = movies.filter((movie: Movie) =>
       movie.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFilteredMovies(filtered);

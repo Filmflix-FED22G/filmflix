@@ -1,18 +1,22 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
-import movies from '../data/movies.json';
 import Thumbnail from '../src/components/Thumbnail';
+import { MovieProvider } from '../src/contexts/MovieContext';
+import HomePage from '../src/pages/HomePage';
 import { Movie } from '../types/movieTypes';
+import mockMovies from './mocks/mockMovies.json';
 
 describe('Thumbnail Component', () => {
-  const mockMovie: Movie = movies[0];
+  const mockMovie: Movie = mockMovies[0];
 
   it('renders everything correctly', () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
@@ -29,9 +33,11 @@ describe('Thumbnail Component', () => {
 
   it('renders error placeholder when image fails to load', () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
@@ -49,32 +55,55 @@ describe('Thumbnail Component', () => {
 
   it('switches between unselected and selected bookmark icon on click', async () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <HomePage />
+        </Router>
+      </MovieProvider>,
     );
 
     const user = userEvent.setup();
-    const bookmarkIcon = screen.getByAltText('Bookmark icon');
-    const bookmarkButton = screen.getByRole('button', {
+    const bookmarkIcon = screen.getAllByAltText('Bookmark icon');
+    const bookmarkButtons = screen.getAllByRole('button', {
       name: 'Bookmark button',
     });
 
-    expect(bookmarkIcon).toHaveAttribute(
+    expect(bookmarkIcon[0]).toHaveAttribute(
       'src',
       '/icons/bookmark-unselected.svg',
     );
-    await user.click(bookmarkButton);
-    expect(bookmarkIcon).toHaveAttribute('src', '/icons/bookmark-selected.svg');
-    await user.click(bookmarkButton);
-    expect(bookmarkIcon).toHaveAttribute(
-      'src',
-      '/icons/bookmark-unselected.svg',
+
+    await user.click(bookmarkButtons[0]);
+    await waitFor(() =>
+      expect(bookmarkIcon[0]).toHaveAttribute(
+        'src',
+        '/icons/bookmark-selected.svg',
+      ),
+    );
+
+    await user.click(bookmarkButtons[0]);
+    await waitFor(() =>
+      expect(bookmarkIcon[0]).toHaveAttribute(
+        'src',
+        '/icons/bookmark-unselected.svg',
+      ),
     );
   });
 
-  it.todo('navigates to details page when clicked');
+  it('navigates to details page when clicked', async () => {
+    render(
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
+    );
 
-  it.todo('adds movie to sessionStorage when bookmark button is clicked');
-  it.todo('removes movie from sessionStorage when bookmark button is clicked');
+    const user = userEvent.setup();
+    const thumbnail = screen.getByRole('link');
+
+    await user.click(thumbnail);
+
+    expect(window.location.pathname).toBe('/details/the-shawshank-redemption');
+  });
 });

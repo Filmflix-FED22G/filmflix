@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import movies from '../../data/movies.json';
 import chevrondown from '/icons/chevrondown.svg';
 import chevronup from '/icons/chevronup.svg';
@@ -54,7 +54,7 @@ function CategoryDropdown() {
       <DropdownContainer ref={dropdownRef}>
         <DropdownButton onClick={() => setIsOpen(!isOpen)}>
           <FlexContainer>
-            <h4>Categories</h4>
+            <Title>Categories</Title>
             <StyledSVG
               src={isOpen ? chevronup : chevrondown}
               alt={isOpen ? 'arrow up' : 'arrow down'}
@@ -108,7 +108,7 @@ const DropdownButton = styled.button`
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  padding: 1rem 2rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
   background-color: var(--color-header-footer-background);
   color: white;
 
@@ -147,11 +147,15 @@ const StyledSVG = styled.img`
   width: 1rem;
   height: 1rem;
   color: white;
-  margin-left: 1rem;
+  margin: 0 0 0.2rem 5.5rem;
 `;
 
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+const Title = styled.h5`
+  margin: 0.2rem 0 0 0;
 `;

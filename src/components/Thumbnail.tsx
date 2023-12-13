@@ -2,25 +2,19 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
+import { useMovies } from '../contexts/MovieContext';
 import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 
 export default function Thumbnail({ movie }: { movie: Movie }) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [imageStatus, setImageStatus] = useState<
     'loading' | 'loaded' | 'error'
   >('loading');
 
+  const { toggleBookmark } = useMovies();
+
   const movieSlug = slugify(movie.title);
-
-  function handleMovieClick() {
-    // TODO: set state for movie to render in details page
-  }
-
-  function handleBookmarkClick() {
-    setIsBookmarked(!isBookmarked);
-  }
 
   return (
     <ThumbnailContainer>
@@ -40,7 +34,6 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <MovieThumbnail
           onLoad={() => setImageStatus('loaded')}
           onError={() => setImageStatus('error')}
-          onClick={handleMovieClick}
           src={movie.thumbnail}
           alt={movie.title + ' poster'}
           style={{
@@ -56,10 +49,10 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         <BookmarkButton
           aria-label="Bookmark button"
           role="button"
-          onClick={handleBookmarkClick}
+          onClick={() => toggleBookmark(movie)}
         >
           <BookmarkIcon
-            src={isBookmarked ? bookmarkSelected : bookmarkUnselected}
+            src={movie.isBookmarked ? bookmarkSelected : bookmarkUnselected}
             alt="Bookmark icon"
           ></BookmarkIcon>
         </BookmarkButton>
@@ -70,18 +63,19 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
 }
 
 const ThumbnailContainer = styled.div`
-  width: 16rem;
+  width: 12rem;
+  max-width: 12rem;
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
 `;
 
 const MovieThumbnail = styled.img`
   height: 17rem;
-
+  min-height: 17rem;
+  width: 12rem;
+  max-width: 12rem;
   object-fit: cover;
   margin-bottom: 0.5rem;
-  transition: 0.2s ease-in-out;
   user-select: none;
 
   &:hover {
@@ -109,9 +103,11 @@ const PlaceholderImage = styled.div`
 const SecondaryInfoContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 0 0 0.1rem 0;
 
   p {
     margin: 0.2rem 0.5rem 0 0;
+    font-size: 0.7rem;
   }
 `;
 
@@ -120,7 +116,7 @@ const RatingBadge = styled.div`
   height: 1rem;
   background-color: #434343;
   border-radius: 0.3rem;
-  padding: 0.2rem 0.3rem 0.1rem 0.3rem;
+  padding: 0.2rem 0.3rem 0 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
