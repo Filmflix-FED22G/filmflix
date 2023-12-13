@@ -71,7 +71,7 @@ const HeroInfo = styled.div`
   }
 
   @media (max-width: 1024px) {
-    bottom: 20%;
+    bottom: 10%;
     right: 68%;
   }
 
