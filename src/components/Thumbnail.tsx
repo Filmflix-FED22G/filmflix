@@ -73,7 +73,7 @@ const ThumbnailContainer = styled.div`
   width: 16rem;
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
 `;
 
 const MovieThumbnail = styled.img`
