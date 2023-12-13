@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import MovieView from '../src/components/MovieView';
+import { MovieProvider } from '../src/contexts/MovieContext';
 
 describe('MovieView Component with URL Parameter', () => {
   // Mocked movie URL
@@ -10,11 +11,13 @@ describe('MovieView Component with URL Parameter', () => {
 
   beforeEach(() => {
     render(
-      <MemoryRouter initialEntries={[`/details/${movieSlug}`]}>
-        <Routes>
-          <Route path="/details/:title" element={<MovieView />} />
-        </Routes>
-      </MemoryRouter>,
+      <MovieProvider>
+        <MemoryRouter initialEntries={[`/details/${movieSlug}`]}>
+          <Routes>
+            <Route path="/details/:title" element={<MovieView />} />
+          </Routes>
+        </MemoryRouter>
+      </MovieProvider>,
     );
   });
 
@@ -73,7 +76,11 @@ describe('MovieView Component with URL Parameter', () => {
   test('sets the document title correctly', () => {
     const movieTitle = 'Portrait of a Lady on Fire';
 
-    render(<MovieView />);
+    render(
+      <MovieProvider>
+        <MovieView />
+      </MovieProvider>,
+    );
 
     expect(document.title).toBe(`${movieTitle}`);
   });

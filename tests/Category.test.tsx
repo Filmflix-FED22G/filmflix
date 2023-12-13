@@ -1,14 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
+import { MovieProvider } from '../src/contexts/MovieContext';
 import CategoryPage from '../src/pages/CategoryPage';
 
 //Category tests
 test('renders Category Page with dropdown and document title', () => {
   render(
-    <MemoryRouter>
-      <CategoryPage />
-    </MemoryRouter>,
+    <MovieProvider>
+      <MemoryRouter>
+        <CategoryPage />
+      </MemoryRouter>
+    </MovieProvider>,
   );
   const dropdownButton = screen.getByText(/categories/i);
   expect(dropdownButton).toBeInTheDocument();
@@ -33,9 +36,11 @@ vi.mock('react-router-dom', async () => {
 
 test('navigates to correct category and sets a new document title', async () => {
   render(
-    <MemoryRouter>
-      <CategoryPage />
-    </MemoryRouter>,
+    <MovieProvider>
+      <MemoryRouter>
+        <CategoryPage />
+      </MemoryRouter>
+    </MovieProvider>,
   );
 
   const categoryNames = ['Action', 'Adventure', 'Biography'];

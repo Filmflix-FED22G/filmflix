@@ -1,36 +1,29 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import movies from '../data/movies.json';
 import Carousel from '../src/components/Carousel';
+import { MovieProvider } from '../src/contexts/MovieContext';
 
 describe('Carousel Component', () => {
-  const mockData = [
-    {
-      title: 'Movie 1',
-      year: 2021,
-      rating: 'PG-13',
-      actors: ['Actor 1', 'Actor 2'],
-      genre: 'Adventure',
-      synopsis: 'Synopsis 1',
-      thumbnail: 'thumbnail1.jpg',
-      isTrending: true,
-    },
-  ];
-
   it('renders correctly with mock data', () => {
     render(
-      <Router>
-        <Carousel data={mockData} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Carousel data={movies} />
+        </Router>
+      </MovieProvider>,
     );
     const thumbnails = screen.getAllByRole('img');
-    expect(thumbnails).toHaveLength(mockData.length);
+    expect(thumbnails).toHaveLength(movies.length);
   });
 
   it('triggers scroll event on user interaction', () => {
     render(
-      <Router>
-        <Carousel data={mockData} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Carousel data={movies} />
+        </Router>
+      </MovieProvider>,
     );
 
     const moviesWrapper = screen.getByTestId('movies-wrapper');

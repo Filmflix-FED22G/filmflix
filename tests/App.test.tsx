@@ -2,13 +2,16 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, BrowserRouter as Router } from 'react-router-dom';
 import App from '../src/App';
+import { MovieProvider } from '../src/contexts/MovieContext';
 
 //Header tests
 test('should render the header with the FilmFlix logo', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const headerElement = screen.getByRole('banner');
@@ -18,9 +21,11 @@ test('should render the header with the FilmFlix logo', () => {
 
 test('should navigate to home page when clicking the logo in the header', async () => {
   render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
+    <MovieProvider>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </MovieProvider>,
   );
 
   const user = userEvent.setup();
@@ -33,9 +38,11 @@ test('should navigate to home page when clicking the logo in the header', async 
 
 test('renders navigation links for desktop', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const homeLinks = screen.getAllByText(/home/i);
@@ -53,9 +60,11 @@ test('renders navigation links for desktop', () => {
 
 test('renders navigation links for mobile', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const homeLinks = screen.getAllByText(/home/i);
@@ -73,9 +82,11 @@ test('renders navigation links for mobile', () => {
 
 test('renders search bar and input in two places, desktop and mobile', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const inputFields = screen.queryAllByPlaceholderText(/search for a movie/i);
@@ -84,9 +95,11 @@ test('renders search bar and input in two places, desktop and mobile', () => {
 
 test('renders hamburger button', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const hamburgerButton = screen.getByAltText(/hamburger menu/i);
@@ -95,9 +108,11 @@ test('renders hamburger button', () => {
 
 test('renders close button', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const closeButton = screen.getByAltText(/close button/i);
@@ -107,9 +122,11 @@ test('renders close button', () => {
 //Footer tests
 test('should render the footer with the FilmFlix logo', () => {
   render(
-    <Router>
-      <App />
-    </Router>,
+    <MovieProvider>
+      <Router>
+        <App />
+      </Router>
+    </MovieProvider>,
   );
 
   const footerElement = screen.getByRole('contentinfo');

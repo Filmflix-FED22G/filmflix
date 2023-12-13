@@ -3,14 +3,17 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter as Router } from 'react-router-dom';
 import SearchBar from '../src/components/SearchBar';
+import { MovieProvider } from '../src/contexts/MovieContext';
 
 //SearchBar tests
 describe('SearchBar Component', () => {
   it('renders the search bar correctly', () => {
     render(
-      <Router>
-        <SearchBar $showInMobile={false} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <SearchBar $showInMobile={false} />
+        </Router>
+      </MovieProvider>,
     );
     expect(
       screen.getByPlaceholderText('Search for a movie'),
@@ -19,9 +22,11 @@ describe('SearchBar Component', () => {
 
   it('updates input value on change', () => {
     render(
-      <Router>
-        <SearchBar $showInMobile={false} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <SearchBar $showInMobile={false} />
+        </Router>
+      </MovieProvider>,
     );
 
     const input = screen.getByPlaceholderText(
@@ -33,9 +38,11 @@ describe('SearchBar Component', () => {
 
   it('performs search on button click', async () => {
     render(
-      <Router>
-        <SearchBar $showInMobile={false} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <SearchBar $showInMobile={false} />
+        </Router>
+      </MovieProvider>,
     );
 
     const input = screen.getByPlaceholderText('Search for a movie');
@@ -55,9 +62,11 @@ describe('SearchBar Component', () => {
 
   it('shows dropdown on input change', () => {
     render(
-      <Router>
-        <SearchBar $showInMobile={false} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <SearchBar $showInMobile={false} />
+        </Router>
+      </MovieProvider>,
     );
 
     const input = screen.getByPlaceholderText(
@@ -72,9 +81,11 @@ describe('SearchBar Component', () => {
 
   it('hides dropdown when clicking outside', () => {
     render(
-      <Router>
-        <SearchBar $showInMobile={false} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <SearchBar $showInMobile={false} />
+        </Router>
+      </MovieProvider>,
     );
 
     const input = screen.getByPlaceholderText(

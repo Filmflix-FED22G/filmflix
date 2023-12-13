@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 import movies from '../data/movies.json';
 import Thumbnail from '../src/components/Thumbnail';
+import { MovieProvider } from '../src/contexts/MovieContext';
 import { Movie } from '../types/movieTypes';
 
 describe('Thumbnail Component', () => {
@@ -10,9 +11,11 @@ describe('Thumbnail Component', () => {
 
   it('renders everything correctly', () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
@@ -29,9 +32,11 @@ describe('Thumbnail Component', () => {
 
   it('renders error placeholder when image fails to load', () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
@@ -49,9 +54,11 @@ describe('Thumbnail Component', () => {
 
   it('switches between unselected and selected bookmark icon on click', async () => {
     render(
-      <Router>
-        <Thumbnail movie={mockMovie} />
-      </Router>,
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
     );
 
     const user = userEvent.setup();
@@ -65,6 +72,7 @@ describe('Thumbnail Component', () => {
       '/icons/bookmark-unselected.svg',
     );
     await user.click(bookmarkButton);
+    screen.debug();
     expect(bookmarkIcon).toHaveAttribute('src', '/icons/bookmark-selected.svg');
     await user.click(bookmarkButton);
     expect(bookmarkIcon).toHaveAttribute(
