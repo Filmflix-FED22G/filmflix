@@ -27,7 +27,9 @@
   --font-weight-bold: 600;
   --font-weight-regular: 400;
   --font-weight-light: 200;
-  --default-padding: 2rem;
+  --default-padding-left-right: 2rem;
+  --default-padding-top-bottom: 3rem;
+  --default-margin-top-bottom: 3rem;
 }
 
 html {
