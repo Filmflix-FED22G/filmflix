@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
-import movies from '../data/movies.json';
+import mockMovies from './mocks/mockMovies.json';
 import Thumbnail from '../src/components/Thumbnail';
 import { MovieProvider } from '../src/contexts/MovieContext';
 import { Movie } from '../types/movieTypes';
 
 describe('Thumbnail Component', () => {
-  const mockMovie: Movie = movies[0];
+  const mockMovie: Movie = mockMovies[0];
 
   it('renders everything correctly', () => {
     render(
