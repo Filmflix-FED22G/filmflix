@@ -106,15 +106,18 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   background-color: var(--color-header-footer-background);
   color: var(--color-light);
-  padding: 1.3rem var(--default-padding);
+  padding: 1.3rem var(--default-padding-left-right);
 `;
 
 const LogoImage = styled.img`
   width: 7.5rem;
   height: auto;
+
+  @media (max-width: 912px) {
+    width: 6.25rem;
+  }
 `;
 
 // Styling for navigation links
@@ -159,6 +162,7 @@ const MobileMenu = styled.div<{ $isOpen: boolean }>`
   transform: ${({ $isOpen }) =>
     $isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.3s ease-in-out;
+  padding: var(--default-padding-left-right);
 
   a {
     color: white;
