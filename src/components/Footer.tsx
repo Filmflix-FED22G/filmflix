@@ -67,6 +67,7 @@ const FooterContainer = styled.footer`
   background-color: var(--color-header-footer-background);
   color: var(--color-light);
   padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
