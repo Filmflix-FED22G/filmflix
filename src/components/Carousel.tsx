@@ -1,21 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Movie } from '../../types/movieTypes';
 import Thumbnail from './Thumbnail';
 
 interface CarouselProps {
   data: Movie[];
   heading?: string;
-}
-
-interface Movie {
-  title: string;
-  year: number;
-  rating: string;
-  actors: string[];
-  genre: string;
-  synopsis: string;
-  thumbnail: string;
-  isTrending?: boolean;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
@@ -39,10 +29,11 @@ const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
 const CarouselWrapper = styled.div`
   background-color: var(--color-dark-grey);
   width: 100%;
-  padding: 1rem;
-  margin: 2rem 0;
+  padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
+  margin: var(--default-margin-top-bottom) 0;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 
   @media screen and (min-width: 760px) {
     flex-direction: row;
@@ -52,7 +43,7 @@ const CarouselWrapper = styled.div`
 
 const CarouselHeading = styled.div`
   display: flex;
-  min-width: 15rem;
+  min-width: 14rem;
 
   @media screen and (max-width: 760px) {
     display: none;
@@ -73,11 +64,11 @@ const MoviesWrapper = styled.div`
   display: flex;
   overflow-x: scroll;
   padding-left: 0;
+  gap: 2rem;
 `;
 
-const Heading = styled.h4`
+const Heading = styled.h3`
   font-family: 'Oswald', sans-serif;
-  padding: 2rem;
   display: flex;
   align-items: center;
 `;
