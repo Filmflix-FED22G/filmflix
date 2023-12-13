@@ -51,7 +51,7 @@ function MovieView() {
         <MovieCastContainer>
           <h5>Cast:</h5>
           <MovieCastList>
-            {movie.actors.map((actor: string[], index: number) => (
+            {movie.actors.map((actor: string, index: number) => (
               <MovieCastListItem key={index}>{actor}</MovieCastListItem>
             ))}
           </MovieCastList>
