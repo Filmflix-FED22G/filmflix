@@ -12,6 +12,7 @@ describe('BookmarkPage Component', () => {
       <MovieContext.Provider
         value={{
           movies: mockMovies,
+          toggleBookmark: () => {},
         }}
       >
         <Router>
@@ -56,7 +57,7 @@ describe('BookmarkPage Component', () => {
     );
 
     const user = userEvent.setup();
-    let posters = screen.getAllByAltText(/poster/);
+    const posters = screen.getAllByAltText(/poster/);
     posters.map((poster) => fireEvent.load(poster));
     expect(screen.getByText('Whiplash')).toBeInTheDocument();
 

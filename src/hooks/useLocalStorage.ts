@@ -15,6 +15,7 @@ export function useLocalStorage<State>(initialState: State, key: string) {
   // Define an effect to update the Local Storage data whenever the "state" variable changes
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return [state, setState] as const;

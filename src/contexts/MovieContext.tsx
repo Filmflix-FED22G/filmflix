@@ -3,8 +3,20 @@ import movieData from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-export const MovieContext = createContext(null as any);
+interface MovieContextType {
+  movies: Movie[];
+  toggleBookmark: (movie: Movie) => void;
+}
 
+const defaultContextValue: MovieContextType = {
+  movies: [],
+  toggleBookmark: () => {},
+};
+
+export const MovieContext =
+  createContext<MovieContextType>(defaultContextValue);
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMovies = () => useContext(MovieContext);
 
 export function MovieProvider({ children }: PropsWithChildren) {
