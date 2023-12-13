@@ -36,7 +36,6 @@ export default BookmarkPage;
 
 const Container = styled.div`
   margin: 3rem 2rem;
-  max-width: 120rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(12rem, 12rem));
   grid-gap: 2rem;
