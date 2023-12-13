@@ -90,5 +90,20 @@ describe('Thumbnail Component', () => {
     );
   });
 
-  it.todo('navigates to details page when clicked');
+  it('navigates to details page when clicked', async () => {
+    render(
+      <MovieProvider>
+        <Router>
+          <Thumbnail movie={mockMovie} />
+        </Router>
+      </MovieProvider>,
+    );
+
+    const user = userEvent.setup();
+    const thumbnail = screen.getByRole('link');
+
+    await user.click(thumbnail);
+
+    expect(window.location.pathname).toBe('/details/the-shawshank-redemption');
+  });
 });
