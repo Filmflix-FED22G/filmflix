@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Thumbnail from './Thumbnail';
 import { Movie } from '../../types/movieTypes';
+import Thumbnail from './Thumbnail';
 
 interface CarouselProps {
   data: Movie[];
