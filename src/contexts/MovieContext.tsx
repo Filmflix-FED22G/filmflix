@@ -3,7 +3,7 @@ import movieData from '../../data/movies.json';
 import { Movie } from '../../types/movieTypes';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const MovieContext = createContext(null as any);
+export const MovieContext = createContext(null as any);
 
 export const useMovies = () => useContext(MovieContext);
 
