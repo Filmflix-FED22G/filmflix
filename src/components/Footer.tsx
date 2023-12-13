@@ -63,10 +63,10 @@ export default Footer;
 
 const FooterContainer = styled.footer`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--color-header-footer-background);
-  color: #fff;
-  padding: var(--default-padding);
+  color: var(--color-light);
+  padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -122,6 +122,10 @@ const FooterSubscribeText = styled.p`
     margin: 0 auto;
     padding-top: 0.25rem;
   }
+
+  @media screen and (max-width: 540px) {
+    max-width: 16rem;
+  }
 `;
 const FooterForm = styled.form`
   display: flex;
@@ -137,7 +141,7 @@ const FooterForm = styled.form`
 
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 2rem;
   @media screen and (max-width: 768px) {
     margin-top: 2rem;
