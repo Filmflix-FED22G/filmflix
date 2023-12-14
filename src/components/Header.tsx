@@ -216,6 +216,7 @@ const StyledSVG = styled.img`
 const StyledLogo = styled(RouterLink)`
   text-decoration: none;
   cursor: pointer;
+  line-height: 0;
 
   &:hover {
     text-decoration: none;

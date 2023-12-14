@@ -14,7 +14,7 @@ describe('Carousel Component', () => {
       </MovieProvider>,
     );
     const thumbnails = screen.getAllByRole('img');
-    expect(thumbnails).toHaveLength(movies.length);
+    expect(thumbnails).toHaveLength(movies.length * 2);
   });
 
   it('triggers scroll event on user interaction', () => {

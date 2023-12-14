@@ -6,6 +6,8 @@ import { useMovies } from '../contexts/MovieContext';
 import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
+import brokenImage from '/img/broken-image.png';
+import loadingImage from '/img/loading-image.png';
 
 export default function Thumbnail({ movie }: { movie: Movie }) {
   const [imageStatus, setImageStatus] = useState<
@@ -18,27 +20,27 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
 
   return (
     <ThumbnailContainer>
-      {imageStatus === 'loading' && (
-        <PlaceholderImage aria-label="Loading placeholder">
-          <h5>Loading...</h5>
-        </PlaceholderImage>
-      )}
-      {imageStatus === 'error' && (
-        <PlaceholderImage
-          aria-label={`Error placeholder for failing to fetch the ${movie.title} poster`}
-        >
-          <h4>Poster not found</h4>
-        </PlaceholderImage>
-      )}
       <Link to={`/details/${movieSlug}`}>
+        {imageStatus === 'loading' && (
+          <MovieThumbnail
+            src={loadingImage}
+            alt={'Loading placeholder image'}
+            style={{ display: 'block' }}
+          />
+        )}
+        {imageStatus === 'error' && (
+          <MovieThumbnail
+            src={brokenImage}
+            alt={'Error fetching the ' + movie.title + ' poster'}
+            style={{ display: 'block' }}
+          />
+        )}
         <MovieThumbnail
           onLoad={() => setImageStatus('loaded')}
           onError={() => setImageStatus('error')}
           src={movie.thumbnail}
           alt={movie.title + ' poster'}
-          style={{
-            display: imageStatus === 'loaded' ? 'block' : 'none',
-          }}
+          style={{ display: imageStatus === 'loaded' ? 'block' : 'none' }}
         />
       </Link>
       <SecondaryInfoContainer>
@@ -86,18 +88,6 @@ const MovieThumbnail = styled.img`
   &:active {
     transform: scale(0.98);
   }
-`;
-
-const PlaceholderImage = styled.div`
-  width: 12rem;
-  height: 17rem;
-  background-color: #434343;
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  user-select: none;
 `;
 
 const SecondaryInfoContainer = styled.div`
