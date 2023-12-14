@@ -38,7 +38,6 @@ const Footer: React.FC = () => {
           events
         </FooterSubscribeText>
         <FooterForm>
-          {' '}
           <FooterSubscribeInput
             type="email"
             id="email"
@@ -131,7 +130,7 @@ const FooterSubscribeText = styled.p`
 
 const FooterForm = styled.form`
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   @media screen and (max-width: 912px) {
     display: flex;
     justify-content: center;
@@ -144,7 +143,7 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 2rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     margin-top: 2rem;
   }
 `;
