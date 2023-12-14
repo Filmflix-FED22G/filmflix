@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
@@ -6,8 +6,13 @@ import { useMovies } from '../contexts/MovieContext';
 import slugify from '../utils/slugify';
 import bookmarkSelected from '/icons/bookmark-selected.svg';
 import bookmarkUnselected from '/icons/bookmark-unselected.svg';
+import brokenImage from '/img/broken-image.png';
+import loadingImage from '/img/loading-image.png';
 
 function MovieView() {
+  const [imageStatus, setImageStatus] = useState<
+    'loading' | 'loaded' | 'error'
+  >('loading');
   const { title } = useParams();
   const { movies, toggleBookmark } = useMovies();
   const movie = movies.find((m: Movie) => slugify(m.title) === title);
@@ -25,7 +30,27 @@ function MovieView() {
 
   return (
     <MovieViewContainer>
-      <MovieImage src={movie.thumbnail} alt={movie.title + ' poster'} />
+      {imageStatus === 'loading' && (
+        <MovieImage
+          src={loadingImage}
+          alt={'Loading placeholder image'}
+          style={{ display: 'block' }}
+        />
+      )}
+      {imageStatus === 'error' && (
+        <MovieImage
+          src={brokenImage}
+          alt={movie.title + ' poster'}
+          style={{ display: 'block' }}
+        />
+      )}
+      <MovieImage
+        onLoad={() => setImageStatus('loaded')}
+        onError={() => setImageStatus('error')}
+        src={movie.thumbnail}
+        alt={movie.title + ' poster'}
+        style={{ display: imageStatus === 'loaded' ? 'block' : 'none' }}
+      />
       <MovieTextContainer>
         <MovieHeadlineBookmarkContainer>
           <h4>{movie.title}</h4>
