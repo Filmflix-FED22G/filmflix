@@ -83,14 +83,24 @@ export default CategoryDropdown;
 const DropdownWrapper = styled.div`
   background-color: var(--color-header-footer-background);
   display: inline-block;
-  margin: 2rem;
+  margin: var(--default-margin-top-bottom) var(--default-margin-left-right) 0
+    var(--default-margin-left-right);
   position: relative;
   text-align: left;
 
-  @media (max-width: 768px) {
+  @media (max-width: 912px) {
     display: block;
-    margin: 2rem auto;
     text-align: center;
+    display: flex;
+    max-width: 30%;
+    margin: var(--default-margin-top-bottom)
+      var(--default-margin-left-right-tablet);
+  }
+
+  @media (max-width: 420px) {
+    margin: var(--default-margin-top-bottom)
+      var(--default-margin-left-right-mobile);
+    max-width: 60%;
   }
 `;
 
@@ -156,6 +166,7 @@ const FlexContainer = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h5`
-  margin: 0.2rem 0 0 0;
+const Title = styled.h4`
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
 `;

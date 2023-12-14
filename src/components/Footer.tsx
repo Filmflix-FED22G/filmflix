@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import facebookwhite from '/icons/facebookwhite.svg';
 import filmFlix from '/icons/filmflix-logo.svg';
@@ -9,12 +10,12 @@ const Footer: React.FC = () => {
   return (
     <FooterContainer>
       <div style={{ flex: 1 }}>
-        <a href="/">
+        <StyledLogo to="/">
           <LogoImage src={filmFlix} alt="filmFlix Logo" />
-        </a>
+        </StyledLogo>
       </div>
       <div style={{ flex: 1 }}>
-        <FooterHeading>INFO</FooterHeading>
+        <FooterHeading>Info</FooterHeading>
         <FooterList>
           <FooterListItem>Customer Service</FooterListItem>
           <FooterListItem>Terms & Conditions</FooterListItem>
@@ -23,7 +24,7 @@ const Footer: React.FC = () => {
         </FooterList>
       </div>
       <div style={{ flex: 1 }}>
-        <FooterHeading>ABOUT US</FooterHeading>
+        <FooterHeading>About Us</FooterHeading>
         <FooterList>
           <FooterListItem>Press</FooterListItem>
           <FooterListItem>News</FooterListItem>
@@ -31,20 +32,20 @@ const Footer: React.FC = () => {
         </FooterList>
       </div>
       <div style={{ flex: 1 }}>
-        <FooterHeading>SUBSCRIBE</FooterHeading>
+        <FooterHeading>Subscribe</FooterHeading>
         <FooterSubscribeText>
           Enter your email to get the info about the latest FilmFlix news and
           events
         </FooterSubscribeText>
         <FooterForm>
           {' '}
-          <input
+          <FooterSubscribeInput
             type="email"
             id="email"
             name="email"
             placeholder="name@example.com"
           />
-          <button type="submit">OK</button>
+          <FooterSubscribeButton type="submit">Ok</FooterSubscribeButton>
         </FooterForm>
       </div>
       <div style={{ flex: 1 }}>
@@ -62,10 +63,11 @@ export default Footer;
 
 const FooterContainer = styled.footer`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--color-header-footer-background);
-  color: #fff;
-  padding: 2rem;
+  color: var(--color-light);
+  padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -79,9 +81,19 @@ const LogoImage = styled.img`
   height: auto;
 `;
 
+const StyledLogo = styled(RouterLink)`
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
 const FooterHeading = styled.h4`
   margin-top: 0;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+
   @media screen and (max-width: 768px) {
     margin-top: 1rem;
     margin-bottom: 0;
@@ -95,18 +107,28 @@ const FooterList = styled.ul`
 `;
 
 const FooterListItem = styled.li`
+  font-size: var(--font-size-s);
   padding: 0.5rem 0;
+
   @media screen and (max-width: 768px) {
     padding: 0.25rem 0;
   }
 `;
 
 const FooterSubscribeText = styled.p`
+  padding-top: 0.5rem;
+
   @media screen and (max-width: 768px) {
     max-width: 20rem;
     margin: 0 auto;
+    padding-top: 0.25rem;
+  }
+
+  @media screen and (max-width: 540px) {
+    max-width: 16rem;
   }
 `;
+
 const FooterForm = styled.form`
   display: flex;
   margin-top: 2rem;
@@ -120,7 +142,7 @@ const FooterForm = styled.form`
 
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 2rem;
   @media screen and (max-width: 768px) {
     margin-top: 2rem;
@@ -128,4 +150,24 @@ const ImageContainer = styled.div`
 `;
 const FooterSoMe = styled.img`
   height: 1.5rem;
+`;
+
+const FooterSubscribeInput = styled.input`
+  font-family: 'Overpass', sans-serif;
+  font-size: var(--font-size-s);
+  padding: 0.4rem 0.7rem 0.3rem 0.7rem;
+  min-height: 2.5rem;
+`;
+
+const FooterSubscribeButton = styled.button`
+  border-radius: 0;
+  border: 0.2rem solid var(--color-light);
+  padding: 0.4rem 0.4rem 0.3rem 0.4rem;
+  transition: 0.25s;
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  min-height: 2.5rem;
+  &:hover {
+    background-color: var(--color-dark-grey);
+  }
 `;
