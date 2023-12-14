@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Movie } from '../../types/movieTypes';
 import { useMovies } from '../contexts/MovieContext';
@@ -9,6 +9,7 @@ import bookmarkUnselected from '/icons/bookmark-unselected.svg';
 import brokenImage from '/img/broken-image.png';
 import loadingImage from '/img/loading-image.png';
 
+// Renders the movie details when a user clicks on a movie thumbnail on the website
 function MovieView() {
   const [imageStatus, setImageStatus] = useState<
     'loading' | 'loaded' | 'error'
@@ -16,6 +17,11 @@ function MovieView() {
   const { title } = useParams();
   const { movies, toggleBookmark } = useMovies();
   const movie = movies.find((m: Movie) => slugify(m.title) === title);
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1); // This will take the user back to the previous page
+  };
 
   useEffect(() => {
     if (movie) {
@@ -81,17 +87,20 @@ function MovieView() {
             ))}
           </MovieCastList>
         </MovieCastContainer>
+        <BackButton onClick={goBack}>Go back</BackButton>
       </MovieTextContainer>
     </MovieViewContainer>
   );
 }
+
+export default MovieView;
 
 const MovieViewContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  padding: 2rem 2rem;
+  padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
 
   @media (max-width: 912px) {
     flex-direction: column;
@@ -120,7 +129,7 @@ const MovieTextContainer = styled.div`
 
   @media (max-width: 1440px) {
     flex-direction: column;
-    width: 48%;
+    width: 38%;
   }
 
   @media (max-width: 912px) {
@@ -131,7 +140,7 @@ const MovieTextContainer = styled.div`
 
 const MovieHeadlineBookmarkContainer = styled.div`
   display: flex;
-  max-width: 98%;
+  max-width: 100%;
 
   @media (max-width: 912px) {
     max-width: 100%;
@@ -152,7 +161,7 @@ const MovieYearRatingGenreText = styled.p`
 const RatingBadge = styled.div`
   user-select: none;
   height: 2rem;
-  background-color: #434343;
+  background-color: var(--color-grey);
   border-radius: 0.3rem;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   display: flex;
@@ -161,7 +170,7 @@ const RatingBadge = styled.div`
 
   span {
     font-family: 'Oswald', sans-serif;
-    color: white;
+    color: var(--color-light);
   }
 `;
 
@@ -216,4 +225,15 @@ const BookmarkIcon = styled.img`
   }
 `;
 
-export default MovieView;
+const BackButton = styled.button`
+  background-color: var(--color-dark-grey);
+  color: var(--color-light);
+  padding: 0.8rem 1.2rem 0.5rem 1.2rem;
+  transition: background-color 0.3s;
+  border: none;
+  max-width: fit-content;
+
+  &:hover {
+    background-color: var(--color-grey); // Slightly darker on hover
+  }
+`;

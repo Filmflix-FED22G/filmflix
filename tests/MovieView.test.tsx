@@ -77,9 +77,13 @@ describe('MovieView Component with URL Parameter', () => {
     const movieTitle = 'Portrait of a Lady on Fire';
 
     render(
-      <MovieProvider>
-        <MovieView />
-      </MovieProvider>,
+      <MemoryRouter>
+        <MovieProvider>
+          <Routes>
+            <Route path="/" element={<MovieView />} />
+          </Routes>
+        </MovieProvider>
+      </MemoryRouter>,
     );
 
     expect(document.title).toBe(`${movieTitle}`);
