@@ -118,7 +118,7 @@ const HeroLink = styled(RouterLink)`
   text-transform: uppercase;
   padding: 0.8rem 1.2rem 0.5rem 1.2rem;
   border: none;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--color-light);
   font-size: var(--font-size-s);
   cursor: pointer;
   transition: 0.25s;
