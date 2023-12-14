@@ -20,9 +20,13 @@ describe('Thumbnail Component', () => {
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(
+      screen.getByAltText('Loading placeholder image'),
+    ).toBeInTheDocument();
     fireEvent.load(poster);
-    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+    expect(
+      screen.queryByAltText('Loading placeholder image'),
+    ).not.toBeInTheDocument();
     expect(poster).toBeInTheDocument();
 
     expect(screen.getByText('The Shawshank Redemption')).toBeInTheDocument();
@@ -41,10 +45,16 @@ describe('Thumbnail Component', () => {
     );
 
     const poster = screen.getByAltText('The Shawshank Redemption poster');
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(
+      screen.getByAltText('Loading placeholder image'),
+    ).toBeInTheDocument();
     fireEvent.error(poster);
-    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-    expect(screen.getByText('Poster not found')).toBeInTheDocument();
+    expect(
+      screen.queryByAltText('Loading placeholder image'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByAltText('Error fetching the The Shawshank Redemption poster'),
+    ).toBeInTheDocument();
     expect(poster.style.display).toBe('none');
 
     expect(screen.getByText('The Shawshank Redemption')).toBeInTheDocument();

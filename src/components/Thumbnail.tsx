@@ -31,7 +31,7 @@ export default function Thumbnail({ movie }: { movie: Movie }) {
         {imageStatus === 'error' && (
           <MovieThumbnail
             src={brokenImage}
-            alt={movie.title + ' poster'}
+            alt={'Error fetching the ' + movie.title + ' poster'}
             style={{ display: 'block' }}
           />
         )}

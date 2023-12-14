@@ -33,13 +33,13 @@ describe('BookmarkPage Component', () => {
       </MovieProvider>,
     );
 
-    let loadingTexts = screen.getAllByText('Loading...');
+    let loadingTexts = screen.getAllByAltText('Loading placeholder image');
     const posters = screen.getAllByAltText(/poster/);
 
     // Check that only bookmarked movies are rendered
     expect(loadingTexts.length).toBe(6);
     posters.map((poster) => fireEvent.load(poster));
-    loadingTexts = screen.queryAllByText('Loading...');
+    loadingTexts = screen.queryAllByText('Loading placeholder image');
     expect(loadingTexts.length).toBe(0);
     expect(screen.getByText('Whiplash')).toBeInTheDocument();
     expect(
