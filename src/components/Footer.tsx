@@ -68,7 +68,6 @@ const FooterContainer = styled.footer`
   padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
 
   @media screen and (max-width: 912px) {
-  @media screen and (max-width: 912px) {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -95,7 +94,6 @@ const FooterHeading = styled.h4`
   text-transform: uppercase;
 
   @media screen and (max-width: 912px) {
-  @media screen and (max-width: 912px) {
     margin-top: 1rem;
     margin-bottom: 0;
   }
@@ -112,7 +110,6 @@ const FooterListItem = styled.li`
   padding: 0.5rem 0;
 
   @media screen and (max-width: 912px) {
-  @media screen and (max-width: 912px) {
     padding: 0.25rem 0;
   }
 `;
@@ -120,7 +117,6 @@ const FooterListItem = styled.li`
 const FooterSubscribeText = styled.p`
   padding-top: 0.5rem;
 
-  @media screen and (max-width: 912px) {
   @media screen and (max-width: 912px) {
     max-width: 20rem;
     margin: 0 auto;
