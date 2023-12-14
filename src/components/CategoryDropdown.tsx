@@ -168,5 +168,5 @@ const FlexContainer = styled.div`
 
 const Title = styled.h4`
   font-family: 'Oswald', sans-serif;
-  margin: 0;
+  margin: 0 0 0.2rem 0;
 `;
