@@ -109,18 +109,17 @@ const SearchContainer = styled.div<SearchBarProps>`
   max-width: 20rem;
   display: block;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 912px) {
     margin: 1rem auto;
-    max-width: 40rem;
+    max-width: 100%;
     display: ${({ $showInMobile }) => ($showInMobile ? 'block' : 'none')};
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 913px) and (max-width: 1024px) {
     width: 100%;
     margin: 1rem auto;
     display: block;
-    max-width: 40rem;
+    max-width: 100%;
   }
 `;
 
