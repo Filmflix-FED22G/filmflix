@@ -42,10 +42,10 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   grid-column: 1 / -1;
   text-align: left;
-  padding: 2rem 0;
+  padding: 0;
   @media (max-width: 929px) {
     text-align: center;
   }
