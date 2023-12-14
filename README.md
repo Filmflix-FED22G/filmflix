@@ -1,9 +1,33 @@
-# FILMFLIX
+<img src="./public/icons/filmflix-logo-dark.svg" width="120rem"/>
 
-## Description
+## Description 🎬
 
-This is a simple web application that allows users to search for movies and TV shows and view details about them.
+This application allows users to explore and search for a variety of available movies, providing detailed information for each title. Additionally, users can conveniently browse films by category or save their favorites to a personalized bookmarks page for easy access.
 
-## Link to deployed app
+Developed using TypeScript, Styled Components, and React, this application employs Vitest and React Testing Library for its testing setup. A combination of unit and integration tests is used to ensure that the functionalities perform as intended.
 
-<https://filmflix-fed22g.netlify.app/>
+## Setting up the project
+
+Install the local dependencies by running:
+
+```sh
+npm install
+```
+
+Run the project:
+
+```sh
+npm run dev
+```
+
+Start and run the test environment:
+
+```sh
+npm test
+```
+
+<br>
+
+## Explore Our Live Demo on Netlify
+
+[FilmFlix](https://filmflix-fed22g.netlify.app/) 🎬 🍿
