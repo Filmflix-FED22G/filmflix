@@ -35,17 +35,17 @@ function BookmarkPage() {
 export default BookmarkPage;
 
 const Container = styled.div`
-  margin: 3rem 2rem;
+  margin: var(--default-margin-top-bottom) var(--default-margin-left-right);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(12rem, 12rem));
   grid-gap: 2rem;
   justify-content: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   grid-column: 1 / -1;
   text-align: left;
-  padding: 2rem 0;
+  padding: 0;
   @media (max-width: 929px) {
     text-align: center;
   }
