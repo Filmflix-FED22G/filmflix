@@ -1,22 +1,27 @@
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { Movie } from '../../types/movieTypes';
+import slugify from '../utils/slugify';
 
+// Renders the Hero component
 interface HeroProps {
-  title: string;
-  heroImageUrl?: string;
-  quote?: string;
+  movie: Movie;
 }
 
-const Hero = ({ title, quote, heroImageUrl }: HeroProps) => {
+function Hero({ movie }: HeroProps) {
+  const movieSlug = slugify(movie.title); // Generate slug from movie title
+
   return (
-    <HeroContainer $heroImageUrl={heroImageUrl || ''}>
+    <HeroContainer $heroImageUrl={movie.heroImage || ''}>
       <HeroInfo>
-        <HeroTitle>{title}</HeroTitle>
-        {quote && <HeroQuote>{quote}</HeroQuote>}
-        <HeroButton>View More</HeroButton>
+        <HeroFeatured>Featured Today</HeroFeatured>
+        <HeroTitle>{movie.title}</HeroTitle>
+        {movie.quote && <HeroQuote>{movie.quote}</HeroQuote>}
+        <HeroLink to={`/details/${movieSlug}`}>View More</HeroLink>
       </HeroInfo>
     </HeroContainer>
   );
-};
+}
 
 export default Hero;
 
@@ -66,7 +71,7 @@ const HeroInfo = styled.div`
   }
 
   @media (max-width: 1024px) {
-    bottom: 20%;
+    bottom: 10%;
     right: 68%;
   }
 
@@ -92,6 +97,11 @@ const HeroInfo = styled.div`
   }
 `;
 
+const HeroFeatured = styled.h5`
+  text-align: center;
+  font-size: var(--font-size-m);
+`;
+
 const HeroTitle = styled.h2`
   text-transform: uppercase;
 `;
@@ -103,20 +113,22 @@ const HeroQuote = styled.h5`
   text-align: center;
 `;
 
-const HeroButton = styled.button`
+const HeroLink = styled(RouterLink)`
   font-family: 'Overpass', sans-serif;
   text-transform: uppercase;
-  padding: 0.8rem 1rem 0.5rem 1rem;
-  max-width: 8rem;
+  padding: 0.8rem 1.2rem 0.5rem 1.2rem;
   border: none;
-  background: var(--color-light);
+  background: rgba(255, 255, 255, 0.5);
   font-size: var(--font-size-s);
   cursor: pointer;
   transition: 0.25s;
   color: var(--color-dark);
+  margin-top: 0.5rem;
+  text-align: center;
 
   &:hover {
     background: var(--color-accent);
     color: var(--color-light);
+    text-decoration: none;
   }
 `;

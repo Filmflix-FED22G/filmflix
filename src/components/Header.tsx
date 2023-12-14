@@ -94,7 +94,7 @@ const StyledLink = styled.div`
     color: var(--color-light);
     text-decoration: none;
     text-transform: uppercase;
-    margin: 2rem;
+    margin: 2rem 0;
 
     &:hover {
       color: var(--color-hover);
@@ -106,15 +106,30 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   background-color: var(--color-header-footer-background);
   color: var(--color-light);
-  padding: 1.3rem var(--default-padding);
+  padding: 1.5rem var(--default-padding-left-right);
+
+  @media (max-width: 912px) {
+    padding: 1.4rem var(--default-padding-left-right-tablet);
+  }
+
+  @media (max-width: 420px) {
+    padding: 1.3rem var(--default-padding-left-right-mobile);
+  }
 `;
 
 const LogoImage = styled.img`
   width: 7.5rem;
   height: auto;
+
+  @media (max-width: 912px) {
+    width: 6.25rem;
+  }
+
+  @media (max-width: 420px) {
+    width: 5.625rem;
+  }
 `;
 
 // Styling for navigation links
@@ -129,7 +144,7 @@ const NavLinks = styled.nav`
       color: var(--color-hover);
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 912px) {
     display: none;
   }
 `;
@@ -138,7 +153,7 @@ const NavLinks = styled.nav`
 const HamburgerIcon = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 912px) {
     display: block;
     cursor: pointer;
   }
@@ -152,13 +167,17 @@ const MobileMenu = styled.div<{ $isOpen: boolean }>`
   left: 0;
   right: 0;
   background-color: var(--color-header-footer-background);
-  padding: 1rem;
   z-index: 100;
   height: 100vh;
   overflow: auto;
   transform: ${({ $isOpen }) =>
     $isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.3s ease-in-out;
+  padding: 0 var(--default-padding-left-right-tablet);
+
+  @media (max-width: 420px) {
+    padding: 0 var(--default-padding-left-right-mobile);
+  }
 
   a {
     color: white;

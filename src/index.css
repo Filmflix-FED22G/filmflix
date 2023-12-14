@@ -20,14 +20,21 @@
   --color-hover: #aa8c21;
   --font-size-xs: 0.875rem;
   --font-size-s: clamp(0.938rem, 2.5vw, 1.063rem);
-  --font-size-m: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --font-size-m: clamp(1.125rem, 1rem + 1vw, 1.5rem);
   --font-size-l: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
-  --font-size-xl: clamp(2.5rem, 2rem + 2vw, 3.5rem);
-  --font-size-xxl: clamp(3rem, 2.5rem + 2vw, 4rem);
+  --font-size-xl: clamp(2.5rem, 2rem + 2vw, 3rem);
+  --font-size-xxl: clamp(3rem, 2.5rem + 2vw, 3.5rem);
   --font-weight-bold: 600;
   --font-weight-regular: 400;
   --font-weight-light: 200;
-  --default-padding: 2rem;
+  --default-padding-left-right: 3rem;
+  --default-padding-top-bottom: 3rem;
+  --default-padding-left-right-tablet: 2rem;
+  --default-padding-left-right-mobile: 1.5rem;
+  --default-margin-top-bottom: 3rem;
+  --default-margin-left-right: 3rem;
+  --default-margin-left-right-tablet: 2rem;
+  --default-margin-left-right-mobile: 1.5rem;
 }
 
 html {
@@ -48,10 +55,12 @@ body {
 h1 {
   font-size: var(--font-size-xxl);
   line-height: 1.1;
+  text-transform: uppercase;
 }
 
 h2 {
   font-size: var(--font-size-xl);
+  text-transform: uppercase;
 }
 
 h3 {
@@ -88,29 +97,17 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 input {
   font-family: 'Overpass', sans-serif;
   font-size: var(--font-size-s);
   border: none;
   color: var(--color-placeholder-text);
-  padding-left: 0.6rem;
-  @media screen and (max-width: 768px) {
-    height: 2.42rem;
-  }
 }
 
 button {
-  border-radius: 0;
-  border: 0.2rem solid var(--color-light);
-  padding: 0.4rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.25s;
-  background-color: var(--color-accent);
-  color: var(--color-light);
   font-family: 'Overpass', sans-serif;
   font-size: var(--font-size-s);
-}
-button:hover {
-  background-color: var(--color-dark-grey);
+  text-transform: uppercase;
+  cursor: pointer;
 }

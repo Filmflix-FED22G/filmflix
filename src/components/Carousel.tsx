@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Thumbnail from './Thumbnail';
 import { Movie } from '../../types/movieTypes';
+import Thumbnail from './Thumbnail';
 
 interface CarouselProps {
   data: Movie[];
@@ -29,14 +29,18 @@ const Carousel: React.FC<CarouselProps> = ({ data, heading }) => {
 const CarouselWrapper = styled.div`
   background-color: var(--color-dark-grey);
   width: 100%;
-  padding: 1rem;
-  margin: 2rem 0;
+  padding: var(--default-padding-left-right);
+  margin: var(--default-margin-top-bottom) 0;
   display: flex;
-  flex-direction: column;
 
-  @media screen and (min-width: 760px) {
-    flex-direction: row;
+  @media (max-width: 912px) {
+    padding: var(--default-padding-left-right-tablet);
+    flex-direction: column;
     justify-content: left;
+  }
+
+  @media (max-width: 420px) {
+    padding: var(--default-padding-left-right-mobile);
   }
 `;
 
@@ -44,7 +48,7 @@ const CarouselHeading = styled.div`
   display: flex;
   min-width: 15rem;
 
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 912px) {
     display: none;
   }
 `;
@@ -52,7 +56,7 @@ const CarouselHeading = styled.div`
 const CarouselHeadingMobile = styled.div`
   display: none;
 
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 912px) {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -67,11 +71,10 @@ const MoviesWrapper = styled.div`
   scrollbar-gutter: stable;
 `;
 
-const Heading = styled.h4`
-  font-family: 'Oswald', sans-serif;
-  padding: 2rem;
+const Heading = styled.h3`
   display: flex;
   align-items: center;
+  font-family: 'Oswald', sans-serif;
 `;
 
 export default Carousel;
