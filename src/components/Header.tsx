@@ -94,7 +94,7 @@ const StyledLink = styled.div`
     color: var(--color-light);
     text-decoration: none;
     text-transform: uppercase;
-    margin: 2rem;
+    margin: 2rem 0;
 
     &:hover {
       color: var(--color-hover);
@@ -144,7 +144,7 @@ const NavLinks = styled.nav`
       color: var(--color-hover);
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 912px) {
     display: none;
   }
 `;
@@ -153,7 +153,7 @@ const NavLinks = styled.nav`
 const HamburgerIcon = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 912px) {
     display: block;
     cursor: pointer;
   }
