@@ -38,7 +38,6 @@ const Footer: React.FC = () => {
           events
         </FooterSubscribeText>
         <FooterForm>
-          {' '}
           <FooterSubscribeInput
             type="email"
             id="email"
@@ -68,7 +67,7 @@ const FooterContainer = styled.footer`
   color: var(--color-light);
   padding: var(--default-padding-top-bottom) var(--default-padding-left-right);
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -94,7 +93,7 @@ const FooterHeading = styled.h4`
   margin-bottom: 1rem;
   text-transform: uppercase;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     margin-top: 1rem;
     margin-bottom: 0;
   }
@@ -110,7 +109,7 @@ const FooterListItem = styled.li`
   font-size: var(--font-size-s);
   padding: 0.5rem 0;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     padding: 0.25rem 0;
   }
 `;
@@ -118,7 +117,7 @@ const FooterListItem = styled.li`
 const FooterSubscribeText = styled.p`
   padding-top: 0.5rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     max-width: 20rem;
     margin: 0 auto;
     padding-top: 0.25rem;
@@ -131,8 +130,8 @@ const FooterSubscribeText = styled.p`
 
 const FooterForm = styled.form`
   display: flex;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
+  margin-top: 1rem;
+  @media screen and (max-width: 912px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +143,7 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 2rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 912px) {
     margin-top: 2rem;
   }
 `;
