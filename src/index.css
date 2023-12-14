@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   --color-accent: #aa8c21;
   --color-light: #fff;
+  --color-grey: #434343;
   --color-dark-grey: #323232;
   --color-dark: #000000;
   --color-header-footer-background: #1c1b1f;
@@ -110,4 +111,5 @@ button {
   font-size: var(--font-size-s);
   text-transform: uppercase;
   cursor: pointer;
+  border-radius: 0;
 }
