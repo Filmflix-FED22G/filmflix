@@ -81,7 +81,6 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
             value={searchQuery}
             onChange={handleInputChange}
           />
-          {/* <SearchIcon src={magnifyingGlass} alt="Search icon" /> */}
           <SearchButton type="submit" aria-label="Search">
             <SearchIcon src={magnifyingGlass} alt="Search" />
           </SearchButton>
@@ -91,7 +90,9 @@ function SearchBar({ $showInMobile = false }: SearchBarProps) {
         <SearchResultsDropdown>
           {filteredMovies.map((movie) => (
             <ThumbnailContainer key={movie.title}>
-              <Thumbnail movie={movie} />
+              <div onClick={clearSearch}>
+                <Thumbnail movie={movie} />
+              </div>
             </ThumbnailContainer>
           ))}
         </SearchResultsDropdown>
